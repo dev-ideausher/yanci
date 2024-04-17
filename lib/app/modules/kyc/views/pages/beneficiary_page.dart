@@ -2,6 +2,7 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:yanci/app/components/custom_dropdown.dart';
 import 'package:yanci/app/components/custom_required_rich_text.dart';
 import 'package:yanci/app/components/custom_textfield.dart';
 import 'package:yanci/app/constants/string_constants.dart';
@@ -21,7 +22,7 @@ class BeneficiaryPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          StringConstants.provideDetailsBeneficiary,
+          StringConstants.beneficiaryInfo,
           style: TextStyleUtil.kText18_6(fontWeight: FontWeight.w700),
         ),
         5.kheightBox,
@@ -35,6 +36,12 @@ class BeneficiaryPage extends StatelessWidget {
           title: StRichText(text: StringConstants.fullName, color: context.redColor),
           hint: StringConstants.fullName,
           controller: kycController.beneficiaryNameController,
+        ),
+        20.kheightBox,
+        StDropDown(
+          title: StRichText(text: StringConstants.relationshipToAccHolder, color: context.redColor),
+          dropdownMenuEntries: kycController.relationToAccHolder.map((e) => DropdownMenuEntry(value: e, label: e)).toList(),
+          onSelected: (String val) => kycController.selectedRelation = val,
         ),
         20.kheightBox,
         StTextField(
@@ -57,14 +64,38 @@ class BeneficiaryPage extends StatelessWidget {
         ),
         20.kheightBox,
         StTextField(
-          title: StRichText(text: StringConstants.address, color: context.redColor),
-          hint: StringConstants.address,
-          controller: kycController.beneficiaryAddress,
+          title: StRichText(text: StringConstants.country, color: context.redColor),
+          hint: StringConstants.addressHere,
+          controller: kycController.beneficiaryCountryController,
         ),
-        180.kheightBox,
+        20.kheightBox,
+        StTextField(
+          title: StRichText(text: StringConstants.stateOrRegion, color: context.redColor),
+          hint: StringConstants.addressHere,
+          controller: kycController.beneficiaryStateController,
+        ),
+        20.kheightBox,
+        StTextField(
+          title: StRichText(text: StringConstants.city, color: context.redColor),
+          hint: StringConstants.addressHere,
+          controller: kycController.beneficiaryCityController,
+        ),
+        20.kheightBox,
+        StTextField(
+          title: StRichText(text: StringConstants.streetaddress, color: context.redColor),
+          hint: StringConstants.addressHere,
+          controller: kycController.beneficiaryStreetController,
+        ),
+        20.kheightBox,
+        StTextField(
+          title: StRichText(text: StringConstants.gpsAddress, color: context.redColor),
+          hint: StringConstants.addressHere,
+          controller: kycController.beneficiaryGpsController,
+        ),
+        20.kheightBox,
         CustomButton(
           title: StringConstants.continueText,
-          onTap: () => kycController.nextPage(),
+          onTap: () => kycController.verifyAcc(),
           borderRadius: 50,
         ),
       ],

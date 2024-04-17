@@ -28,7 +28,7 @@ class KycView extends GetView<KycController> {
           },
         ),
         title: Obx(
-          () => controller.index.value < 7
+          () => controller.index.value < 8
               ? Stack(
                   children: [
                     DecoratedBox(
@@ -43,7 +43,7 @@ class KycView extends GetView<KycController> {
                         decoration: BoxDecoration(borderRadius: BorderRadius.circular(40), color: context.kcPrimaryColor),
                         child: SizedBox(
                           height: 6.kh,
-                          width: (266.kw / 7) * (controller.index.value + 1),
+                          width: (266.kw / 8) * (controller.index.value + 1),
                         ),
                       ),
                     ),

@@ -19,7 +19,7 @@ class BankDetailsPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          StringConstants.provideBankDetails,
+          StringConstants.bankDetails,
           style: TextStyleUtil.kText18_6(fontWeight: FontWeight.w700),
         ),
         5.kheightBox,
@@ -70,7 +70,7 @@ class BankDetailsPage extends StatelessWidget {
         20.kheightBox,
         CustomButton(
           title: StringConstants.continueText,
-          onTap: () => kycController.verifyAcc(),
+          onTap: () => kycController.nextPage(),
           borderRadius: 50,
         ),
       ],

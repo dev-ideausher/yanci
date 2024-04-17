@@ -59,8 +59,8 @@ class SignaturePage extends StatelessWidget {
         ),
         40.kheightBox,
         CustomButton(
-          title: StringConstants.continueText,
-          onTap: () => kycController.verifyAcc(),
+          title: StringConstants.submit,
+          onTap: () => kycController.nextPage(),
           borderRadius: 50,
         ),
       ],

@@ -14,6 +14,9 @@ import 'package:flutter/services.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/CSD_KYC.png
+  AssetGenImage get csdKyc => const AssetGenImage('assets/images/CSD_KYC.png');
+
   /// File path: assets/images/appleLogo.png
   AssetGenImage get appleLogo =>
       const AssetGenImage('assets/images/appleLogo.png');
@@ -52,6 +55,7 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+        csdKyc,
         appleLogo,
         googleLogo,
         onboarding1,

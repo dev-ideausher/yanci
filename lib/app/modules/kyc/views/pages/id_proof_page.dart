@@ -25,17 +25,17 @@ class IdProofPage extends StatelessWidget {
           style: TextStyleUtil.kText18_6(fontWeight: FontWeight.w700),
         ),
         20.kheightBox,
-        Text(
-          StringConstants.uploadIdProofDescription,
-          textAlign: TextAlign.center,
-          style: TextStyleUtil.kText14_4(),
-        ),
-        50.kheightBox,
         Obx(
           () => kycController.idImage?.value != null
               ? Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    Text(
+                      StringConstants.idSuccesfullyCaptured,
+                      textAlign: TextAlign.center,
+                      style: TextStyleUtil.kText14_4(),
+                    ),
+                    50.kheightBox,
                     ClipRRect(
                       borderRadius: BorderRadius.circular(10.kh),
                       child: SizedBox(
@@ -64,6 +64,12 @@ class IdProofPage extends StatelessWidget {
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    Text(
+                      StringConstants.uploadIdProofDescription,
+                      textAlign: TextAlign.center,
+                      style: TextStyleUtil.kText14_4(),
+                    ),
+                    50.kheightBox,
                     ClipRRect(
                       borderRadius: BorderRadius.circular(10.kh),
                       child: Stack(
