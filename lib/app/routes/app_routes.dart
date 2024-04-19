@@ -9,6 +9,9 @@ abstract class Routes {
   static const LOGIN = _Paths.LOGIN;
   static const SIGN_UP = _Paths.SIGN_UP;
   static const KYC = _Paths.KYC;
+  static const STOCK_DETAILS = _Paths.STOCK_DETAILS;
+  static const BUY = _Paths.BUY;
+  static const SELL = _Paths.SELL;
 }
 
 abstract class _Paths {
@@ -19,4 +22,7 @@ abstract class _Paths {
   static const LOGIN = '/login';
   static const SIGN_UP = '/sign-up';
   static const KYC = '/kyc';
+  static const STOCK_DETAILS = '/stock-details';
+  static const BUY = '/buy';
+  static const SELL = '/sell';
 }

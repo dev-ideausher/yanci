@@ -87,6 +87,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/appleLogo.svg
   SvgGenImage get appleLogo => const SvgGenImage('assets/svg/appleLogo.svg');
 
+  /// File path: assets/svg/bookmark.svg
+  SvgGenImage get bookmark => const SvgGenImage('assets/svg/bookmark.svg');
+
   /// File path: assets/svg/camera.svg
   SvgGenImage get camera => const SvgGenImage('assets/svg/camera.svg');
 
@@ -94,8 +97,14 @@ class $AssetsSvgGen {
   SvgGenImage get cameraBorder =>
       const SvgGenImage('assets/svg/camera_border.svg');
 
+  /// File path: assets/svg/explore.svg
+  SvgGenImage get explore => const SvgGenImage('assets/svg/explore.svg');
+
   /// File path: assets/svg/files.svg
   SvgGenImage get files => const SvgGenImage('assets/svg/files.svg');
+
+  /// File path: assets/svg/filter.svg
+  SvgGenImage get filter => const SvgGenImage('assets/svg/filter.svg');
 
   /// File path: assets/svg/gallery.svg
   SvgGenImage get gallery => const SvgGenImage('assets/svg/gallery.svg');
@@ -103,8 +112,33 @@ class $AssetsSvgGen {
   /// File path: assets/svg/googleLogo.svg
   SvgGenImage get googleLogo => const SvgGenImage('assets/svg/googleLogo.svg');
 
+  /// File path: assets/svg/loss_graph.svg
+  SvgGenImage get lossGraph => const SvgGenImage('assets/svg/loss_graph.svg');
+
+  /// File path: assets/svg/more.svg
+  SvgGenImage get more => const SvgGenImage('assets/svg/more.svg');
+
+  /// File path: assets/svg/my_stocks.svg
+  SvgGenImage get myStocks => const SvgGenImage('assets/svg/my_stocks.svg');
+
+  /// File path: assets/svg/news.svg
+  SvgGenImage get news => const SvgGenImage('assets/svg/news.svg');
+
+  /// File path: assets/svg/orders.svg
+  SvgGenImage get orders => const SvgGenImage('assets/svg/orders.svg');
+
+  /// File path: assets/svg/profit_graph.svg
+  SvgGenImage get profitGraph =>
+      const SvgGenImage('assets/svg/profit_graph.svg');
+
+  /// File path: assets/svg/search.svg
+  SvgGenImage get search => const SvgGenImage('assets/svg/search.svg');
+
   /// File path: assets/svg/select_file.svg
   SvgGenImage get selectFile => const SvgGenImage('assets/svg/select_file.svg');
+
+  /// File path: assets/svg/share.svg
+  SvgGenImage get share => const SvgGenImage('assets/svg/share.svg');
 
   /// File path: assets/svg/yahooLogo.svg
   SvgGenImage get yahooLogo => const SvgGenImage('assets/svg/yahooLogo.svg');
@@ -112,12 +146,23 @@ class $AssetsSvgGen {
   /// List of all assets
   List<SvgGenImage> get values => [
         appleLogo,
+        bookmark,
         camera,
         cameraBorder,
+        explore,
         files,
+        filter,
         gallery,
         googleLogo,
+        lossGraph,
+        more,
+        myStocks,
+        news,
+        orders,
+        profitGraph,
+        search,
         selectFile,
+        share,
         yahooLogo
       ];
 }

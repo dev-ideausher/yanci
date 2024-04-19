@@ -25,6 +25,7 @@ class StStyle {
     return InputDecoration(
       isDense: true,
       prefixIcon: prefixIcon,
+      prefixIconConstraints: BoxConstraints(maxWidth: 35.kw, minWidth: 35.kw, maxHeight: 20.kh, minHeight: 20.kh),
       suffixIcon: suffixIcon,
       suffix: suffix,
       hintText: hint,

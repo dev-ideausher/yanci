@@ -1,3 +1,4 @@
 {
-  "terminal.integrated.shellIntegration.suggestEnabled": false
+  "terminal.integrated.shellIntegration.suggestEnabled": false,
+  "C_Cpp.default.compilerPath": "C:\\Mingw\\bin\\gcc.exe"
 }

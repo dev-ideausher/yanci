@@ -78,6 +78,21 @@ class TextStyleUtil {
     );
   }
 
+  static kText15_4({
+    Color color = Colors.black,
+    FontWeight fontWeight = FontWeight.w400,
+    TextDecoration textDecoration = TextDecoration.none,
+  }) {
+    return GoogleFonts.inter(
+      fontWeight: fontWeight,
+      color: color,
+      fontStyle: FontStyle.normal,
+      fontSize: 15.kh,
+      decoration: textDecoration,
+      letterSpacing: 0,
+    );
+  }
+
   static kText10_4({
     Color color = Colors.black,
     FontWeight fontWeight = FontWeight.w400,
@@ -193,6 +208,21 @@ class TextStyleUtil {
       color: color,
       fontStyle: FontStyle.normal,
       fontSize: 12.kh,
+      decoration: textDecoration,
+      letterSpacing: 0,
+    );
+  }
+
+  static kText13_4({
+    Color color = Colors.black,
+    FontWeight fontWeight = FontWeight.w400,
+    TextDecoration textDecoration = TextDecoration.none,
+  }) {
+    return GoogleFonts.inter(
+      fontWeight: fontWeight,
+      color: color,
+      fontStyle: FontStyle.normal,
+      fontSize: 13.kh,
       decoration: textDecoration,
       letterSpacing: 0,
     );

@@ -43,4 +43,12 @@ extension ColorUtil on BuildContext {
   Color get borderColor => dynamicColour(light: HexColor("#C9C9C9"), dark: HexColor("#C9C9C9"));
 
   Color get redColor => dynamicColour(light: HexColor("#FA5E49"), dark: HexColor("#FA5E49"));
+
+  Color get greenStockColor => dynamicColour(light: HexColor("#008000"), dark: HexColor("#008000"));
+
+  Color get redStockColor => dynamicColour(light: HexColor("#FF0000"), dark: HexColor("#FF0000"));
+
+  Color get avatarColor => dynamicColour(light: HexColor("#F1F4F4"), dark: HexColor("#F1F4F4"));
+
+  Color get orangeColor => dynamicColour(light: HexColor("#FB5603"), dark: HexColor("#FB5603"));
 }

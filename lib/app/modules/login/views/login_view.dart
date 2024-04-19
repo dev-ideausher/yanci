@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:yanci/app/components/common_signin_provider_button.dart';
 import 'package:yanci/app/components/custom_required_rich_text.dart';

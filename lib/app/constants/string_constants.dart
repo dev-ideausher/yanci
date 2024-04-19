@@ -1,4 +1,5 @@
 class StringConstants {
+  static const ghanaCurrency = "GH₵";
   static const successful = "Successful";
   static const accHasBeenCreated = "Your account has been created";
   static const profileHasBeenCreated = "Your profile has been created";
@@ -181,4 +182,52 @@ class StringConstants {
   // set your pin
   static const setYourPin = "Set your PIN code";
   static const setYourPinText = "Add a PIN to make your account more secure we may ask for a pin for every stock transaction.";
+
+  // HOME PAGE
+  static const stocks = "Stocks";
+  static const myStocks = "My Stocks";
+  static const news = "News";
+  static const explore = "Explore";
+  static const orders = "Orders";
+  static const more = "More";
+  static const searchForStocksETH = "Search for stocks and ETF";
+  static const watchlist = "Watchlist";
+
+  // Stock Details Page
+  static const String buy = 'BUY';
+  static const String sell = 'SELL';
+  static const String stockDetails = 'Stock Details';
+  static const String stockFundamentals = 'Stock Fundamentals';
+  static const String companyFundamentals = 'Company Fundamentals';
+
+  // Stock Fundamentals
+  static const String dayHigh = 'Day High';
+  static const String shareOut = 'Share Out';
+  static const String openPrice = 'Open Price';
+  static const String week52High = '52 Week High';
+  static const String dayLow = 'Day Low';
+  static const String volume = 'Volume';
+  static const String week52Low = '52 Week Low';
+
+  // Company Fundamentals
+  static const String roe = 'ROE';
+  static const String marketCap = 'Market Cap';
+  static const String dividendPerShare = 'Dividend/Share';
+  static const String peRatio = 'P/E Ratio';
+  static const String pbRatio = 'P/B Ratio';
+  static const String dividendYield = 'Dividend Yield';
+  static const String debtToEquity = 'Debt to Equity';
+
+  // news
+  static const String newsAndReports = 'News and reports';
+  static const String newsDetails = 'News of the stock and company will be shown here.';
+
+  // Buyflow
+  static const String limitOrder = 'Limit Order';
+  static const String marketOrder = 'Market Order';
+  static const String quantity = 'Quantity';
+  static const String price = 'Price';
+  static const String estimatedCost = 'Estimated Cost';
+  static const String limitOrderfor30Days = 'Limit order for 30 days';
+  static const String advanceOption = 'Advanced options';
 }

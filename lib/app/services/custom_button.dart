@@ -16,6 +16,7 @@ class CustomButton extends StatelessWidget {
   final double? borderRadius;
   final TextStyle? style;
   final double? height;
+  final double? width;
 
   const CustomButton({
     super.key,
@@ -29,6 +30,7 @@ class CustomButton extends StatelessWidget {
     this.color,
     this.borderRadius,
     this.height,
+    this.width,
     this.style,
   }) : outline = false;
 
@@ -42,6 +44,7 @@ class CustomButton extends StatelessWidget {
     this.color,
     this.borderRadius,
     this.height,
+    this.width,
     this.style,
   })  : disabled = false,
         isloading = false,
@@ -54,7 +57,7 @@ class CustomButton extends StatelessWidget {
       child: Stack(
         children: [
           Container(
-            width: double.infinity,
+            width: width ?? double.infinity,
             height: height ?? 48.kh,
             alignment: Alignment.center,
             decoration: !outline
@@ -101,7 +104,7 @@ class CustomButton extends StatelessWidget {
             child: InkWell(
               onTap: () => onTap!(),
               child: Ink(
-                width: double.infinity,
+                width: width ?? double.infinity,
                 height: 48.kh,
               ),
             ),
