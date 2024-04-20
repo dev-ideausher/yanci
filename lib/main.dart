@@ -30,7 +30,7 @@ Future<void> main() async {
         debugShowCheckedModeBanner: false,
         locale: const Locale('en', 'US'),
         // translationsKeys: AppTranslation.translations,
-        initialRoute: AppPages.HOME,
+        initialRoute: AppPages.INITIAL,
         initialBinding: HomeBinding(),
         getPages: AppPages.routes,
       ),

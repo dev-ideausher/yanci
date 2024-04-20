@@ -4,6 +4,21 @@ class StringConstants {
   static const accHasBeenCreated = "Your account has been created";
   static const profileHasBeenCreated = "Your profile has been created";
 
+  // glossary dialog buy stock
+  static const glossary = "Glossary";
+  static const marketOrderText = "A market order is an instruction to buy or sell a security immediately at the best available current price. It prioritizes speed of execution over price.";
+  static const limitOrderText = "A limit order is an instruction to buy or sell a security at a specific price or better. It ensures price certainty but does not guarantee execution.";
+  static const stopLoss = "Stop Loss";
+  static const stopLossText = "A stop loss is an order placed with a broker to buy or sell once the stock reaches a certain price. It's designed to limit an investor's loss on a security's position. Once the stock hits the specified stop price, the stop loss order becomes a market order, executing at the next available price.";
+  static const timeInForce = "Time In Force";
+  static const timeInForceText = "Time in Force refers to instructions given when placing a trade about how long an order will remain active before it is executed or expires.";
+  static const dayOrderDO = "Day Order (DO)";
+  static const dayOrderDOText = "which shall mean and denote an order that is valid only for that day it is given and unless stated all orders shall be presumed to be day orders.";
+  static const goodTillCancelledGTC = "Good Till Cancelled (GTC)";
+  static const goodTillCancelledGTCText = "If a limit order is placed with a GTC attribute, then this order remains valid for fixed number of days, which by default is 30 days. It is not automatically deleted from the list of pending orders.";
+  static const goodTillDateGTD = "Good Till Date (GTD)";
+  static const goodTillDateGTDText = "If you place a limit order with a GTD attribute, then this remains, valid till defined number of days (calendar days) from the day on which it was input. The order will automatically cancel by the system on the expiry date.";
+
   // onboarding screen
   static const welcomeTo = "Welcome to ";
   static const yanciEmoji = "YANCI👋";

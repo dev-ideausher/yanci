@@ -6,6 +6,7 @@ import 'package:yanci/app/constants/string_constants.dart';
 import 'package:yanci/app/routes/app_pages.dart';
 import 'package:yanci/app/services/colors.dart';
 import 'package:yanci/app/services/custom_button.dart';
+import 'package:yanci/app/services/dialog_helper.dart';
 import 'package:yanci/app/services/responsive_size.dart';
 import 'package:yanci/app/services/text_style_util.dart';
 import 'package:yanci/app/utils/formatter.dart';
@@ -27,7 +28,10 @@ class StockDetailsView extends GetView<StockDetailsController> {
           style: TextStyleUtil.kText16_5(fontWeight: FontWeight.w600),
         ),
         actions: [
-          const Icon(Icons.info_outline),
+          IconButton(
+            icon: const Icon(Icons.info_outline),
+            onPressed: () => DialogHelper.showGlossary(),
+          ),
           16.kwidthBox,
         ],
         centerTitle: false,
