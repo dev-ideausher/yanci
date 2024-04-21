@@ -320,9 +320,10 @@ class BuyView extends GetView<BuyController> {
                     )
                   : 10.kheightBox,
               CustomButton(
-                onTap: () => DialogHelper.showProceedToBuy(
-                  title: StringConstants.proceedToBuy,
-                  description: StringConstants.proceedToBuyText,
+                onTap: () => DialogHelper.showBuyDialog(
+                  height: 200,
+                  title: StringConstants.duplicateOrder,
+                  description: StringConstants.duplicateOrderText,
                   onTap: () {},
                 ),
                 title: StringConstants.buy,

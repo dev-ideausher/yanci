@@ -26,6 +26,8 @@ class StringConstants {
   static const proceedToBuy = "Proceed to buy ?";
   static const proceedToBuyText = "Are you ready to make a purchase ?";
   static const cancel = "Cancel";
+  static const duplicateOrder = "Duplicate Order";
+  static const duplicateOrderText = "You have a similar order placed already. Do you still want to proceed ?";
 
   // onboarding screen
   static const welcomeTo = "Welcome to ";

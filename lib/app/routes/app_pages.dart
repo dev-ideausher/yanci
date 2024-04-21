@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/add_money/bindings/add_money_binding.dart';
+import '../modules/add_money/views/add_money_view.dart';
 import '../modules/buy/bindings/buy_binding.dart';
 import '../modules/buy/views/buy_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -72,6 +74,11 @@ class AppPages {
       name: _Paths.SELL,
       page: () => const SellView(),
       binding: SellBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_MONEY,
+      page: () => const AddMoneyView(),
+      binding: AddMoneyBinding(),
     ),
   ];
 }

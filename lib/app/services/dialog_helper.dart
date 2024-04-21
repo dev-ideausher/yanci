@@ -103,7 +103,7 @@ class DialogHelper {
     ).then(then);
   }
 
-  static void showProceedToBuy({required String title, required String description, required VoidCallback onTap}) {
+  static void showBuyDialog({required String title, required String description, required VoidCallback onTap, required double height}) {
     Get.dialog(
       PopScope(
         canPop: true,
@@ -116,7 +116,7 @@ class DialogHelper {
             ),
             child: SizedBox(
               width: 284.kw,
-              height: 180.kh,
+              height: height.kh,
               child: Padding(
                 padding: EdgeInsets.all(18.kh),
                 child: Column(
@@ -126,7 +126,10 @@ class DialogHelper {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(title, style: TextStyleUtil.kText19_6()),
-                        Icon(Icons.close, size: 24.kh, color: Get.context!.subtitleColor),
+                        GestureDetector(
+                          onTap: () => Get.back(),
+                          child: Icon(Icons.close, size: 24.kh, color: Get.context!.subtitleColor),
+                        ),
                       ],
                     ),
                     10.kheightBox,
