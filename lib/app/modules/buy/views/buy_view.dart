@@ -124,12 +124,12 @@ class BuyView extends GetView<BuyController> {
                     ),
                     20.kheightBox,
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           StringConstants.quantity,
                           style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w500),
                         ),
-                        const Spacer(),
                         SizedBox(
                           width: 110.kw,
                           height: 40.kh,
@@ -145,26 +145,31 @@ class BuyView extends GetView<BuyController> {
                     ),
                     20.kheightBox,
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           StringConstants.price,
                           style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w500),
                         ),
-                        const Spacer(),
                         DecoratedBox(
                           decoration: BoxDecoration(
-                            color: context.whiteColor,
-                            border: Border.all(color: Get.context!.borderColor, width: 1.kh),
+                            color: controller.radioValue.value == 0 ? context.whiteColor : const Color.fromARGB(255, 238, 238, 238),
+                            border: Border.all(color: controller.radioValue.value == 0 ? Get.context!.borderColor : Get.context!.disabledBorderColor, width: 1.kh),
                             borderRadius: BorderRadius.circular(8.kh),
                           ),
                           child: SizedBox(
                             width: 110.kw,
                             height: 40.kh,
                             child: Padding(
-                              padding: EdgeInsets.symmetric(vertical: 8.kh, horizontal: 10.kw),
+                              padding: EdgeInsets.symmetric(vertical: 10.kh, horizontal: 10.kw),
                               child: Text(
-                                "${StringConstants.ghanaCurrency} ${controller.stock.price}",
-                                style: TextStyleUtil.kText16_5(fontWeight: FontWeight.w600),
+                                controller.radioValue.value == 0 ? "${StringConstants.ghanaCurrency} ${controller.stock.price}" : StringConstants.atMarket,
+                                style: controller.radioValue.value == 0
+                                    ? TextStyleUtil.kText15_4(fontWeight: FontWeight.w600)
+                                    : TextStyleUtil.kText14_4(
+                                        fontWeight: FontWeight.w500,
+                                        color: context.greyTextColor,
+                                      ),
                               ),
                             ),
                           ),
@@ -173,12 +178,12 @@ class BuyView extends GetView<BuyController> {
                     ),
                     20.kheightBox,
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           StringConstants.estimatedCost,
                           style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w500),
                         ),
-                        const Spacer(),
                         DecoratedBox(
                           decoration: BoxDecoration(
                             color: const Color.fromARGB(255, 238, 238, 238),
@@ -199,26 +204,48 @@ class BuyView extends GetView<BuyController> {
                             children: [
                               10.kheightBox,
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     StringConstants.timeInForce,
                                     style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w500),
                                   ),
-                                  const Spacer(),
-                                  SizedBox(
-                                    width: 150.kw,
-                                    height: 40.kh,
-                                    child: StDropDown(
-                                      dropdownMenuEntries: const [
-                                        DropdownMenuEntry(value: StringConstants.dayOrder, label: StringConstants.dayOrder),
-                                        DropdownMenuEntry(value: StringConstants.goodTillCancelled, label: StringConstants.goodTillCancelled),
-                                        DropdownMenuEntry(value: StringConstants.goodTillDate, label: StringConstants.goodTillDate),
-                                      ],
-                                      onSelected: (p0) {},
-                                      isForm: false,
-                                      width: 155,
-                                    ),
-                                  ),
+                                  controller.radioValue.value == 0
+                                      ? SizedBox(
+                                          width: 150.kw,
+                                          height: 40.kh,
+                                          child: StDropDown(
+                                            dropdownMenuEntries: const [
+                                              DropdownMenuEntry(value: StringConstants.dayOrder, label: StringConstants.dayOrder),
+                                              DropdownMenuEntry(value: StringConstants.goodTillCancelled, label: StringConstants.goodTillCancelled),
+                                              DropdownMenuEntry(value: StringConstants.goodTillDate, label: StringConstants.goodTillDate),
+                                            ],
+                                            onSelected: (p0) {},
+                                            isForm: false,
+                                            width: 155,
+                                          ),
+                                        )
+                                      : DecoratedBox(
+                                          decoration: BoxDecoration(
+                                            color: const Color.fromARGB(255, 238, 238, 238),
+                                            border: Border.all(color: Get.context!.disabledBorderColor, width: 1.kh),
+                                            borderRadius: BorderRadius.circular(8.kh),
+                                          ),
+                                          child: SizedBox(
+                                            width: 150.kw,
+                                            height: 40.kh,
+                                            child: Padding(
+                                              padding: EdgeInsets.all(10.kh),
+                                              child: Text(
+                                                StringConstants.dayOrder,
+                                                style: TextStyleUtil.kText14_4(
+                                                  fontWeight: FontWeight.w500,
+                                                  color: context.greyTextColor,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
                                 ],
                               ),
                               10.kheightBox,
@@ -239,29 +266,29 @@ class BuyView extends GetView<BuyController> {
                               ),
                             ],
                           ),
-                    Row(
-                      children: [
-                        const Spacer(),
-                        DecoratedBox(
-                          decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 238, 238, 238),
-                            border: Border.all(color: Get.context!.disabledBorderColor, width: 1.kh),
-                            borderRadius: BorderRadius.circular(8.kh),
-                          ),
-                          child: SizedBox(
-                            width: 150.kw,
-                            height: 40.kh,
-                            child: Padding(
-                              padding: EdgeInsets.all(10.kh),
-                              child: Text(
-                                DateFormat('dd-MM-yyyy').format(DateTime.now()),
-                                style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w600, color: context.greyTextColor),
+                    controller.isAdvanceOptionsEnabled.value
+                        ? Align(
+                            alignment: Alignment.centerRight,
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 238, 238, 238),
+                                border: Border.all(color: Get.context!.disabledBorderColor, width: 1.kh),
+                                borderRadius: BorderRadius.circular(8.kh),
+                              ),
+                              child: SizedBox(
+                                width: 150.kw,
+                                height: 40.kh,
+                                child: Padding(
+                                  padding: EdgeInsets.all(10.kh),
+                                  child: Text(
+                                    DateFormat('dd-MM-yyyy').format(DateTime.now()),
+                                    style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w600, color: context.greyTextColor),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                      ],
-                    ),
+                          )
+                        : const SizedBox(),
                   ],
                 ),
               ),
@@ -293,6 +320,11 @@ class BuyView extends GetView<BuyController> {
                     )
                   : 10.kheightBox,
               CustomButton(
+                onTap: () => DialogHelper.showProceedToBuy(
+                  title: StringConstants.proceedToBuy,
+                  description: StringConstants.proceedToBuyText,
+                  onTap: () {},
+                ),
                 title: StringConstants.buy,
                 style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w600, color: context.whiteColor),
                 height: 48.kh,

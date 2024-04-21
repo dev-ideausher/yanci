@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yanci/app/constants/string_constants.dart';
+import 'package:yanci/app/services/custom_button.dart';
 import 'package:yanci/app/services/text_style_util.dart';
 import 'package:yanci/gen/assets.gen.dart';
 import 'colors.dart';
@@ -100,6 +101,77 @@ class DialogHelper {
       barrierColor: const Color(0xff141A31).withOpacity(.4),
       useSafeArea: true,
     ).then(then);
+  }
+
+  static void showProceedToBuy({required String title, required String description, required VoidCallback onTap}) {
+    Get.dialog(
+      PopScope(
+        canPop: true,
+        onPopInvoked: (pop) => Future.value(false),
+        child: Center(
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: Get.context!.whiteColor,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: SizedBox(
+              width: 284.kw,
+              height: 180.kh,
+              child: Padding(
+                padding: EdgeInsets.all(18.kh),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(title, style: TextStyleUtil.kText19_6()),
+                        Icon(Icons.close, size: 24.kh, color: Get.context!.subtitleColor),
+                      ],
+                    ),
+                    10.kheightBox,
+                    Text(
+                      description,
+                      style: TextStyleUtil.kText16_5(
+                        fontWeight: FontWeight.w400,
+                        color: Get.context!.subtitleColor,
+                      ),
+                    ),
+                    const Spacer(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                          onPressed: () => Get.back(),
+                          child: Text(
+                            StringConstants.cancel,
+                            style: TextStyleUtil.kText16_5(
+                              fontWeight: FontWeight.w600,
+                              color: Get.context!.kcPrimaryColor,
+                            ),
+                          ),
+                        ),
+                        10.kwidthBox,
+                        CustomButton(
+                          title: StringConstants.buy,
+                          height: 40,
+                          width: 100,
+                          borderRadius: 50,
+                          onTap: () => onTap(),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+      barrierDismissible: true,
+      barrierColor: const Color(0xff141A31).withOpacity(.4),
+      useSafeArea: true,
+    );
   }
 
   static void showGlossary() {

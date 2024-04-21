@@ -22,6 +22,10 @@ class StringConstants {
   static const goodTillDateGTD = "Good Till Date (GTD)";
   static const goodTillDateGTDText = "If you place a limit order with a GTD attribute, then this remains, valid till defined number of days (calendar days) from the day on which it was input. The order will automatically cancel by the system on the expiry date.";
   static const buyingPower = "Buying Power:";
+  static const atMarket = "At Market";
+  static const proceedToBuy = "Proceed to buy ?";
+  static const proceedToBuyText = "Are you ready to make a purchase ?";
+  static const cancel = "Cancel";
 
   // onboarding screen
   static const welcomeTo = "Welcome to ";

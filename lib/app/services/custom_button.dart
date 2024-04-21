@@ -105,7 +105,7 @@ class CustomButton extends StatelessWidget {
               onTap: () => onTap!(),
               child: Ink(
                 width: width ?? double.infinity,
-                height: 48.kh,
+                height: height ?? 48.kh,
               ),
             ),
           ),
