@@ -12,12 +12,16 @@ class StringConstants {
   static const stopLossText = "A stop loss is an order placed with a broker to buy or sell once the stock reaches a certain price. It's designed to limit an investor's loss on a security's position. Once the stock hits the specified stop price, the stop loss order becomes a market order, executing at the next available price.";
   static const timeInForce = "Time In Force";
   static const timeInForceText = "Time in Force refers to instructions given when placing a trade about how long an order will remain active before it is executed or expires.";
+  static const dayOrder = "Day Order";
   static const dayOrderDO = "Day Order (DO)";
   static const dayOrderDOText = "which shall mean and denote an order that is valid only for that day it is given and unless stated all orders shall be presumed to be day orders.";
   static const goodTillCancelledGTC = "Good Till Cancelled (GTC)";
+  static const goodTillCancelled = "Good Till Cancelled";
   static const goodTillCancelledGTCText = "If a limit order is placed with a GTC attribute, then this order remains valid for fixed number of days, which by default is 30 days. It is not automatically deleted from the list of pending orders.";
+  static const goodTillDate = "Good Till Date";
   static const goodTillDateGTD = "Good Till Date (GTD)";
   static const goodTillDateGTDText = "If you place a limit order with a GTD attribute, then this remains, valid till defined number of days (calendar days) from the day on which it was input. The order will automatically cancel by the system on the expiry date.";
+  static const buyingPower = "Buying Power:";
 
   // onboarding screen
   static const welcomeTo = "Welcome to ";
@@ -62,6 +66,7 @@ class StringConstants {
   static const ghana = 'Ghana';
   static const foreigner = 'Foreigner';
   static const countryOfBirth = 'Country of Birth';
+  static const dateOfBirth = 'Date of Birth';
   static const gender = 'Gender';
   static const male = 'Male';
   static const female = 'Female';

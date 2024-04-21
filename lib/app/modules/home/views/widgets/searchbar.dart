@@ -24,7 +24,7 @@ class SearchBarWithFilter extends StatelessWidget {
                 child: TextField(
                   cursorColor: context.kcPrimaryColor,
                   style: TextStyleUtil.kText14_4(),
-                  decoration: StStyle.stInputDecoration(hint: StringConstants.searchForStocksETH, prefixIcon: Assets.svg.search.svg()).copyWith(contentPadding: EdgeInsets.symmetric(horizontal: 10.kw, vertical: 8.kh)),
+                  decoration: StStyle.stInputDecoration(isCompactPrefix: true, hint: StringConstants.searchForStocksETH, prefixIcon: Assets.svg.search.svg()).copyWith(contentPadding: EdgeInsets.symmetric(horizontal: 10.kw, vertical: 8.kh)),
                   textAlignVertical: TextAlignVertical.center,
                 ),
               ),

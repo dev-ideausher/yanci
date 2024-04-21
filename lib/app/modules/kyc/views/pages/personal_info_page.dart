@@ -2,6 +2,7 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:yanci/app/components/custom_date_picker.dart';
 import 'package:yanci/app/components/custom_dropdown.dart';
 import 'package:yanci/app/components/custom_required_rich_text.dart';
 import 'package:yanci/app/components/custom_textfield.dart';
@@ -11,6 +12,7 @@ import 'package:yanci/app/services/colors.dart';
 import 'package:yanci/app/services/custom_button.dart';
 import 'package:yanci/app/services/responsive_size.dart';
 import 'package:yanci/app/services/text_style_util.dart';
+import 'package:yanci/app/utils/date_picker.dart';
 
 class PersonalInfoPage extends StatelessWidget {
   const PersonalInfoPage({super.key});
@@ -53,6 +55,14 @@ class PersonalInfoPage extends StatelessWidget {
           title: StRichText(text: StringConstants.gender, color: context.redColor),
           dropdownMenuEntries: kycController.genders.map((e) => DropdownMenuEntry(value: e, label: e)).toList(),
           onSelected: (String val) => kycController.selectedGender = val,
+        ),
+        20.kheightBox,
+        Obx(
+          () => StDatePicker(
+            date: kycController.dateOfBirth.value,
+            onTap: () async => kycController.dateOfBirth.value = await pickDate(kycController.dateOfBirth.value) ?? kycController.dateOfBirth.value,
+            title: StringConstants.dateOfBirth,
+          ),
         ),
         20.kheightBox,
         StDropDown(

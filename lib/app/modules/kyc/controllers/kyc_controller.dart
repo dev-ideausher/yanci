@@ -191,6 +191,7 @@ class KycController extends GetxController {
   Uint8List? signature;
   Rxn<XFile>? idImage = Rxn<XFile>();
   Rxn<XFile>? selfieWithId = Rxn<XFile>();
+  Rx<DateTime> dateOfBirth = DateTime.now().obs;
 
   final List<Widget> pages = const [
     PersonalInfoPage(),

@@ -21,11 +21,11 @@ class StStyle {
         border: Border.all(color: color ?? Get.context!.kcPrimaryColor, width: 1.kh));
   }
 
-  static InputDecoration stInputDecoration({prefixIcon, suffixIcon, suffix, hint, hintColor, backGroundColor, TextStyle? hintStyle}) {
+  static InputDecoration stInputDecoration({prefixIcon, suffixIcon, suffix, hint, hintColor, backGroundColor, TextStyle? hintStyle, bool isCompactPrefix = false}) {
     return InputDecoration(
       isDense: true,
       prefixIcon: prefixIcon,
-      prefixIconConstraints: BoxConstraints(maxWidth: 35.kw, minWidth: 35.kw, maxHeight: 20.kh, minHeight: 20.kh),
+      prefixIconConstraints: isCompactPrefix ? BoxConstraints(maxWidth: 35.kw, minWidth: 35.kw, maxHeight: 20.kh, minHeight: 20.kh) : null,
       suffixIcon: suffixIcon,
       suffix: suffix,
       hintText: hint,

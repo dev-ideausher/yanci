@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:yanci/app/components/custom_divider.dart';
 import 'package:yanci/app/components/custom_dropdown.dart';
 import 'package:yanci/app/components/custom_radio_button.dart';
@@ -130,7 +131,7 @@ class BuyView extends GetView<BuyController> {
                         ),
                         const Spacer(),
                         SizedBox(
-                          width: 100.kw,
+                          width: 110.kw,
                           height: 40.kh,
                           child: TextField(
                             keyboardType: TextInputType.number,
@@ -157,7 +158,7 @@ class BuyView extends GetView<BuyController> {
                             borderRadius: BorderRadius.circular(8.kh),
                           ),
                           child: SizedBox(
-                            width: 100.kw,
+                            width: 110.kw,
                             height: 40.kh,
                             child: Padding(
                               padding: EdgeInsets.symmetric(vertical: 8.kh, horizontal: 10.kw),
@@ -180,12 +181,12 @@ class BuyView extends GetView<BuyController> {
                         const Spacer(),
                         DecoratedBox(
                           decoration: BoxDecoration(
-                            color: const Color.fromARGB(51, 201, 201, 201),
-                            border: Border.all(color: Get.context!.borderColor, width: 1.kh),
+                            color: const Color.fromARGB(255, 238, 238, 238),
+                            border: Border.all(color: Get.context!.disabledBorderColor, width: 1.kh),
                             borderRadius: BorderRadius.circular(8.kh),
                           ),
                           child: SizedBox(
-                            width: 100.kw,
+                            width: 110.kw,
                             height: 40.kh,
                           ),
                         ),
@@ -205,15 +206,17 @@ class BuyView extends GetView<BuyController> {
                                   ),
                                   const Spacer(),
                                   SizedBox(
-                                    width: 143.kw,
+                                    width: 150.kw,
                                     height: 40.kh,
                                     child: StDropDown(
-                                      dropdownMenuEntries: [
-                                        DropdownMenuEntry(value: "labekl", label: "label")
+                                      dropdownMenuEntries: const [
+                                        DropdownMenuEntry(value: StringConstants.dayOrder, label: StringConstants.dayOrder),
+                                        DropdownMenuEntry(value: StringConstants.goodTillCancelled, label: StringConstants.goodTillCancelled),
+                                        DropdownMenuEntry(value: StringConstants.goodTillDate, label: StringConstants.goodTillDate),
                                       ],
                                       onSelected: (p0) {},
                                       isForm: false,
-                                      width: 143,
+                                      width: 155,
                                     ),
                                   ),
                                 ],
@@ -236,6 +239,29 @@ class BuyView extends GetView<BuyController> {
                               ),
                             ],
                           ),
+                    Row(
+                      children: [
+                        const Spacer(),
+                        DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 238, 238, 238),
+                            border: Border.all(color: Get.context!.disabledBorderColor, width: 1.kh),
+                            borderRadius: BorderRadius.circular(8.kh),
+                          ),
+                          child: SizedBox(
+                            width: 150.kw,
+                            height: 40.kh,
+                            child: Padding(
+                              padding: EdgeInsets.all(10.kh),
+                              child: Text(
+                                DateFormat('dd-MM-yyyy').format(DateTime.now()),
+                                style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w600, color: context.greyTextColor),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -243,17 +269,37 @@ class BuyView extends GetView<BuyController> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomAppBar(
-        surfaceTintColor: context.whiteColor,
-        shadowColor: context.blackColor,
-        height: 64.kh,
-        elevation: 10,
-        child: CustomButton(
-          title: StringConstants.buy,
-          style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w600, color: context.whiteColor),
-          height: 48.kh,
-          width: 90.w,
-          borderRadius: 50,
+      bottomNavigationBar: Obx(
+        () => BottomAppBar(
+          padding: EdgeInsets.symmetric(horizontal: 15.kw),
+          surfaceTintColor: context.whiteColor,
+          shadowColor: context.blackColor,
+          height: controller.isAdvanceOptionsEnabled.value ? 90.kh : 64.kh,
+          elevation: 10,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              controller.isAdvanceOptionsEnabled.value
+                  ? Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0.kh),
+                      child: Text.rich(
+                        TextSpan(text: StringConstants.buyingPower, style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w500, color: context.greyTextColor), children: [
+                          TextSpan(
+                            text: " ${StringConstants.ghanaCurrency} 22.0",
+                            style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w500, color: context.redStockColor),
+                          ),
+                        ]),
+                      ),
+                    )
+                  : 10.kheightBox,
+              CustomButton(
+                title: StringConstants.buy,
+                style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w600, color: context.whiteColor),
+                height: 48.kh,
+                borderRadius: 50,
+              ),
+            ],
+          ),
         ),
       ),
     );
