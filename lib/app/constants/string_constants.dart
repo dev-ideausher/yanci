@@ -286,4 +286,11 @@ class StringConstants {
   static const String orderPending = 'Order Pending';
   static const String orderExecuted = 'Order Executed';
   static const String orderCancelled = 'Order Cancelled';
+
+  // sell
+  static const String avialableQt = 'Available quantity';
+  static const String removeStoploss = 'Remove stoploss';
+  static const String proceedToSell = 'Proceed to sell ?';
+  static const String proceedToSellText = 'Are you ready to sell this stock ?';
+  static const String sellOrderPlaced = 'Sell Order Placed';
 }

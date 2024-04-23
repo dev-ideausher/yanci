@@ -13,6 +13,7 @@ abstract class Routes {
   static const BUY = _Paths.BUY;
   static const SELL = _Paths.SELL;
   static const ADD_MONEY = _Paths.ADD_MONEY;
+  static const CONFIRMATION_SCREEN = _Paths.CONFIRMATION_SCREEN;
 }
 
 abstract class _Paths {
@@ -27,4 +28,5 @@ abstract class _Paths {
   static const BUY = '/buy';
   static const SELL = '/sell';
   static const ADD_MONEY = '/add-money';
+  static const CONFIRMATION_SCREEN = '/confirmation-screen';
 }

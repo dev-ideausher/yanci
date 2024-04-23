@@ -45,60 +45,7 @@ class BuyView extends GetView<BuyController> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ColoredBox(
-            color: context.whiteColor,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.kw, vertical: 30.kh),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    radius: 20.kh,
-                    backgroundImage: CachedNetworkImageProvider(
-                      controller.stock.imageUrl,
-                    ),
-                  ),
-                  10.kwidthBox,
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        controller.stock.stockName,
-                        style: TextStyleUtil.kText16_5(
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      Text(
-                        controller.stock.fullName,
-                        style: TextStyleUtil.kText12_4(
-                          fontWeight: FontWeight.w500,
-                          color: context.disabledColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        "${StringConstants.ghanaCurrency} ${controller.stock.price}",
-                        style: TextStyleUtil.kText16_5(
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      Text(
-                        controller.stock.isProfit ? "+${controller.stock.percentage}(+${controller.stock.percentage}%)" : "-${controller.stock.percentage}(-${controller.stock.percentage}%)",
-                        style: TextStyleUtil.kText12_4(
-                          fontWeight: FontWeight.w500,
-                          color: controller.stock.isProfit ? context.greenStockColor : context.redStockColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
+          stockInfo(),
           const StDivider(),
           ColoredBox(
             color: context.whiteColor,
@@ -107,6 +54,7 @@ class BuyView extends GetView<BuyController> {
               child: Obx(
                 () => Column(
                   children: [
+                    // Radio buttons
                     Row(
                       children: [
                         StRadioButton(
@@ -125,6 +73,8 @@ class BuyView extends GetView<BuyController> {
                       ],
                     ),
                     20.kheightBox,
+
+                    // Quantity field
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -142,7 +92,11 @@ class BuyView extends GetView<BuyController> {
                             cursorColor: context.kcPrimaryColor,
                             style: TextStyleUtil.kText15_4(fontWeight: FontWeight.w600),
                             decoration: StStyle.stInputDecoration(
-                              backGroundColor: context.whiteColor,
+                              backGroundColor: controller.quantity.value == 0
+                                  ? context.whiteColor
+                                  : controller.balance.value < controller.estimatedPrice.value
+                                      ? context.errorRedColor.withOpacity(0.1)
+                                      : context.successGreenColor.withOpacity(0.15),
                               hint: "0",
                               hintStyle: TextStyleUtil.kText15_4(fontWeight: FontWeight.w600, color: context.greyTextColor),
                               hintColor: context.greyTextColor,
@@ -153,6 +107,8 @@ class BuyView extends GetView<BuyController> {
                       ],
                     ),
                     20.kheightBox,
+
+                    // price of per stock
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -186,6 +142,8 @@ class BuyView extends GetView<BuyController> {
                       ],
                     ),
                     20.kheightBox,
+
+                    // estimated price
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -200,7 +158,7 @@ class BuyView extends GetView<BuyController> {
                             borderRadius: BorderRadius.circular(8.kh),
                           ),
                           child: SizedBox(
-                            width: 110.kw,
+                            width: 130.kw,
                             height: 40.kh,
                             child: Padding(
                               padding: EdgeInsets.symmetric(vertical: 10.kh, horizontal: 7.kw),
@@ -214,8 +172,12 @@ class BuyView extends GetView<BuyController> {
                       ],
                     ),
                     10.kheightBox,
+
+                    // advanced options
                     controller.isAdvanceOptionsEnabled.value
-                        ? Column(
+                        ?
+                        // time in force
+                        Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               10.kheightBox,
@@ -267,7 +229,9 @@ class BuyView extends GetView<BuyController> {
                               10.kheightBox,
                             ],
                           )
-                        : Column(
+                        :
+                        // advanced option text button
+                        Column(
                             children: [
                               Text(
                                 StringConstants.limitOrderfor30Days,
@@ -282,11 +246,16 @@ class BuyView extends GetView<BuyController> {
                               ),
                             ],
                           ),
+
+                    // date picker
                     controller.isAdvanceOptionsEnabled.value
                         ? Align(
                             alignment: Alignment.centerRight,
                             child: controller.selectedTimeInForce.value == StringConstants.goodTillDate
-                                ? InkWell(
+                                ?
+
+                                // enabled date picker
+                                InkWell(
                                     onTap: () => controller.changeGoodTillDate(),
                                     child: DecoratedBox(
                                       decoration: BoxDecoration(
@@ -313,7 +282,9 @@ class BuyView extends GetView<BuyController> {
                                       ),
                                     ),
                                   )
-                                : DecoratedBox(
+                                :
+                                // disabled date picker
+                                DecoratedBox(
                                     decoration: BoxDecoration(
                                       color: const Color.fromARGB(255, 238, 238, 238),
                                       border: Border.all(color: Get.context!.disabledBorderColor, width: 1.kh),
@@ -346,6 +317,8 @@ class BuyView extends GetView<BuyController> {
           ),
         ],
       ),
+
+      // bottom nav bar
       bottomNavigationBar: StickyBottomBar(
         child: Obx(
           () => BottomAppBar(
@@ -394,6 +367,63 @@ class BuyView extends GetView<BuyController> {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget stockInfo() {
+    return ColoredBox(
+      color: Get.context!.whiteColor,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.kw, vertical: 30.kh),
+        child: Row(
+          children: [
+            CircleAvatar(
+              radius: 20.kh,
+              backgroundImage: CachedNetworkImageProvider(
+                controller.stock.imageUrl,
+              ),
+            ),
+            10.kwidthBox,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  controller.stock.stockName,
+                  style: TextStyleUtil.kText16_5(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                Text(
+                  controller.stock.fullName,
+                  style: TextStyleUtil.kText12_4(
+                    fontWeight: FontWeight.w500,
+                    color: Get.context!.disabledColor,
+                  ),
+                ),
+              ],
+            ),
+            const Spacer(),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  "${StringConstants.ghanaCurrency} ${controller.stock.price}",
+                  style: TextStyleUtil.kText16_5(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Text(
+                  controller.stock.isProfit ? "+${controller.stock.percentage}(+${controller.stock.percentage}%)" : "-${controller.stock.percentage}(-${controller.stock.percentage}%)",
+                  style: TextStyleUtil.kText12_4(
+                    fontWeight: FontWeight.w500,
+                    color: controller.stock.isProfit ? Get.context!.greenStockColor : Get.context!.redStockColor,
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

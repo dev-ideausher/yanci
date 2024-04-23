@@ -33,6 +33,7 @@ class BuyController extends GetxController {
 
   void addQuantity(String val) {
     if (val.isEmpty) {
+      quantity.value = 0;
       estimatedPrice.value = 0.0;
       return;
     }

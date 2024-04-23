@@ -103,14 +103,7 @@ class DialogHelper {
     ).then(then);
   }
 
-  static void showBuyDialog({
-    required String title,
-    required String description,
-    required VoidCallback onTap,
-    required double height,
-    String? buttonText1,
-    String? buttonText2,
-  }) {
+  static void showBuyDialog({required String title, required String description, required VoidCallback onTap, required double height, String? buttonText1, String? buttonText2, Color? buttoncolor}) {
     Get.dialog(
       PopScope(
         canPop: true,
@@ -163,6 +156,7 @@ class DialogHelper {
                         ),
                         10.kwidthBox,
                         CustomButton(
+                          color: buttoncolor,
                           title: buttonText1 ?? StringConstants.buy,
                           height: 40,
                           width: 100,
