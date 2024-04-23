@@ -33,7 +33,7 @@ class StDropDown extends StatelessWidget {
                 )
               : const SizedBox(),
           DropdownMenu<String>(
-            onSelected: (value) {},
+            onSelected: (value) => onSelected(value!),
             width: width.kw,
             menuStyle: MenuStyle(
               backgroundColor: MaterialStatePropertyAll(context.whiteColor),

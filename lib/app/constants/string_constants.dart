@@ -256,4 +256,34 @@ class StringConstants {
   static const String estimatedCost = 'Estimated Cost';
   static const String limitOrderfor30Days = 'Limit order for 30 days';
   static const String advanceOption = 'Advanced options';
+
+  // Add Money screen
+  static const String addMoney = 'Add Money';
+  static const String balanceAvailable = 'Balance Available';
+  static const String choosePaymentMethods = 'Choose Payment Methods';
+  static const String bankTransfer = 'Bank Transfer';
+  static const String otherOptions = 'Other Options';
+
+  // buy confirmation
+  static const String buyOrderPlaced = 'Buy Order Placed';
+  static const String orderDetails = 'Order details';
+  static const String noOfShares = 'No. of shares';
+  static const String pricePerShare = 'Price per share';
+  static const String type = 'Type';
+  static const String done = 'Done';
+  static const String howExpWithYanci = 'How was your experience with Yanci?';
+
+  // order details screen
+  static const String shares = 'Shares';
+  static const String copyYanciOrderId = 'Copy YANCI Order ID';
+  static const String open = 'Open';
+  static const String modify = 'Modify';
+  static const String modifyOrder = 'Modify Order ?';
+  static const String modifyOrderText = 'If you modify the order, this order will get cancelled and a new modified order will be placed.';
+  static const String orderType = 'Order Type';
+  static const String orderStatus = 'Order Status';
+  static const String orderReceived = 'Order Received';
+  static const String orderPending = 'Order Pending';
+  static const String orderExecuted = 'Order Executed';
+  static const String orderCancelled = 'Order Cancelled';
 }

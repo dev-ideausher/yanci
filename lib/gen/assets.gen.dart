@@ -10,6 +10,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
+import 'package:lottie/lottie.dart';
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
@@ -41,6 +42,9 @@ class $AssetsImagesGen {
   AssetGenImage get onboarding4 =>
       const AssetGenImage('assets/images/onboarding4.png');
 
+  /// File path: assets/images/payfast.png
+  AssetGenImage get payfast => const AssetGenImage('assets/images/payfast.png');
+
   /// File path: assets/images/successful.png
   AssetGenImage get successful =>
       const AssetGenImage('assets/images/successful.png');
@@ -62,6 +66,7 @@ class $AssetsImagesGen {
         onboarding2,
         onboarding3,
         onboarding4,
+        payfast,
         successful,
         yahooLogo,
         yanciLogo
@@ -72,13 +77,19 @@ class $AssetsLottiefilesGen {
   const $AssetsLottiefilesGen();
 
   /// File path: assets/lottiefiles/carUpdate.json
-  String get carUpdate => 'assets/lottiefiles/carUpdate.json';
+  LottieGenImage get carUpdate =>
+      const LottieGenImage('assets/lottiefiles/carUpdate.json');
 
   /// File path: assets/lottiefiles/inAppUpdate.json
-  String get inAppUpdate => 'assets/lottiefiles/inAppUpdate.json';
+  LottieGenImage get inAppUpdate =>
+      const LottieGenImage('assets/lottiefiles/inAppUpdate.json');
+
+  /// File path: assets/lottiefiles/successful.json
+  LottieGenImage get successful =>
+      const LottieGenImage('assets/lottiefiles/successful.json');
 
   /// List of all assets
-  List<String> get values => [carUpdate, inAppUpdate];
+  List<LottieGenImage> get values => [carUpdate, inAppUpdate, successful];
 }
 
 class $AssetsSvgGen {
@@ -96,6 +107,18 @@ class $AssetsSvgGen {
   /// File path: assets/svg/camera_border.svg
   SvgGenImage get cameraBorder =>
       const SvgGenImage('assets/svg/camera_border.svg');
+
+  /// File path: assets/svg/cancel.svg
+  SvgGenImage get cancel => const SvgGenImage('assets/svg/cancel.svg');
+
+  /// File path: assets/svg/clock.svg
+  SvgGenImage get clock => const SvgGenImage('assets/svg/clock.svg');
+
+  /// File path: assets/svg/done_green.svg
+  SvgGenImage get doneGreen => const SvgGenImage('assets/svg/done_green.svg');
+
+  /// File path: assets/svg/done_grey.svg
+  SvgGenImage get doneGrey => const SvgGenImage('assets/svg/done_grey.svg');
 
   /// File path: assets/svg/explore.svg
   SvgGenImage get explore => const SvgGenImage('assets/svg/explore.svg');
@@ -140,6 +163,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/share.svg
   SvgGenImage get share => const SvgGenImage('assets/svg/share.svg');
 
+  /// File path: assets/svg/wallet.svg
+  SvgGenImage get wallet => const SvgGenImage('assets/svg/wallet.svg');
+
   /// File path: assets/svg/yahooLogo.svg
   SvgGenImage get yahooLogo => const SvgGenImage('assets/svg/yahooLogo.svg');
 
@@ -149,6 +175,10 @@ class $AssetsSvgGen {
         bookmark,
         camera,
         cameraBorder,
+        cancel,
+        clock,
+        doneGreen,
+        doneGrey,
         explore,
         files,
         filter,
@@ -163,6 +193,7 @@ class $AssetsSvgGen {
         search,
         selectFile,
         share,
+        wallet,
         yahooLogo
       ];
 }
@@ -294,6 +325,65 @@ class SvgGenImage {
       colorBlendMode: colorBlendMode,
       clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,
+    );
+  }
+
+  String get path => _assetName;
+
+  String get keyName => _assetName;
+}
+
+class LottieGenImage {
+  const LottieGenImage(this._assetName);
+
+  final String _assetName;
+
+  LottieBuilder lottie({
+    Animation<double>? controller,
+    bool? animate,
+    FrameRate? frameRate,
+    bool? repeat,
+    bool? reverse,
+    LottieDelegates? delegates,
+    LottieOptions? options,
+    void Function(LottieComposition)? onLoaded,
+    LottieImageProviderFactory? imageProviderFactory,
+    Key? key,
+    AssetBundle? bundle,
+    Widget Function(BuildContext, Widget, LottieComposition?)? frameBuilder,
+    ImageErrorWidgetBuilder? errorBuilder,
+    double? width,
+    double? height,
+    BoxFit? fit,
+    AlignmentGeometry? alignment,
+    String? package,
+    bool? addRepaintBoundary,
+    FilterQuality? filterQuality,
+    void Function(String)? onWarning,
+  }) {
+    return Lottie.asset(
+      _assetName,
+      controller: controller,
+      animate: animate,
+      frameRate: frameRate,
+      repeat: repeat,
+      reverse: reverse,
+      delegates: delegates,
+      options: options,
+      onLoaded: onLoaded,
+      imageProviderFactory: imageProviderFactory,
+      key: key,
+      bundle: bundle,
+      frameBuilder: frameBuilder,
+      errorBuilder: errorBuilder,
+      width: width,
+      height: height,
+      fit: fit,
+      alignment: alignment,
+      package: package,
+      addRepaintBoundary: addRepaintBoundary,
+      filterQuality: filterQuality,
+      onWarning: onWarning,
     );
   }
 

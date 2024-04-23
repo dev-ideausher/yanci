@@ -1,14 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:yanci/app/components/custom_divider.dart';
 import 'package:yanci/app/components/custom_dropdown.dart';
 import 'package:yanci/app/components/custom_radio_button.dart';
 import 'package:yanci/app/components/custom_style.dart';
+import 'package:yanci/app/components/sticky_bottom_bar.dart';
 import 'package:yanci/app/constants/string_constants.dart';
+import 'package:yanci/app/modules/buy/views/screens/buy_confirmation_screen.dart';
+import 'package:yanci/app/routes/app_pages.dart';
 import 'package:yanci/app/services/colors.dart';
 import 'package:yanci/app/services/custom_button.dart';
 import 'package:yanci/app/services/dialog_helper.dart';
@@ -22,6 +23,7 @@ class BuyView extends GetView<BuyController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: context.kWhitelight,
       appBar: AppBar(
         shadowColor: context.kWhitelight,
@@ -134,10 +136,17 @@ class BuyView extends GetView<BuyController> {
                           width: 110.kw,
                           height: 40.kh,
                           child: TextField(
+                            onChanged: (value) => controller.addQuantity(value),
+                            controller: controller.quantityController,
                             keyboardType: TextInputType.number,
                             cursorColor: context.kcPrimaryColor,
-                            style: TextStyleUtil.kText14_4(),
-                            decoration: StStyle.stInputDecoration(backGroundColor: context.whiteColor, hint: "").copyWith(contentPadding: EdgeInsets.symmetric(horizontal: 10.kw, vertical: 8.kh)),
+                            style: TextStyleUtil.kText15_4(fontWeight: FontWeight.w600),
+                            decoration: StStyle.stInputDecoration(
+                              backGroundColor: context.whiteColor,
+                              hint: "0",
+                              hintStyle: TextStyleUtil.kText15_4(fontWeight: FontWeight.w600, color: context.greyTextColor),
+                              hintColor: context.greyTextColor,
+                            ).copyWith(contentPadding: EdgeInsets.symmetric(horizontal: 10.kw, vertical: 8.kh)),
                             textAlignVertical: TextAlignVertical.center,
                           ),
                         ),
@@ -161,7 +170,7 @@ class BuyView extends GetView<BuyController> {
                             width: 110.kw,
                             height: 40.kh,
                             child: Padding(
-                              padding: EdgeInsets.symmetric(vertical: 10.kh, horizontal: 10.kw),
+                              padding: EdgeInsets.symmetric(vertical: 10.kh, horizontal: 7.kw),
                               child: Text(
                                 controller.radioValue.value == 0 ? "${StringConstants.ghanaCurrency} ${controller.stock.price}" : StringConstants.atMarket,
                                 style: controller.radioValue.value == 0
@@ -193,6 +202,13 @@ class BuyView extends GetView<BuyController> {
                           child: SizedBox(
                             width: 110.kw,
                             height: 40.kh,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(vertical: 10.kh, horizontal: 7.kw),
+                              child: Text(
+                                "${StringConstants.ghanaCurrency} ${controller.estimatedPrice.value}",
+                                style: TextStyleUtil.kText15_4(fontWeight: FontWeight.w600),
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -220,7 +236,7 @@ class BuyView extends GetView<BuyController> {
                                               DropdownMenuEntry(value: StringConstants.goodTillCancelled, label: StringConstants.goodTillCancelled),
                                               DropdownMenuEntry(value: StringConstants.goodTillDate, label: StringConstants.goodTillDate),
                                             ],
-                                            onSelected: (p0) {},
+                                            onSelected: controller.selectTIF,
                                             isForm: false,
                                             width: 155,
                                           ),
@@ -269,24 +285,58 @@ class BuyView extends GetView<BuyController> {
                     controller.isAdvanceOptionsEnabled.value
                         ? Align(
                             alignment: Alignment.centerRight,
-                            child: DecoratedBox(
-                              decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 238, 238, 238),
-                                border: Border.all(color: Get.context!.disabledBorderColor, width: 1.kh),
-                                borderRadius: BorderRadius.circular(8.kh),
-                              ),
-                              child: SizedBox(
-                                width: 150.kw,
-                                height: 40.kh,
-                                child: Padding(
-                                  padding: EdgeInsets.all(10.kh),
-                                  child: Text(
-                                    DateFormat('dd-MM-yyyy').format(DateTime.now()),
-                                    style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w600, color: context.greyTextColor),
+                            child: controller.selectedTimeInForce.value == StringConstants.goodTillDate
+                                ? InkWell(
+                                    onTap: () => controller.changeGoodTillDate(),
+                                    child: DecoratedBox(
+                                      decoration: BoxDecoration(
+                                        color: context.whiteColor,
+                                        border: Border.all(color: Get.context!.disabledColor, width: 1.kh),
+                                        borderRadius: BorderRadius.circular(8.kh),
+                                      ),
+                                      child: SizedBox(
+                                        width: 150.kw,
+                                        height: 40.kh,
+                                        child: Padding(
+                                          padding: EdgeInsets.all(10.kh),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                DateFormat('dd-MM-yyyy').format(controller.goodTillDate.value),
+                                                style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w600),
+                                              ),
+                                              const Icon(Icons.calendar_month_outlined, size: 18),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                : DecoratedBox(
+                                    decoration: BoxDecoration(
+                                      color: const Color.fromARGB(255, 238, 238, 238),
+                                      border: Border.all(color: Get.context!.disabledBorderColor, width: 1.kh),
+                                      borderRadius: BorderRadius.circular(8.kh),
+                                    ),
+                                    child: SizedBox(
+                                      width: 150.kw,
+                                      height: 40.kh,
+                                      child: Padding(
+                                        padding: EdgeInsets.all(10.kh),
+                                        child: Text(
+                                          DateFormat('dd-MM-yyyy').format(
+                                            controller.selectedTimeInForce.value == StringConstants.dayOrder
+                                                ? DateTime.now()
+                                                : DateTime.now().add(
+                                                    const Duration(days: 30),
+                                                  ),
+                                          ),
+                                          style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w600, color: context.greyTextColor),
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                            ),
                           )
                         : const SizedBox(),
                   ],
@@ -296,42 +346,53 @@ class BuyView extends GetView<BuyController> {
           ),
         ],
       ),
-      bottomNavigationBar: Obx(
-        () => BottomAppBar(
-          padding: EdgeInsets.symmetric(horizontal: 15.kw),
-          surfaceTintColor: context.whiteColor,
-          shadowColor: context.blackColor,
-          height: controller.isAdvanceOptionsEnabled.value ? 90.kh : 64.kh,
-          elevation: 10,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              controller.isAdvanceOptionsEnabled.value
-                  ? Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8.0.kh),
-                      child: Text.rich(
-                        TextSpan(text: StringConstants.buyingPower, style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w500, color: context.greyTextColor), children: [
+      bottomNavigationBar: StickyBottomBar(
+        child: Obx(
+          () => BottomAppBar(
+            padding: EdgeInsets.symmetric(horizontal: 15.kw),
+            surfaceTintColor: context.whiteColor,
+            shadowColor: context.blackColor,
+            height: controller.isAdvanceOptionsEnabled.value ? 90.kh : 64.kh,
+            elevation: 10,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                controller.isAdvanceOptionsEnabled.value
+                    ? Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.0.kh),
+                        child: Text.rich(
                           TextSpan(
-                            text: " ${StringConstants.ghanaCurrency} 22.0",
-                            style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w500, color: context.redStockColor),
+                            text: StringConstants.buyingPower,
+                            style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w500, color: context.greyTextColor),
+                            children: [
+                              TextSpan(
+                                text: " ${StringConstants.ghanaCurrency} ${controller.balance.value}",
+                                style: TextStyleUtil.kText14_4(
+                                  fontWeight: FontWeight.w500,
+                                  color: controller.balance.value < controller.estimatedPrice.value ? context.redStockColor : context.greenStockColor,
+                                ),
+                              ),
+                            ],
                           ),
-                        ]),
-                      ),
-                    )
-                  : 10.kheightBox,
-              CustomButton(
-                onTap: () => DialogHelper.showBuyDialog(
-                  height: 200,
-                  title: StringConstants.duplicateOrder,
-                  description: StringConstants.duplicateOrderText,
-                  onTap: () {},
+                        ),
+                      )
+                    : 10.kheightBox,
+                CustomButton(
+                  onTap: () => controller.balance.value < controller.estimatedPrice.value
+                      ? Get.toNamed(Routes.ADD_MONEY)
+                      : DialogHelper.showBuyDialog(
+                          height: 180,
+                          title: StringConstants.proceedToBuy,
+                          description: StringConstants.proceedToBuyText,
+                          onTap: () => Get.to(() => const BuyConfirmationScreen()),
+                        ),
+                  title: controller.balance.value < controller.estimatedPrice.value ? StringConstants.addMoney : StringConstants.buy,
+                  style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w600, color: context.whiteColor),
+                  height: 48.kh,
+                  borderRadius: 50,
                 ),
-                title: StringConstants.buy,
-                style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w600, color: context.whiteColor),
-                height: 48.kh,
-                borderRadius: 50,
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

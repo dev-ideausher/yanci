@@ -6,7 +6,7 @@ Future<DateTime?> pickDate(DateTime? initialDate) async {
     context: Get.context!,
     initialDate: initialDate ?? DateTime.now(),
     firstDate: DateTime(1900),
-    lastDate: DateTime.now(),
+    lastDate: DateTime(2050),
   );
 
   return pickedDate;
