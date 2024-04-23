@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../controllers/sell_controller.dart';
 
 class SellView extends GetView<SellController> {
-  const SellView({Key? key}) : super(key: key);
+  const SellView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
