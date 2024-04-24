@@ -14,6 +14,8 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/my_stocks/bindings/my_stocks_binding.dart';
 import '../modules/my_stocks/views/my_stocks_view.dart';
+import '../modules/news/bindings/news_binding.dart';
+import '../modules/news/views/news_view.dart';
 import '../modules/on_board/bindings/on_board_binding.dart';
 import '../modules/on_board/views/on_board_view.dart';
 import '../modules/sell/bindings/sell_binding.dart';
@@ -93,6 +95,11 @@ class AppPages {
       name: _Paths.EXPLORE,
       page: () => const ExploreView(),
       binding: ExploreBinding(),
+    ),
+    GetPage(
+      name: _Paths.NEWS,
+      page: () => const NewsView(),
+      binding: NewsBinding(),
     ),
   ];
 }

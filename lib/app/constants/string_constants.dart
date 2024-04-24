@@ -224,7 +224,7 @@ class StringConstants {
   static const enterWatchListName = "Please enter the name of Watchlist";
   static const watchListAlreadyExists = "Watchlist already exists";
   static const addStocks = "Add Stocks";
-  static const deleteWatchList = "Delete WatchList";
+  static const deleteWatchList = "Delete watchlist";
   static const searchForStocks = "Search for stocks";
   static const sureYouWantToDeleteWatchList = "Are you sure you want to delete ";
   static const delete = "Delete";
@@ -256,7 +256,7 @@ class StringConstants {
 
   // news
   static const String newsAndReports = 'News and reports';
-  static const String newsDetails = 'News of the stock and company will be shown here.';
+  static const String newsText = 'News of the stock and company will be shown here.';
 
   // Buyflow
   static const String limitOrder = 'Limit Order';
@@ -303,4 +303,12 @@ class StringConstants {
   static const String proceedToSell = 'Proceed to sell ?';
   static const String proceedToSellText = 'Are you ready to sell this stock ?';
   static const String sellOrderPlaced = 'Sell Order Placed';
+
+  // News screen
+  static const String marketNews = 'Market News';
+  static const String all = 'All';
+  static const String trending = 'Trending';
+  static const String gse = 'GSE';
+  static const String africanFinancials = 'African Financials';
+  static const String newsDetails = 'News Details';
 }

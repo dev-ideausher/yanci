@@ -16,6 +16,7 @@ abstract class Routes {
   static const CONFIRMATION_SCREEN = _Paths.CONFIRMATION_SCREEN;
   static const MY_STOCKS = _Paths.MY_STOCKS;
   static const EXPLORE = _Paths.EXPLORE;
+  static const NEWS = _Paths.NEWS;
 }
 
 abstract class _Paths {
@@ -33,4 +34,5 @@ abstract class _Paths {
   static const CONFIRMATION_SCREEN = '/confirmation-screen';
   static const MY_STOCKS = '/my-stocks';
   static const EXPLORE = '/explore';
+  static const NEWS = '/news';
 }

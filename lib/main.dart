@@ -23,6 +23,13 @@ Future<void> main() async {
     GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: GetMaterialApp(
+        theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white,
+          bottomAppBarTheme: const BottomAppBarTheme(
+            surfaceTintColor: Colors.white,
+            color: Colors.white,
+          ),
+        ),
         // theme: AppTheme.light,
         // darkTheme: AppTheme.dark,
         defaultTransition: Transition.fade,

@@ -179,7 +179,7 @@ class StockDetailsView extends GetView<StockDetailsController> {
                     ),
                     20.kheightBox,
                     Text(
-                      StringConstants.newsDetails,
+                      StringConstants.newsText,
                       style: TextStyleUtil.kText13_4(color: context.greyTextColor),
                     ),
                   ],
