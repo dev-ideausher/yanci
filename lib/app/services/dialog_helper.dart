@@ -48,6 +48,70 @@ class DialogHelper {
     );
   }
 
+  static void deleteWatchList(String name, VoidCallback onTap, [bool canPop = true]) {
+    Get.dialog(
+      PopScope(
+        canPop: canPop,
+        onPopInvoked: (pop) => Future.value(true),
+        child: Center(
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: Get.context!.whiteColor,
+              borderRadius: BorderRadius.circular(24),
+            ),
+            child: SizedBox(
+              width: 316.kw,
+              height: 184.kh,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 14.kw, vertical: 26.kh),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      StringConstants.sureYouWantToDeleteWatchList,
+                      textAlign: TextAlign.center,
+                      style: TextStyleUtil.kText18_6(fontWeight: FontWeight.w400),
+                    ),
+                    Text(
+                      "$name?",
+                      textAlign: TextAlign.center,
+                      style: TextStyleUtil.kText18_6(
+                        color: Get.context!.blackColor,
+                      ),
+                    ),
+                    30.kheightBox,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomButton(
+                          height: 48.kh,
+                          width: 140.kw,
+                          borderRadius: 50,
+                          title: StringConstants.delete,
+                          onTap: () => onTap(),
+                        ),
+                        CustomButton.outline(
+                          borderRadius: 50,
+                          height: 48.kh,
+                          width: 140.kw,
+                          title: StringConstants.cancel,
+                          onTap: () => Get.back(),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+      barrierDismissible: false,
+      barrierColor: const Color(0xff141A31).withOpacity(.4),
+      useSafeArea: true,
+    );
+  }
+
   static void showSuccess({required FutureOr Function(dynamic) then, required String title, required String description}) {
     Get.dialog(
       PopScope(

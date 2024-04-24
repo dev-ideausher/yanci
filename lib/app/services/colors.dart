@@ -59,4 +59,8 @@ extension ColorUtil on BuildContext {
   Color get errorRedColor => dynamicColour(light: HexColor("#FF3333"), dark: HexColor("#FF3333"));
 
   Color get successGreenColor => dynamicColour(light: HexColor("#35BAB2"), dark: HexColor("#35BAB2"));
+
+  Color get lightGreenColor => dynamicColour(light: HexColor("#E3F0EF"), dark: HexColor("#E3F0EF"));
+
+  Color get lightRedColor => dynamicColour(light: HexColor("#F66F6F"), dark: HexColor("#F66F6F"));
 }

@@ -21,8 +21,9 @@ class StStyle {
         border: Border.all(color: color ?? Get.context!.kcPrimaryColor, width: 1.kh));
   }
 
-  static InputDecoration stInputDecoration({prefixIcon, suffixIcon, suffix, hint, hintColor, backGroundColor, TextStyle? hintStyle, bool isCompactPrefix = false}) {
+  static InputDecoration stInputDecoration({prefixIcon, suffixIcon, suffix, hint, hintColor, backGroundColor, TextStyle? hintStyle, bool isCompactPrefix = false, BoxConstraints? constraints}) {
     return InputDecoration(
+      constraints: constraints,
       isDense: true,
       prefixIcon: prefixIcon,
       prefixIconConstraints: isCompactPrefix ? BoxConstraints(maxWidth: 35.kw, minWidth: 35.kw, maxHeight: 20.kh, minHeight: 20.kh) : null,

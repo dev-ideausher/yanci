@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yanci/app/constants/string_constants.dart';
+import 'package:yanci/app/modules/explore/views/explore_view.dart';
+import 'package:yanci/app/modules/my_stocks/views/my_stocks_view.dart';
 import 'package:yanci/gen/assets.gen.dart';
 
-class HomeController extends GetxController with GetSingleTickerProviderStateMixin {
+class HomeController extends GetxController {
   List<Map<String, dynamic>> bottomTabs = [
     {
       'icon': Assets.svg.myStocks,
@@ -32,12 +34,13 @@ class HomeController extends GetxController with GetSingleTickerProviderStateMix
     },
   ];
 
-  late TabController tabController;
-  @override
-  void onInit() {
-    tabController = TabController(length: 2, vsync: this);
-    super.onInit();
-  }
+  List<Widget> mainScreen = const [
+    MyStocksView(),
+    SizedBox(),
+    ExploreView(),
+    SizedBox(),
+    SizedBox(),
+  ];
 
   RxInt index = 2.obs;
 

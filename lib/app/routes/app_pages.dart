@@ -4,12 +4,16 @@ import '../modules/add_money/bindings/add_money_binding.dart';
 import '../modules/add_money/views/add_money_view.dart';
 import '../modules/buy/bindings/buy_binding.dart';
 import '../modules/buy/views/buy_view.dart';
+import '../modules/explore/bindings/explore_binding.dart';
+import '../modules/explore/views/explore_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/kyc/bindings/kyc_binding.dart';
 import '../modules/kyc/views/kyc_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
+import '../modules/my_stocks/bindings/my_stocks_binding.dart';
+import '../modules/my_stocks/views/my_stocks_view.dart';
 import '../modules/on_board/bindings/on_board_binding.dart';
 import '../modules/on_board/views/on_board_view.dart';
 import '../modules/sell/bindings/sell_binding.dart';
@@ -79,6 +83,16 @@ class AppPages {
       name: _Paths.ADD_MONEY,
       page: () => const AddMoneyView(),
       binding: AddMoneyBinding(),
+    ),
+    GetPage(
+      name: _Paths.MY_STOCKS,
+      page: () => const MyStocksView(),
+      binding: MyStocksBinding(),
+    ),
+    GetPage(
+      name: _Paths.EXPLORE,
+      page: () => const ExploreView(),
+      binding: ExploreBinding(),
     ),
   ];
 }

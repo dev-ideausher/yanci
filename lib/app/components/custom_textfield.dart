@@ -23,6 +23,7 @@ class StTextField extends StatelessWidget {
   final Widget? prefixIcon;
   final Color? hintColor;
   final Color? backGroundColor;
+  final BoxConstraints? constraints;
   final TextInputType? textInputType;
   final List<TextInputFormatter>? inputFormatters;
   final Function(String?)? onChanged;
@@ -53,6 +54,7 @@ class StTextField extends StatelessWidget {
     this.hintStyle,
     this.onFieldSubmitted,
     this.obscuringCharacter = '*',
+    this.constraints,
   });
 
   @override
@@ -86,6 +88,7 @@ class StTextField extends StatelessWidget {
           maxLength: maxLength,
           minLines: minLine,
           decoration: StStyle.stInputDecoration(
+            constraints: constraints,
             backGroundColor: backGroundColor,
             hint: hint,
             hintStyle: hintStyle ?? TextStyleUtil.kText14_4(color: hintColor ?? Get.context!.kNotActive),

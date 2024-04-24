@@ -218,6 +218,16 @@ class StringConstants {
   static const more = "More";
   static const searchForStocksETH = "Search for stocks and ETF";
   static const watchlist = "Watchlist";
+  static const createWatchlist = "Create Watchlist";
+  static const listName = "ListName";
+  static const create = "CREATE";
+  static const enterWatchListName = "Please enter the name of Watchlist";
+  static const watchListAlreadyExists = "Watchlist already exists";
+  static const addStocks = "Add Stocks";
+  static const deleteWatchList = "Delete WatchList";
+  static const searchForStocks = "Search for stocks";
+  static const sureYouWantToDeleteWatchList = "Are you sure you want to delete ";
+  static const delete = "Delete";
 
   // Stock Details Page
   static const String buy = 'BUY';
