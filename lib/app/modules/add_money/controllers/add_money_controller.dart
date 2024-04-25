@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:yanci/app/modules/buy/controllers/buy_controller.dart';
 
 class AddMoneyController extends GetxController {
-  final buyController = Get.find<BuyController>();
+  late RxInt balance;
+  @override
+  void onInit() {
+    balance = Get.arguments;
+    super.onInit();
+  }
 
   final moneyController = TextEditingController();
 
   void addMoney(int money) {
-    buyController.balance.value += money;
+    balance.value += money;
     Get.back();
   }
 
   void addMoneyFromController() {
-    buyController.balance.value += int.parse(moneyController.text);
+    balance.value += int.parse(moneyController.text);
     Get.back();
   }
 

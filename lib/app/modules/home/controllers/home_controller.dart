@@ -4,6 +4,7 @@ import 'package:yanci/app/constants/string_constants.dart';
 import 'package:yanci/app/modules/explore/views/explore_view.dart';
 import 'package:yanci/app/modules/my_stocks/views/my_stocks_view.dart';
 import 'package:yanci/app/modules/news/views/news_view.dart';
+import 'package:yanci/app/modules/orders/views/orders_view.dart';
 import 'package:yanci/gen/assets.gen.dart';
 
 class HomeController extends GetxController {
@@ -39,7 +40,7 @@ class HomeController extends GetxController {
     MyStocksView(),
     NewsView(),
     ExploreView(),
-    SizedBox(),
+    OrdersView(),
     SizedBox(),
   ];
 

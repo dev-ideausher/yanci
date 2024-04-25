@@ -1,4 +1,5 @@
 import 'package:camera/camera.dart';
+import 'package:yanci/app/data/models/stocks_model.dart';
 
 import 'app/modules/home/bindings/home_binding.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,7 @@ Future<void> main() async {
       DeviceOrientation.portraitUp
     ],
   );
+  generateRandomStockData();
 
   return runApp(
     GestureDetector(
@@ -25,6 +27,10 @@ Future<void> main() async {
       child: GetMaterialApp(
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
+          appBarTheme: const AppBarTheme(
+            surfaceTintColor: Colors.white,
+            color: Colors.white,
+          ),
           bottomAppBarTheme: const BottomAppBarTheme(
             surfaceTintColor: Colors.white,
             color: Colors.white,

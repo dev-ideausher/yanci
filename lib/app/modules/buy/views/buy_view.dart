@@ -352,7 +352,7 @@ class BuyView extends GetView<BuyController> {
                     : 10.kheightBox,
                 CustomButton(
                   onTap: () => controller.balance.value < controller.estimatedPrice.value
-                      ? Get.toNamed(Routes.ADD_MONEY)
+                      ? Get.toNamed(Routes.ADD_MONEY, arguments: controller.balance)
                       : DialogHelper.showBuyDialog(
                           height: 180,
                           title: StringConstants.proceedToBuy,

@@ -111,6 +111,10 @@ class $AssetsSvgGen {
   /// File path: assets/svg/cancel.svg
   SvgGenImage get cancel => const SvgGenImage('assets/svg/cancel.svg');
 
+  /// File path: assets/svg/candle_chart.svg
+  SvgGenImage get candleChart =>
+      const SvgGenImage('assets/svg/candle_chart.svg');
+
   /// File path: assets/svg/clock.svg
   SvgGenImage get clock => const SvgGenImage('assets/svg/clock.svg');
 
@@ -135,6 +139,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/googleLogo.svg
   SvgGenImage get googleLogo => const SvgGenImage('assets/svg/googleLogo.svg');
 
+  /// File path: assets/svg/line_chart.svg
+  SvgGenImage get lineChart => const SvgGenImage('assets/svg/line_chart.svg');
+
   /// File path: assets/svg/loss_graph.svg
   SvgGenImage get lossGraph => const SvgGenImage('assets/svg/loss_graph.svg');
 
@@ -146,6 +153,10 @@ class $AssetsSvgGen {
 
   /// File path: assets/svg/news.svg
   SvgGenImage get news => const SvgGenImage('assets/svg/news.svg');
+
+  /// File path: assets/svg/notification.svg
+  SvgGenImage get notification =>
+      const SvgGenImage('assets/svg/notification.svg');
 
   /// File path: assets/svg/orders.svg
   SvgGenImage get orders => const SvgGenImage('assets/svg/orders.svg');
@@ -163,6 +174,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/share.svg
   SvgGenImage get share => const SvgGenImage('assets/svg/share.svg');
 
+  /// File path: assets/svg/sort.svg
+  SvgGenImage get sort => const SvgGenImage('assets/svg/sort.svg');
+
   /// File path: assets/svg/wallet.svg
   SvgGenImage get wallet => const SvgGenImage('assets/svg/wallet.svg');
 
@@ -176,6 +190,7 @@ class $AssetsSvgGen {
         camera,
         cameraBorder,
         cancel,
+        candleChart,
         clock,
         doneGreen,
         doneGrey,
@@ -184,15 +199,18 @@ class $AssetsSvgGen {
         filter,
         gallery,
         googleLogo,
+        lineChart,
         lossGraph,
         more,
         myStocks,
         news,
+        notification,
         orders,
         profitGraph,
         search,
         selectFile,
         share,
+        sort,
         wallet,
         yahooLogo
       ];

@@ -1,5 +1,14 @@
 class StringConstants {
+  static const List<String> timeInterval = [
+    "1D",
+    "1W",
+    "1M",
+    "1Y",
+    "5Y",
+    "ALL",
+  ];
   static const ghanaCurrency = "GH₵";
+  static const ghanaCurrencySymbol = "₵";
   static const successful = "Successful";
   static const accHasBeenCreated = "Your account has been created";
   static const profileHasBeenCreated = "Your profile has been created";
@@ -233,12 +242,25 @@ class StringConstants {
   static const String buy = 'BUY';
   static const String sell = 'SELL';
   static const String stockDetails = 'Stock Details';
+  static const String investmentDetails = 'Investment Details';
   static const String stockFundamentals = 'Stock Fundamentals';
   static const String companyFundamentals = 'Company Fundamentals';
+  static const String aboutTheCompany = 'About the company';
+  static const String showMore = 'Show more';
+  static const String ceo = 'CEO';
+  static const String founded = 'Founded';
+  static const String employees = 'Employees';
+  static const String headQuarters = 'Head Quarters';
+  static const String holdingDetails = 'Holding Details';
+  static const String allocate = 'Allocate';
+  static const String avgPrice = 'Average Price';
+  static const String investment = 'Investment';
+  static const String profitOrLoss = 'Profit/Loss';
+  static const String transactionHistory = 'Transaction History';
 
   // Stock Fundamentals
   static const String dayHigh = 'Day High';
-  static const String shareOut = 'Share Out';
+  static const String shareOut = 'Share Outstanding';
   static const String openPrice = 'Open Price';
   static const String week52High = '52 Week High';
   static const String dayLow = 'Day Low';
@@ -311,4 +333,21 @@ class StringConstants {
   static const String gse = 'GSE';
   static const String africanFinancials = 'African Financials';
   static const String newsDetails = 'News Details';
+
+  // orders
+  static const String accountActivity = 'Account activity';
+  static const String today = 'Today';
+  static const String allOrders = 'All Orders';
+  static const String avg = 'Avg';
+
+  // my stocks
+  static const String totalReturns = 'Total returns';
+  static const String currentHoldings = 'Current Holdings';
+  static const String invested = 'Invested';
+  static const String oneDReturn = '1D Return';
+  static const String holdings = 'Holdings';
+  static const String sort = 'Sort';
+  static const String currentlyInvested = 'Currently Invested';
+  static const String gainers = 'Gainers';
+  static const String losers = 'Losers';
 }

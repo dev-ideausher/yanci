@@ -1,23 +1,16 @@
 import 'package:get/get.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:yanci/app/constants/string_constants.dart';
 
 class MyStocksController extends GetxController {
-  //TODO: Implement MyStocksController
-
-  final count = 0.obs;
+  late TrackballBehavior trackballBehavior;
   @override
   void onInit() {
+    trackballBehavior = TrackballBehavior(enable: true);
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
+  RxInt selectedIndex = 0.obs;
+  RxBool isBarChartSelected = true.obs;
+  RxString selectedSort = StringConstants.currentlyInvested.obs;
 }

@@ -42,7 +42,7 @@ class AddMoneyView extends GetView<AddMoneyController> {
                       style: TextStyleUtil.kText14_4(),
                     ),
                     Text(
-                      "${StringConstants.ghanaCurrency} ${controller.buyController.balance.value}",
+                      "${StringConstants.ghanaCurrency} ${controller.balance.value}",
                       style: TextStyleUtil.kText20_6(fontWeight: FontWeight.w700),
                     ),
                   ],

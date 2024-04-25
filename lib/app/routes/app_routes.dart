@@ -17,6 +17,7 @@ abstract class Routes {
   static const MY_STOCKS = _Paths.MY_STOCKS;
   static const EXPLORE = _Paths.EXPLORE;
   static const NEWS = _Paths.NEWS;
+  static const ORDERS = _Paths.ORDERS;
 }
 
 abstract class _Paths {
@@ -35,4 +36,5 @@ abstract class _Paths {
   static const MY_STOCKS = '/my-stocks';
   static const EXPLORE = '/explore';
   static const NEWS = '/news';
+  static const ORDERS = '/orders';
 }

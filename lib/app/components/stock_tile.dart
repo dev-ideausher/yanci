@@ -1,54 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
+import 'package:yanci/app/components/line_chart.dart';
 import 'package:yanci/app/constants/string_constants.dart';
 import 'package:yanci/app/data/models/stocks_model.dart';
 import 'package:yanci/app/routes/app_pages.dart';
 import 'package:yanci/app/services/colors.dart';
 import 'package:yanci/app/services/responsive_size.dart';
 import 'package:yanci/app/services/text_style_util.dart';
-import 'package:yanci/gen/assets.gen.dart';
 
 class StockTile extends StatelessWidget {
   final void Function(BuildContext)? onPressed;
   final StockModel stock;
-  final Color slidableBackGroundColor;
+  final Color? slidableBackGroundColor;
   final Color? slidableForeGroundColor;
   final String? label;
-  final Widget icon;
+  final Widget? icon;
+  final bool isSlidable;
   const StockTile({
     super.key,
     required this.stock,
     this.onPressed,
-    required this.slidableBackGroundColor,
+    this.slidableBackGroundColor,
     this.slidableForeGroundColor,
     this.label,
-    required this.icon,
+    this.icon,
+    this.isSlidable = true,
   });
 
   @override
   Widget build(BuildContext context) {
     return Slidable(
-      endActionPane: ActionPane(
-        extentRatio: 0.2,
-        motion: const DrawerMotion(),
-        children: [
-          SlidableAction(
-            flex: 1,
-            onPressed: onPressed,
-            backgroundColor: slidableBackGroundColor,
-            foregroundColor: slidableForeGroundColor,
+      endActionPane: !isSlidable
+          ? null
+          : ActionPane(
+              extentRatio: 0.2,
+              motion: const DrawerMotion(),
+              children: [
+                SlidableAction(
+                  flex: 1,
+                  onPressed: onPressed,
+                  backgroundColor: slidableBackGroundColor ?? context.greenStockColor,
+                  foregroundColor: slidableForeGroundColor,
 
-            /// Change IconData? to Widget in the flutterSlidable package and make it a required field
-            ///
-            /// Needed a customizable icon so made this change in the package
-            icon: icon,
-            label: label,
-          ),
-        ],
-      ),
+                  /// Change IconData? to Widget in the flutterSlidable package and make it a required field
+                  ///
+                  /// Needed a customizable icon so made this change in the package
+                  icon: icon ?? const Icon(Icons.bookmark_border),
+                  label: label,
+                ),
+              ],
+            ),
       child: ListTile(
-        onTap: () => Get.toNamed(Routes.STOCK_DETAILS, arguments: stock),
+        onTap: () => Get.toNamed(Routes.STOCK_DETAILS, arguments: [
+          stock,
+          StringConstants.stockDetails
+        ]),
         visualDensity: VisualDensity.compact,
         dense: true,
         contentPadding: EdgeInsets.symmetric(horizontal: 16.kw, vertical: 10.kh),
@@ -69,8 +76,21 @@ class StockTile extends StatelessWidget {
           width: 176.kw,
           child: Row(
             children: [
-              stock.isProfit ? Assets.svg.profitGraph.svg() : Assets.svg.lossGraph.svg(),
-              10.kwidthBox,
+              SizedBox(
+                height: 20.kh,
+                width: 70.kw,
+                child: StockLineChart(
+                  lineColor: stock.isProfit ? context.greenStockColor : context.redColor,
+                  points: stock.points,
+                  maxX: stock.points.map((point) => point.x).reduce((a, b) => a > b ? a : b),
+                  minX: stock.points.map((point) => point.x).reduce((a, b) => a < b ? a : b),
+                  barWidth: 2,
+                  showGradient: false,
+                  maxY: stock.points.map((point) => point.y).reduce((a, b) => a > b ? a : b),
+                  minY: stock.points.map((point) => point.y).reduce((a, b) => a < b ? a : b),
+                ),
+              ),
+              5.kwidthBox,
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
