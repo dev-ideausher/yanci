@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:yanci/app/modules/news/controllers/news_controller.dart';
 import 'package:yanci/app/services/colors.dart';
 import 'package:yanci/app/services/responsive_size.dart';
 import 'package:yanci/app/services/text_style_util.dart';
 
-class CategoryList extends StatelessWidget {
-  const CategoryList({super.key});
+// ignore: must_be_immutable
+class CustomChipList extends StatelessWidget {
+  final List<String> labels;
+  RxInt selectedIndex;
+  CustomChipList({super.key, required this.labels, required this.selectedIndex});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<NewsController>();
     return SizedBox(
       height: 75.kh,
       child: Padding(
@@ -18,7 +19,7 @@ class CategoryList extends StatelessWidget {
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
-          itemCount: controller.newsCategories.length,
+          itemCount: labels.length,
           itemBuilder: (context, index) => watchlistTile(index),
         ),
       ),
@@ -26,26 +27,25 @@ class CategoryList extends StatelessWidget {
   }
 
   Widget watchlistTile(int index) {
-    final controller = Get.find<NewsController>();
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5),
+      padding: EdgeInsets.only(left: 10, right: index == labels.length - 1 ? 10 : 0),
       child: GestureDetector(
-        onTap: () => controller.selectedCategory.value = index,
+        onTap: () => selectedIndex.value = index,
         child: Obx(
           () => DecoratedBox(
             decoration: BoxDecoration(
-              color: controller.selectedCategory.value == index ? Get.context!.kcPrimaryColor : Get.context!.whiteColor,
+              color: selectedIndex.value == index ? Get.context!.kcPrimaryColor : Get.context!.whiteColor,
               borderRadius: BorderRadius.circular(40),
-              border: controller.selectedCategory.value == index ? null : Border.all(color: Get.context!.disabledBorderColor),
+              border: selectedIndex.value == index ? null : Border.all(color: Get.context!.disabledBorderColor),
             ),
             child: SizedBox(
               height: 41.kh,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 24.kw, vertical: 10.kh),
                 child: Text(
-                  controller.newsCategories[index],
+                  labels[index],
                   style: TextStyleUtil.kText15_4(
-                    color: controller.selectedCategory.value == index ? Get.context!.whiteColor : Get.context!.greyTextColor,
+                    color: selectedIndex.value == index ? Get.context!.whiteColor : Get.context!.greyTextColor,
                   ),
                 ),
               ),

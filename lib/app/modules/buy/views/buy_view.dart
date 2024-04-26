@@ -359,7 +359,7 @@ class BuyView extends GetView<BuyController> {
                           description: StringConstants.proceedToBuyText,
                           onTap: () => Get.to(() => const BuyConfirmationScreen()),
                         ),
-                  title: controller.balance.value < controller.estimatedPrice.value ? StringConstants.addMoney : StringConstants.buy,
+                  title: controller.balance.value < controller.estimatedPrice.value ? StringConstants.addMoney : StringConstants.buy.toUpperCase(),
                   style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w600, color: context.whiteColor),
                   height: 48.kh,
                   borderRadius: 50,

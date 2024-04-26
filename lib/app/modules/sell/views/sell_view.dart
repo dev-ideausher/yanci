@@ -378,14 +378,14 @@ class SellView extends GetView<SellController> {
           child: CustomButton(
             color: context.orangeColor,
             onTap: () => DialogHelper.showBuyDialog(
-              buttonText1: StringConstants.sell,
+              buttonText1: StringConstants.sell.toUpperCase(),
               buttoncolor: context.orangeColor,
               height: 160,
               title: StringConstants.proceedToSell,
               description: StringConstants.proceedToSellText,
               onTap: () => Get.to(() => const SellConfirmationScreen()),
             ),
-            title: StringConstants.sell,
+            title: StringConstants.sell.toUpperCase(),
             style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w600, color: context.whiteColor),
             height: 48.kh,
             borderRadius: 50,

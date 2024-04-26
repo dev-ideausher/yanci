@@ -19,7 +19,7 @@ class MyStocksView extends GetView<MyStocksController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(onPressed: () {}),
+      appBar: customAppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [

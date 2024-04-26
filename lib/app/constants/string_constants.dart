@@ -239,8 +239,8 @@ class StringConstants {
   static const delete = "Delete";
 
   // Stock Details Page
-  static const String buy = 'BUY';
-  static const String sell = 'SELL';
+  static const String buy = 'Buy';
+  static const String sell = 'Sell';
   static const String stockDetails = 'Stock Details';
   static const String investmentDetails = 'Investment Details';
   static const String stockFundamentals = 'Stock Fundamentals';
@@ -347,7 +347,13 @@ class StringConstants {
   static const String oneDReturn = '1D Return';
   static const String holdings = 'Holdings';
   static const String sort = 'Sort';
+  static const String sortBy = 'Sort by';
   static const String currentlyInvested = 'Currently Invested';
   static const String gainers = 'Gainers';
   static const String losers = 'Losers';
+
+  // Notifications
+  static const String notifications = 'Notifications';
+  static const String general = 'General';
+  static const String marketUpdates = 'Market Updates';
 }

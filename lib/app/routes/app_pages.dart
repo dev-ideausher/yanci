@@ -16,10 +16,16 @@ import '../modules/my_stocks/bindings/my_stocks_binding.dart';
 import '../modules/my_stocks/views/my_stocks_view.dart';
 import '../modules/news/bindings/news_binding.dart';
 import '../modules/news/views/news_view.dart';
+import '../modules/notifications/bindings/notifications_binding.dart';
+import '../modules/notifications/views/notifications_view.dart';
 import '../modules/on_board/bindings/on_board_binding.dart';
 import '../modules/on_board/views/on_board_view.dart';
+import '../modules/order_details/bindings/order_details_binding.dart';
+import '../modules/order_details/views/order_details_view.dart';
 import '../modules/orders/bindings/orders_binding.dart';
 import '../modules/orders/views/orders_view.dart';
+import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/profile_view.dart';
 import '../modules/sell/bindings/sell_binding.dart';
 import '../modules/sell/views/sell_view.dart';
 import '../modules/sign_up/bindings/sign_up_binding.dart';
@@ -107,6 +113,21 @@ class AppPages {
       name: _Paths.ORDERS,
       page: () => const OrdersView(),
       binding: OrdersBinding(),
+    ),
+    GetPage(
+      name: _Paths.ORDER_DETAILS,
+      page: () => const OrderDetailsView(),
+      binding: OrderDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.NOTIFICATIONS,
+      page: () => const NotificationsView(),
+      binding: NotificationsBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE,
+      page: () => const ProfileView(),
+      binding: ProfileBinding(),
     ),
   ];
 }

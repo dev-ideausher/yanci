@@ -18,6 +18,9 @@ abstract class Routes {
   static const EXPLORE = _Paths.EXPLORE;
   static const NEWS = _Paths.NEWS;
   static const ORDERS = _Paths.ORDERS;
+  static const ORDER_DETAILS = _Paths.ORDER_DETAILS;
+  static const NOTIFICATIONS = _Paths.NOTIFICATIONS;
+  static const PROFILE = _Paths.PROFILE;
 }
 
 abstract class _Paths {
@@ -37,4 +40,7 @@ abstract class _Paths {
   static const EXPLORE = '/explore';
   static const NEWS = '/news';
   static const ORDERS = '/orders';
+  static const ORDER_DETAILS = '/order-details';
+  static const NOTIFICATIONS = '/notifications';
+  static const PROFILE = '/profile';
 }

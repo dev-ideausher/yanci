@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yanci/app/constants/string_constants.dart';
-import 'package:yanci/app/modules/sell/views/screens/order_details_screen.dart';
+import 'package:yanci/app/modules/order_details/views/order_details_view.dart';
 import 'package:yanci/app/modules/sell/controllers/sell_controller.dart';
 import 'package:yanci/app/services/colors.dart';
 import 'package:yanci/app/services/custom_button.dart';
@@ -97,7 +97,17 @@ class SellConfirmationScreen extends StatelessWidget {
             ),
             20.kheightBox,
             CustomButton(
-              onTap: () => Get.to(() => const OrderDetailsScreen()),
+              onTap: () => Get.to(
+                () => const OrderDetailsView(),
+                arguments: [
+                  sellController.stock,
+                  sellController.isOrderModified,
+                  sellController.selectedTimeInForce,
+                  sellController.radioValue,
+                  sellController.quantity,
+                  sellController.estimatedPrice,
+                ],
+              ),
               title: StringConstants.done,
               height: 48.kh,
               borderRadius: 50,

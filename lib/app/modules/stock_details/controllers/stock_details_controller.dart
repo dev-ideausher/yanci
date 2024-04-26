@@ -10,6 +10,7 @@ class StockDetailsController extends GetxController {
   void onInit() {
     stock = Get.arguments[0];
     title = Get.arguments[1];
+
     trackballBehavior = TrackballBehavior(enable: true);
     super.onInit();
   }

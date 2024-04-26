@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yanci/app/constants/string_constants.dart';
+import 'package:yanci/app/routes/app_pages.dart';
 import 'package:yanci/app/services/colors.dart';
 import 'package:yanci/app/services/responsive_size.dart';
 import 'package:yanci/app/services/text_style_util.dart';
 import 'package:yanci/gen/assets.gen.dart';
 
-AppBar customAppBar({required VoidCallback onPressed}) => AppBar(
+AppBar customAppBar() => AppBar(
       surfaceTintColor: Get.context!.whiteColor,
       backgroundColor: Get.context!.whiteColor,
       shadowColor: Get.context!.disabledBorderColor,
@@ -23,6 +24,6 @@ AppBar customAppBar({required VoidCallback onPressed}) => AppBar(
       ),
       centerTitle: false,
       actions: [
-        IconButton(onPressed: onPressed, icon: Assets.svg.notification.svg())
+        IconButton(onPressed: () => Get.toNamed(Routes.NOTIFICATIONS), icon: Assets.svg.notification.svg())
       ],
     );

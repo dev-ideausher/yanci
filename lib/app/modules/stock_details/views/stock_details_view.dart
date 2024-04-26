@@ -129,17 +129,31 @@ class StockDetailsView extends GetView<StockDetailsController> {
         ),
       ),
       bottomNavigationBar: controller.title == StringConstants.investmentDetails
-          ? null
+          ? BottomAppBar(
+              surfaceTintColor: context.whiteColor,
+              shadowColor: context.blackColor,
+              height: 70.kh,
+              elevation: 10,
+              child: CustomButton(
+                title: StringConstants.sell.toUpperCase(),
+                style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w600, color: context.whiteColor),
+                width: 90.w,
+                height: 48.kh,
+                borderRadius: 50,
+                color: context.orangeColor,
+                onTap: () => Get.toNamed(Routes.SELL, arguments: controller.stock),
+              ),
+            )
           : BottomAppBar(
               surfaceTintColor: context.whiteColor,
               shadowColor: context.blackColor,
-              height: 64.kh,
+              height: 70.kh,
               elevation: 10,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomButton(
-                    title: StringConstants.buy,
+                    title: StringConstants.buy.toUpperCase(),
                     style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w600, color: context.whiteColor),
                     height: 48.kh,
                     width: 45.w,
@@ -147,7 +161,7 @@ class StockDetailsView extends GetView<StockDetailsController> {
                     onTap: () => Get.toNamed(Routes.BUY, arguments: controller.stock),
                   ),
                   CustomButton(
-                    title: StringConstants.sell,
+                    title: StringConstants.sell.toUpperCase(),
                     style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w600, color: context.whiteColor),
                     width: 45.w,
                     height: 48.kh,

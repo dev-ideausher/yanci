@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yanci/app/constants/string_constants.dart';
 import 'package:yanci/app/modules/buy/controllers/buy_controller.dart';
-import 'package:yanci/app/modules/buy/views/screens/order_details_screen.dart';
+import 'package:yanci/app/modules/order_details/views/order_details_view.dart';
 import 'package:yanci/app/services/colors.dart';
 import 'package:yanci/app/services/custom_button.dart';
 import 'package:yanci/app/services/responsive_size.dart';
@@ -97,7 +97,17 @@ class BuyConfirmationScreen extends StatelessWidget {
             ),
             20.kheightBox,
             CustomButton(
-              onTap: () => Get.to(() => const OrderDetailsScreen()),
+              onTap: () => Get.to(
+                () => const OrderDetailsView(),
+                arguments: [
+                  buyController.stock,
+                  buyController.isOrderModified,
+                  buyController.selectedTimeInForce,
+                  buyController.radioValue,
+                  buyController.quantity,
+                  buyController.estimatedPrice,
+                ],
+              ),
               title: StringConstants.done,
               height: 48.kh,
               borderRadius: 50,

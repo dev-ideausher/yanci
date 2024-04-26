@@ -1,11 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
-import 'package:yanci/app/components/sticky_bottom_bar.dart';
-import 'package:yanci/app/constants/string_constants.dart';
-import 'package:yanci/app/modules/buy/controllers/buy_controller.dart';
+
+import '../controllers/order_details_controller.dart';
 import 'package:yanci/app/routes/app_pages.dart';
 import 'package:yanci/app/services/colors.dart';
 import 'package:yanci/app/services/custom_button.dart';
@@ -13,13 +11,16 @@ import 'package:yanci/app/services/dialog_helper.dart';
 import 'package:yanci/app/services/responsive_size.dart';
 import 'package:yanci/app/services/text_style_util.dart';
 import 'package:yanci/gen/assets.gen.dart';
+import 'package:intl/intl.dart';
+import 'package:yanci/app/components/sticky_bottom_bar.dart';
+import 'package:yanci/app/constants/string_constants.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
-class OrderDetailsScreen extends StatelessWidget {
-  const OrderDetailsScreen({super.key});
-
+class OrderDetailsView extends GetView<OrderDetailsController> {
+  const OrderDetailsView({super.key});
   @override
   Widget build(BuildContext context) {
-    final buyController = Get.find<BuyController>();
+    Get.put(OrderDetailsController());
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: context.whiteColor,
@@ -60,7 +61,7 @@ class OrderDetailsScreen extends StatelessWidget {
                   CircleAvatar(
                     radius: 20.kh,
                     backgroundImage: CachedNetworkImageProvider(
-                      buyController.stock.imageUrl,
+                      controller.stock.imageUrl,
                     ),
                   ),
                   10.kwidthBox,
@@ -68,13 +69,13 @@ class OrderDetailsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        buyController.stock.stockName,
+                        controller.stock.stockName,
                         style: TextStyleUtil.kText16_5(
                           fontWeight: FontWeight.w700,
                         ),
                       ),
                       Text(
-                        buyController.stock.fullName,
+                        controller.stock.fullName,
                         style: TextStyleUtil.kText12_4(
                           fontWeight: FontWeight.w500,
                           color: context.disabledColor,
@@ -96,10 +97,10 @@ class OrderDetailsScreen extends StatelessWidget {
                   color: context.borderColor,
                 ),
               ),
-              buildStockInfo(StringConstants.orderType, buyController.radioValue.value == 0 ? StringConstants.limitOrder : StringConstants.marketOrder),
-              buildStockInfo(StringConstants.noOfShares, buyController.quantity.value.toString()),
-              buildStockInfo(StringConstants.price, "${StringConstants.ghanaCurrency} ${buyController.stock.price}"),
-              buildStockInfo(StringConstants.estimatedCost, "${StringConstants.ghanaCurrency} ${buyController.estimatedPrice.value}"),
+              buildStockInfo(StringConstants.orderType, controller.radioValue.value == 0 ? StringConstants.limitOrder : StringConstants.marketOrder),
+              buildStockInfo(StringConstants.noOfShares, controller.quantity.value.toString()),
+              buildStockInfo(StringConstants.price, "${StringConstants.ghanaCurrency} ${controller.stock.price}"),
+              buildStockInfo(StringConstants.estimatedCost, "${StringConstants.ghanaCurrency} ${controller.estimatedPrice.value}"),
               Padding(
                 padding: EdgeInsets.only(left: 10.kw),
                 child: Divider(
@@ -154,7 +155,7 @@ class OrderDetailsScreen extends StatelessWidget {
                   title: StringConstants.modifyOrder,
                   description: StringConstants.modifyOrderText,
                   onTap: () {
-                    buyController.isOrderModified.value = true;
+                    controller.isOrderModified.value = true;
                     Get.back();
                   },
                   height: 220,
@@ -188,7 +189,6 @@ class OrderDetailsScreen extends StatelessWidget {
   }
 
   Widget customStepper() {
-    final buyController = Get.find<BuyController>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -235,7 +235,7 @@ class OrderDetailsScreen extends StatelessWidget {
           ],
         ),
         Obx(
-          () => buyController.selectedTimeInForce.value == StringConstants.dayOrder
+          () => controller.selectedTimeInForce.value == StringConstants.dayOrder
               ? Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -252,9 +252,9 @@ class OrderDetailsScreen extends StatelessWidget {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        buyController.isOrderModified.value ? Assets.svg.cancel.svg() : Assets.svg.doneGreen.svg(),
+                        controller.isOrderModified.value ? Assets.svg.cancel.svg() : Assets.svg.doneGreen.svg(),
                         Text(
-                          buyController.isOrderModified.value ? StringConstants.orderCancelled : StringConstants.orderExecuted,
+                          controller.isOrderModified.value ? StringConstants.orderCancelled : StringConstants.orderExecuted,
                           style: TextStyleUtil.kText16_5(fontWeight: FontWeight.w400),
                         ),
                       ],

@@ -221,7 +221,7 @@ class DialogHelper {
                         10.kwidthBox,
                         CustomButton(
                           color: buttoncolor,
-                          title: buttonText1 ?? StringConstants.buy,
+                          title: buttonText1 ?? StringConstants.buy.toUpperCase(),
                           height: 40,
                           width: 100,
                           borderRadius: 50,
