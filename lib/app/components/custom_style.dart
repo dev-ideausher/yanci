@@ -27,6 +27,7 @@ class StStyle {
       isDense: true,
       prefixIcon: prefixIcon,
       prefixIconConstraints: isCompactPrefix ? BoxConstraints(maxWidth: 35.kw, minWidth: 35.kw, maxHeight: 20.kh, minHeight: 20.kh) : null,
+      suffixIconConstraints: isCompactPrefix ? BoxConstraints(maxWidth: 35.kw, minWidth: 35.kw, maxHeight: 20.kh, minHeight: 20.kh) : null,
       suffixIcon: suffixIcon,
       suffix: suffix,
       hintText: hint,

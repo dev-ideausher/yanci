@@ -79,7 +79,10 @@ class StringConstants {
   static const married = 'Married';
   static const nationality = 'Nationality';
   static const ghana = 'Ghana';
-  static const foreigner = 'Foreigner';
+  static const residentGhanaian = 'Resident Ghanaian';
+  static const residentForeigner = 'Resident Foreigner';
+  static const nonResidentGhanaian = 'Non-resident Ghanaian';
+  static const nonResidentForeigner = 'Non-resident Foreigner';
   static const countryOfBirth = 'Country of Birth';
   static const dateOfBirth = 'Date of Birth';
   static const gender = 'Gender';
@@ -356,4 +359,62 @@ class StringConstants {
   static const String notifications = 'Notifications';
   static const String general = 'General';
   static const String marketUpdates = 'Market Updates';
+
+  // profile and settings screen
+  static const String accountDetails = 'Account Details';
+  static const String profile = 'Profile';
+  static const String bankAndAutoPay = 'Bank and autopay mandates';
+  static const String trackOrdersOrdersDetails = 'Track Orders, Order details';
+  static const String settings = 'Settings';
+  static const String generalAlert = 'General Alert';
+  static const String resetPassword = 'Reset Password';
+  static const String createNewPassword = 'Create New Password';
+  static const String help = 'Help';
+  static const String reports = 'Reports';
+  static const String reportsAndAnalysis = 'Reports And Analysis';
+  static const String educationAndSupport = 'Education & Support';
+  static const String videosAndBlogs = 'Videos And Blogs';
+  static const String faqs = 'FAQs';
+  static const String frequentlyAskedQuestions = 'Frequently Asked Questions';
+  static const String contatcUs = 'Contact Us';
+  static const String questionsOrFeedback = 'Questions Or Feedback?';
+  static const String termsOfUse = 'Terms Of Use';
+  static const String privacyPolicy = 'Privacy & Policy';
+
+  // Notifications Settings
+  static const String notificationSettings = 'Notifications Settings';
+  static const String generalNotifications = 'General Notifications';
+  static const String generalNotificationsText = 'Many desktop publishing packages and web page editors now use Lorem Ipsum  their default model text.';
+  static const String marketNotifications = 'Market Notifications';
+  static const String on = 'ON';
+  static const String off = 'OFF';
+
+  // reset password screen
+  static const String oldPassword = 'Old Password';
+  static const String newPassword = 'New Password';
+  static const String passwordUpdated = 'Password Updated!';
+  static const String passwordUpdatedText = 'Your password has been changed successfully!';
+
+  // contact us screen
+  static const String whatDoYouWantToSubmit = 'What do you want to submit ?';
+  static const String query = 'Query';
+  static const String feedback = 'Feedback';
+  static const String typeOfQuery = 'Select type of query ?';
+  static const String transactionFailed = 'Transaction failed';
+  static const String moneyIssue = 'Money Issue';
+  static const String refund = 'Refund';
+  static const String cancellation = 'Cancellation';
+  static const String addsomeDetails = 'Add some details ?';
+  static const String queryDetails = 'Write details about your query and you can expect the revert with in 24hrs on your registered email Id.';
+  static const String feedbackDetails = 'Write your feedback and you can expect the revert with in 24hrs on your registered email Id.';
+  static const String submitted = 'Submitted!';
+  static const String submittedQuery = 'Your query has been submitted successfully.';
+
+  // faq
+  static const String mostVisitedFaq = 'Most Visited FAQs';
+
+  // edit profile
+  static const String nomineeDetails = 'Nominee Details';
+  static const String kycForm = 'KYC Form';
+  static const String download = 'Download';
 }

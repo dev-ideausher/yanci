@@ -125,7 +125,7 @@ class DialogHelper {
             ),
             child: SizedBox(
               width: 312.kw,
-              height: 320.kh,
+              height: 340.kh,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [

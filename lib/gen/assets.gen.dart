@@ -45,6 +45,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/payfast.png
   AssetGenImage get payfast => const AssetGenImage('assets/images/payfast.png');
 
+  /// File path: assets/images/profile.png
+  AssetGenImage get profile => const AssetGenImage('assets/images/profile.png');
+
   /// File path: assets/images/successful.png
   AssetGenImage get successful =>
       const AssetGenImage('assets/images/successful.png');
@@ -67,6 +70,7 @@ class $AssetsImagesGen {
         onboarding3,
         onboarding4,
         payfast,
+        profile,
         successful,
         yahooLogo,
         yanciLogo
@@ -95,6 +99,9 @@ class $AssetsLottiefilesGen {
 class $AssetsSvgGen {
   const $AssetsSvgGen();
 
+  /// File path: assets/svg/all_order.svg
+  SvgGenImage get allOrder => const SvgGenImage('assets/svg/all_order.svg');
+
   /// File path: assets/svg/appleLogo.svg
   SvgGenImage get appleLogo => const SvgGenImage('assets/svg/appleLogo.svg');
 
@@ -118,14 +125,29 @@ class $AssetsSvgGen {
   /// File path: assets/svg/clock.svg
   SvgGenImage get clock => const SvgGenImage('assets/svg/clock.svg');
 
+  /// File path: assets/svg/contact.svg
+  SvgGenImage get contact => const SvgGenImage('assets/svg/contact.svg');
+
+  /// File path: assets/svg/dollar.svg
+  SvgGenImage get dollar => const SvgGenImage('assets/svg/dollar.svg');
+
   /// File path: assets/svg/done_green.svg
   SvgGenImage get doneGreen => const SvgGenImage('assets/svg/done_green.svg');
 
   /// File path: assets/svg/done_grey.svg
   SvgGenImage get doneGrey => const SvgGenImage('assets/svg/done_grey.svg');
 
+  /// File path: assets/svg/download.svg
+  SvgGenImage get download => const SvgGenImage('assets/svg/download.svg');
+
+  /// File path: assets/svg/education.svg
+  SvgGenImage get education => const SvgGenImage('assets/svg/education.svg');
+
   /// File path: assets/svg/explore.svg
   SvgGenImage get explore => const SvgGenImage('assets/svg/explore.svg');
+
+  /// File path: assets/svg/faq.svg
+  SvgGenImage get faq => const SvgGenImage('assets/svg/faq.svg');
 
   /// File path: assets/svg/files.svg
   SvgGenImage get files => const SvgGenImage('assets/svg/files.svg');
@@ -142,8 +164,11 @@ class $AssetsSvgGen {
   /// File path: assets/svg/line_chart.svg
   SvgGenImage get lineChart => const SvgGenImage('assets/svg/line_chart.svg');
 
-  /// File path: assets/svg/loss_graph.svg
-  SvgGenImage get lossGraph => const SvgGenImage('assets/svg/loss_graph.svg');
+  /// File path: assets/svg/lock.svg
+  SvgGenImage get lock => const SvgGenImage('assets/svg/lock.svg');
+
+  /// File path: assets/svg/microphone.svg
+  SvgGenImage get microphone => const SvgGenImage('assets/svg/microphone.svg');
 
   /// File path: assets/svg/more.svg
   SvgGenImage get more => const SvgGenImage('assets/svg/more.svg');
@@ -161,9 +186,12 @@ class $AssetsSvgGen {
   /// File path: assets/svg/orders.svg
   SvgGenImage get orders => const SvgGenImage('assets/svg/orders.svg');
 
-  /// File path: assets/svg/profit_graph.svg
-  SvgGenImage get profitGraph =>
-      const SvgGenImage('assets/svg/profit_graph.svg');
+  /// File path: assets/svg/reports.svg
+  SvgGenImage get reports => const SvgGenImage('assets/svg/reports.svg');
+
+  /// File path: assets/svg/search-normal.svg
+  SvgGenImage get searchNormal =>
+      const SvgGenImage('assets/svg/search-normal.svg');
 
   /// File path: assets/svg/search.svg
   SvgGenImage get search => const SvgGenImage('assets/svg/search.svg');
@@ -171,11 +199,19 @@ class $AssetsSvgGen {
   /// File path: assets/svg/select_file.svg
   SvgGenImage get selectFile => const SvgGenImage('assets/svg/select_file.svg');
 
+  /// File path: assets/svg/settings_notification.svg
+  SvgGenImage get settingsNotification =>
+      const SvgGenImage('assets/svg/settings_notification.svg');
+
   /// File path: assets/svg/share.svg
   SvgGenImage get share => const SvgGenImage('assets/svg/share.svg');
 
   /// File path: assets/svg/sort.svg
   SvgGenImage get sort => const SvgGenImage('assets/svg/sort.svg');
+
+  /// File path: assets/svg/terms_and_conditions.svg
+  SvgGenImage get termsAndConditions =>
+      const SvgGenImage('assets/svg/terms_and_conditions.svg');
 
   /// File path: assets/svg/wallet.svg
   SvgGenImage get wallet => const SvgGenImage('assets/svg/wallet.svg');
@@ -185,6 +221,7 @@ class $AssetsSvgGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
+        allOrder,
         appleLogo,
         bookmark,
         camera,
@@ -192,25 +229,34 @@ class $AssetsSvgGen {
         cancel,
         candleChart,
         clock,
+        contact,
+        dollar,
         doneGreen,
         doneGrey,
+        download,
+        education,
         explore,
+        faq,
         files,
         filter,
         gallery,
         googleLogo,
         lineChart,
-        lossGraph,
+        lock,
+        microphone,
         more,
         myStocks,
         news,
         notification,
         orders,
-        profitGraph,
+        reports,
+        searchNormal,
         search,
         selectFile,
+        settingsNotification,
         share,
         sort,
+        termsAndConditions,
         wallet,
         yahooLogo
       ];

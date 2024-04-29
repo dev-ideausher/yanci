@@ -3,6 +3,7 @@ import 'package:yanci/app/modules/explore/controllers/explore_controller.dart';
 import 'package:yanci/app/modules/my_stocks/controllers/my_stocks_controller.dart';
 import 'package:yanci/app/modules/news/controllers/news_controller.dart';
 import 'package:yanci/app/modules/orders/controllers/orders_controller.dart';
+import 'package:yanci/app/modules/profile/controllers/profile_controller.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -23,6 +24,9 @@ class HomeBinding extends Bindings {
     );
     Get.lazyPut<OrdersController>(
       () => OrdersController(),
+    );
+    Get.lazyPut<ProfileController>(
+      () => ProfileController(),
     );
   }
 }

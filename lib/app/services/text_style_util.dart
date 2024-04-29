@@ -78,6 +78,21 @@ class TextStyleUtil {
     );
   }
 
+  static kText14_6({
+    Color? color,
+    FontWeight fontWeight = FontWeight.w600,
+    TextDecoration textDecoration = TextDecoration.none,
+  }) {
+    return GoogleFonts.inter(
+      fontWeight: fontWeight,
+      color: color,
+      fontStyle: FontStyle.normal,
+      fontSize: 14.kh,
+      decoration: textDecoration,
+      letterSpacing: 0,
+    );
+  }
+
   static kText15_4({
     Color color = Colors.black,
     FontWeight fontWeight = FontWeight.w400,

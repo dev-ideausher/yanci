@@ -10,11 +10,13 @@ class StDatePicker extends StatelessWidget {
   final void Function()? onTap;
   final DateTime date;
   final String title;
+  final bool isRequired;
   const StDatePicker({
     super.key,
     required this.date,
     this.onTap,
     required this.title,
+    this.isRequired = true,
   });
 
   @override
@@ -24,7 +26,12 @@ class StDatePicker extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(vertical: 4.kh),
-          child: StRichText(text: title, color: context.redColor),
+          child: isRequired
+              ? StRichText(text: title, color: context.redColor)
+              : Text(
+                  title,
+                  style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w500),
+                ),
         ),
         DecoratedBox(
           decoration: BoxDecoration(
@@ -32,7 +39,7 @@ class StDatePicker extends StatelessWidget {
             border: Border.all(color: Get.context!.borderColor, width: 1.kh),
             color: context.kGreyBack,
           ),
-          child: GestureDetector(
+          child: InkWell(
             onTap: onTap,
             child: SizedBox(
               height: 60.kh,

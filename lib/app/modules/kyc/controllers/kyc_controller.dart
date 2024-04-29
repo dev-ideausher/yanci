@@ -35,11 +35,12 @@ class KycController extends GetxController {
   String selectedMaritalStatus = StringConstants.single;
 
   List<String> nationality = [
-    StringConstants.ghana,
-    StringConstants.foreigner,
-    StringConstants.preferNotToSay,
+    StringConstants.residentGhanaian,
+    StringConstants.residentGhanaian,
+    StringConstants.nonResidentGhanaian,
+    StringConstants.nonResidentForeigner,
   ];
-  String selectedNationality = StringConstants.ghana;
+  String selectedNationality = StringConstants.residentGhanaian;
 
   List<String> countries = [
     StringConstants.ghana,
