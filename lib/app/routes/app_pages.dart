@@ -26,6 +26,8 @@ import '../modules/orders/bindings/orders_binding.dart';
 import '../modules/orders/views/orders_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
+import '../modules/reports/bindings/reports_binding.dart';
+import '../modules/reports/views/reports_view.dart';
 import '../modules/sell/bindings/sell_binding.dart';
 import '../modules/sell/views/sell_view.dart';
 import '../modules/sign_up/bindings/sign_up_binding.dart';
@@ -128,6 +130,11 @@ class AppPages {
       name: _Paths.PROFILE,
       page: () => const ProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.REPORTS,
+      page: () => const ReportsView(),
+      binding: ReportsBinding(),
     ),
   ];
 }

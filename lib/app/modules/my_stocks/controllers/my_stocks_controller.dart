@@ -11,6 +11,7 @@ class MyStocksController extends GetxController {
   }
 
   RxInt selectedIndex = 0.obs;
+  RxDouble balance = 22.0.obs;
   RxBool isBarChartSelected = true.obs;
   RxString selectedSort = StringConstants.currentlyInvested.obs;
 }

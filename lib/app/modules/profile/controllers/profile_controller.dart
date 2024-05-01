@@ -45,6 +45,7 @@ class ProfileController extends GetxController {
   RxBool isPassVisible = false.obs;
   RxBool isNewPassVisible = false.obs;
   RxBool isConfPassVisible = false.obs;
+  RxInt selectedEdIndex = 0.obs;
   RxString selectedContact = StringConstants.query.obs;
   RxString selectedTypeOfQuery = StringConstants.general.obs;
   Rx<DateTime> dateOfBirth = DateTime.now().obs;

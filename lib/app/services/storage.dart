@@ -18,6 +18,9 @@ class GetStorageService extends GetxService {
 
   set encjwToken(String val) => _runData.write('jwToken', encryptAESCryptoJS(val));
 
+  bool get isFirstTime => _runData.read('isFirstTime') ?? false;
+  set isFirstTime(bool val) => _runData.write('isFirstTime', val);
+
   void logout() {
     _runData.erase();
   }

@@ -62,7 +62,7 @@ class CustomButton extends StatelessWidget {
             alignment: Alignment.center,
             decoration: !outline
                 ? BoxDecoration(
-                    borderRadius: BorderRadius.circular(borderRadius ?? 12.kh),
+                    borderRadius: BorderRadius.circular(borderRadius?.kh ?? 12.kh),
                     gradient: linearGradient ??
                         LinearGradient(begin: const Alignment(0, 0), end: const Alignment(0, 0), colors: [
                           !disabled ? color ?? context.kcPrimaryColor : color ?? context.kcPrimaryColor,

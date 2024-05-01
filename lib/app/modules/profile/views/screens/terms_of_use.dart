@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:yanci/app/constants/string_constants.dart';
-import 'package:yanci/app/services/colors.dart';
 import 'package:yanci/app/services/responsive_size.dart';
 import 'package:yanci/app/services/text_style_util.dart';
 
@@ -11,12 +10,9 @@ class TermsOfUse extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        surfaceTintColor: context.whiteColor,
-        backgroundColor: context.whiteColor,
-        shadowColor: context.disabledBorderColor,
         elevation: 1,
         title: Text(
-          StringConstants.privacyPolicy,
+          StringConstants.termsOfUse,
           style: TextStyleUtil.kText16_5(fontWeight: FontWeight.w600),
         ),
         centerTitle: false,

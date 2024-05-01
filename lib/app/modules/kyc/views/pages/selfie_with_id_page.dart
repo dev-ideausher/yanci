@@ -10,9 +10,40 @@ import 'package:yanci/app/services/custom_button.dart';
 import 'package:yanci/app/services/responsive_size.dart';
 import 'package:yanci/app/services/text_style_util.dart';
 import 'package:yanci/gen/assets.gen.dart';
+import 'package:yanci/main.dart';
 
-class SelfieWithIdPage extends StatelessWidget {
+class SelfieWithIdPage extends StatefulWidget {
   const SelfieWithIdPage({super.key});
+
+  @override
+  State<SelfieWithIdPage> createState() => _SelfieWithIdPageState();
+}
+
+class _SelfieWithIdPageState extends State<SelfieWithIdPage> {
+  final CameraController cameraController = CameraController(
+    cameras.firstWhere((element) => element.lensDirection == CameraLensDirection.front),
+    ResolutionPreset.max,
+  );
+  @override
+  void initState() {
+    initializeCamera();
+    super.initState();
+  }
+
+  Future<void> initializeCamera() async {
+    await cameraController.initialize().then((_) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    cameraController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,9 +114,7 @@ class SelfieWithIdPage extends StatelessWidget {
                               width: 284.kw,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(150.kh),
-                                child: CameraPreview(
-                                  kycController.selfieCameraController,
-                                ),
+                                child: CameraPreview(cameraController),
                               ),
                             ),
                           ),
@@ -119,7 +148,7 @@ class SelfieWithIdPage extends StatelessWidget {
                     ),
                     60.kheightBox,
                     CustomImageCaptureWidget(
-                      onTapCamera: () => kycController.captureSelfieImage(),
+                      onTapCamera: () => kycController.captureSelfieImage(cameraController),
                       onTapGallery: () {},
                       onTapFiles: () {},
                     ),

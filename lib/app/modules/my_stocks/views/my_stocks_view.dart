@@ -6,6 +6,7 @@ import 'package:yanci/app/components/graph_component.dart';
 import 'package:yanci/app/components/stock_tile.dart';
 import 'package:yanci/app/constants/string_constants.dart';
 import 'package:yanci/app/data/models/stocks_model.dart';
+import 'package:yanci/app/routes/app_pages.dart';
 import 'package:yanci/app/services/colors.dart';
 import 'package:yanci/app/services/custom_button.dart';
 import 'package:yanci/app/services/responsive_size.dart';
@@ -151,9 +152,11 @@ class MyStocksView extends GetView<MyStocksController> {
                                   StringConstants.buyingPower,
                                   style: TextStyleUtil.kText15_4(),
                                 ),
-                                Text(
-                                  "GH₵ 22.00",
-                                  style: TextStyleUtil.kText20_6(fontWeight: FontWeight.w700),
+                                Obx(
+                                  () => Text(
+                                    "GH₵ ${controller.balance.value.toStringAsFixed(2)}",
+                                    style: TextStyleUtil.kText20_6(fontWeight: FontWeight.w700),
+                                  ),
                                 ),
                               ],
                             ),
@@ -162,7 +165,7 @@ class MyStocksView extends GetView<MyStocksController> {
                               style: TextStyleUtil.kText12_4(fontWeight: FontWeight.w600, color: context.whiteColor),
                               height: 34.kh,
                               width: 128.kw,
-                              onTap: () {},
+                              onTap: () => Get.toNamed(Routes.ADD_MONEY, arguments: controller.balance),
                               borderRadius: 50,
                             ),
                           ],
@@ -236,6 +239,7 @@ class MyStocksView extends GetView<MyStocksController> {
             (e) => StockTile(
               stock: e,
               isSlidable: false,
+              isOwned: true,
             ),
           )
           .toList();
@@ -247,6 +251,7 @@ class MyStocksView extends GetView<MyStocksController> {
             (e) => StockTile(
               stock: e,
               isSlidable: false,
+              isOwned: true,
             ),
           )
           .toList();
@@ -257,6 +262,7 @@ class MyStocksView extends GetView<MyStocksController> {
           (e) => StockTile(
             stock: e,
             isSlidable: false,
+            isOwned: true,
           ),
         )
         .toList();

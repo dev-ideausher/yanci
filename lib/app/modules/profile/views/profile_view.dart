@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:yanci/app/constants/string_constants.dart';
+import 'package:yanci/app/modules/profile/views/screens/bank_details.dart';
 import 'package:yanci/app/modules/profile/views/screens/contact_us.dart';
 import 'package:yanci/app/modules/profile/views/screens/edit_profile.dart';
+import 'package:yanci/app/modules/profile/views/screens/education_support.dart';
 import 'package:yanci/app/modules/profile/views/screens/faq_screen.dart';
 import 'package:yanci/app/modules/profile/views/screens/notifications_settings.dart';
 import 'package:yanci/app/modules/profile/views/screens/privacy_policy.dart';
@@ -11,6 +13,7 @@ import 'package:yanci/app/modules/profile/views/screens/reset_password.dart';
 import 'package:yanci/app/modules/profile/views/screens/terms_of_use.dart';
 import 'package:yanci/app/modules/profile/views/widgets/profile_tile.dart';
 import 'package:yanci/app/modules/profile/views/widgets/settings_tile.dart';
+import 'package:yanci/app/routes/app_pages.dart';
 import 'package:yanci/app/services/colors.dart';
 import 'package:yanci/app/services/responsive_size.dart';
 import 'package:yanci/app/services/text_style_util.dart';
@@ -52,7 +55,7 @@ class ProfileView extends GetView<ProfileController> {
               title: StringConstants.bankDetails,
               subtitle: StringConstants.bankAndAutoPay,
               leading: Assets.svg.dollar.svg(),
-              onTap: () {},
+              onTap: () => Get.to(() => const BankDetails()),
             ),
             SettingsTile(
               title: StringConstants.allOrders,
@@ -94,13 +97,13 @@ class ProfileView extends GetView<ProfileController> {
               title: StringConstants.reports,
               subtitle: StringConstants.reportsAndAnalysis,
               leading: Assets.svg.reports.svg(),
-              onTap: () {},
+              onTap: () => Get.toNamed(Routes.REPORTS),
             ),
             SettingsTile(
               title: StringConstants.educationAndSupport,
               subtitle: StringConstants.videosAndBlogs,
               leading: Assets.svg.education.svg(),
-              onTap: () {},
+              onTap: () => Get.to(() => const EducationSupport()),
             ),
             SettingsTile(
               title: StringConstants.faqs,

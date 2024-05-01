@@ -18,7 +18,7 @@ class BuyController extends GetxController {
   RxBool isAdvanceOptionsEnabled = false.obs;
   RxBool isOrderModified = false.obs;
   RxInt radioValue = 0.obs;
-  RxInt balance = 22.obs;
+  RxDouble balance = 22.0.obs;
   RxInt quantity = 0.obs;
   RxDouble estimatedPrice = 0.0.obs;
   RxString selectedTimeInForce = StringConstants.dayOrder.obs;

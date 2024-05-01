@@ -18,9 +18,20 @@ class $AssetsImagesGen {
   /// File path: assets/images/CSD_KYC.png
   AssetGenImage get csdKyc => const AssetGenImage('assets/images/CSD_KYC.png');
 
+  /// File path: assets/images/app_tutorial.png
+  AssetGenImage get appTutorial =>
+      const AssetGenImage('assets/images/app_tutorial.png');
+
   /// File path: assets/images/appleLogo.png
   AssetGenImage get appleLogo =>
       const AssetGenImage('assets/images/appleLogo.png');
+
+  /// File path: assets/images/bank_sample.png
+  AssetGenImage get bankSample =>
+      const AssetGenImage('assets/images/bank_sample.png');
+
+  /// File path: assets/images/blog.png
+  AssetGenImage get blog => const AssetGenImage('assets/images/blog.png');
 
   /// File path: assets/images/googleLogo.png
   AssetGenImage get googleLogo =>
@@ -52,6 +63,10 @@ class $AssetsImagesGen {
   AssetGenImage get successful =>
       const AssetGenImage('assets/images/successful.png');
 
+  /// File path: assets/images/tutorial.png
+  AssetGenImage get tutorial =>
+      const AssetGenImage('assets/images/tutorial.png');
+
   /// File path: assets/images/yahooLogo.png
   AssetGenImage get yahooLogo =>
       const AssetGenImage('assets/images/yahooLogo.png');
@@ -63,7 +78,10 @@ class $AssetsImagesGen {
   /// List of all assets
   List<AssetGenImage> get values => [
         csdKyc,
+        appTutorial,
         appleLogo,
+        bankSample,
+        blog,
         googleLogo,
         onboarding1,
         onboarding2,
@@ -72,6 +90,7 @@ class $AssetsImagesGen {
         payfast,
         profile,
         successful,
+        tutorial,
         yahooLogo,
         yanciLogo
       ];
@@ -98,6 +117,13 @@ class $AssetsLottiefilesGen {
 
 class $AssetsSvgGen {
   const $AssetsSvgGen();
+
+  /// File path: assets/svg/Triangle_down.svg
+  SvgGenImage get triangleDown =>
+      const SvgGenImage('assets/svg/Triangle_down.svg');
+
+  /// File path: assets/svg/Triangle_up.svg
+  SvgGenImage get triangleUp => const SvgGenImage('assets/svg/Triangle_up.svg');
 
   /// File path: assets/svg/all_order.svg
   SvgGenImage get allOrder => const SvgGenImage('assets/svg/all_order.svg');
@@ -127,6 +153,9 @@ class $AssetsSvgGen {
 
   /// File path: assets/svg/contact.svg
   SvgGenImage get contact => const SvgGenImage('assets/svg/contact.svg');
+
+  /// File path: assets/svg/delete.svg
+  SvgGenImage get delete => const SvgGenImage('assets/svg/delete.svg');
 
   /// File path: assets/svg/dollar.svg
   SvgGenImage get dollar => const SvgGenImage('assets/svg/dollar.svg');
@@ -186,6 +215,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/orders.svg
   SvgGenImage get orders => const SvgGenImage('assets/svg/orders.svg');
 
+  /// File path: assets/svg/play.svg
+  SvgGenImage get play => const SvgGenImage('assets/svg/play.svg');
+
   /// File path: assets/svg/reports.svg
   SvgGenImage get reports => const SvgGenImage('assets/svg/reports.svg');
 
@@ -221,6 +253,8 @@ class $AssetsSvgGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
+        triangleDown,
+        triangleUp,
         allOrder,
         appleLogo,
         bookmark,
@@ -230,6 +264,7 @@ class $AssetsSvgGen {
         candleChart,
         clock,
         contact,
+        delete,
         dollar,
         doneGreen,
         doneGrey,
@@ -249,6 +284,7 @@ class $AssetsSvgGen {
         news,
         notification,
         orders,
+        play,
         reports,
         searchNormal,
         search,

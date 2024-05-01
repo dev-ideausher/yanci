@@ -10,23 +10,29 @@ import '../controllers/home_controller.dart';
 class HomeBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<HomeController>(
-      () => HomeController(),
+    Get.put<HomeController>(
+      HomeController(),
+      permanent: true,
     );
-    Get.lazyPut<ExploreController>(
-      () => ExploreController(),
+    Get.put<ExploreController>(
+      ExploreController(),
+      permanent: true,
     );
-    Get.lazyPut<MyStocksController>(
-      () => MyStocksController(),
+    Get.put<MyStocksController>(
+      MyStocksController(),
+      permanent: true,
     );
-    Get.lazyPut<NewsController>(
-      () => NewsController(),
+    Get.put<NewsController>(
+      NewsController(),
+      permanent: true,
     );
-    Get.lazyPut<OrdersController>(
-      () => OrdersController(),
+    Get.put<OrdersController>(
+      OrdersController(),
+      permanent: true,
     );
-    Get.lazyPut<ProfileController>(
-      () => ProfileController(),
+    Get.put<ProfileController>(
+      ProfileController(),
+      permanent: true,
     );
   }
 }

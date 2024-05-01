@@ -13,6 +13,25 @@ class StringConstants {
   static const accHasBeenCreated = "Your account has been created";
   static const profileHasBeenCreated = "Your profile has been created";
 
+  // tutorial screen
+  static const next = "Next";
+  static const finish = "Finish";
+  static const tutorialTitle = "🎉 Welcome to your new trading adventure! 🚀";
+  static const tutorialSubTitle = "Embark on an exhilarating trading journey tailored for Ghana's dynamic market with our intuitive app";
+  static const launchQuickTips = "Launch Quick Tips";
+  static const stocksTutorial = "Stocks 💹";
+  static const stocksTutorialText = "Explore a comprehensive array of listed stocks and seize opportunities with our user-friendly trading platform.";
+  static const watchListTutorial = "Watchlist 👁️";
+  static const watchlistTutorialText = "Keep a close eye on your favorite stocks with our customizable watchlist feature.";
+  static const myStocksTutorial = "My Stocks 💹";
+  static const myStocksTutorialText = "Track your investment journey with Total PnL graph, invested capital, and returns and holdings all in one convenient My Stocks section.";
+  static const ordersTutorial = "Orders 🛒";
+  static const ordersTutorialText = "Efficiently manage your placed orders and track their status with our streamlined Orders section.";
+  static const newsTutorial = "News 📰";
+  static const newsTutorialText = "Stay informed and ahead of the market curve with our comprehensive News section, delivering timely updates and insights.";
+  static const moreTutorial = "More ⚙️";
+  static const moreTutorialText = "Explore additional options to diversify your investment strategies and enhance portfolio performance.";
+
   // glossary dialog buy stock
   static const glossary = "Glossary";
   static const marketOrderText = "A market order is an instruction to buy or sell a security immediately at the best available current price. It prioritizes speed of execution over price.";
@@ -417,4 +436,24 @@ class StringConstants {
   static const String nomineeDetails = 'Nominee Details';
   static const String kycForm = 'KYC Form';
   static const String download = 'Download';
+
+  // education and support
+  static const String videos = 'Videos';
+  static const String blogs = 'Blogs';
+  static const String blogsDetails = 'Blogs Details';
+  static const String searchVideos = 'Search vidoes';
+  static const String searchBlogs = 'Search blogs';
+
+  // bank details
+  static const String resetAcountDetails = 'Reset Account Details';
+  static const String addAnotherBank = 'Add Another Bank';
+  static const String popularBanks = 'Popular Banks';
+  static const String allBanks = 'All Banks';
+  static const String chooseYourBank = 'Choose Your Bank';
+  static const String searchByName = 'Search by name';
+  static const String searchByBranchName = 'Search by branch name';
+  static const String letsFindYourBranch = 'Let’s find your Branch';
+  static const String verifyBankAcc = 'Verify Bank Account';
+  static const String yanciProtectsBankInfo = 'YANCI protect your financial information';
+  static const String edit = 'Edit';
 }

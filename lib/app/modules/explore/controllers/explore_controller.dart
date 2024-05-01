@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yanci/app/data/models/stocks_model.dart';
+import 'package:yanci/app/services/dialog_helper.dart';
+import 'package:yanci/app/services/storage.dart';
 
 class ExploreController extends GetxController with GetSingleTickerProviderStateMixin {
   late TabController tabController;
@@ -57,6 +59,15 @@ class ExploreController extends GetxController with GetSingleTickerProviderState
       return;
     }
     Get.snackbar("Error", "Item not in the watchlist.");
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+    if (!GetStorageService().isFirstTime) {
+      DialogHelper.showTutorial();
+      GetStorageService().isFirstTime = true;
+    }
   }
 
   @override

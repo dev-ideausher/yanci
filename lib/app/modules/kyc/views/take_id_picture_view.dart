@@ -8,12 +8,48 @@ import 'package:yanci/app/modules/kyc/controllers/kyc_controller.dart';
 import 'package:yanci/app/services/responsive_size.dart';
 import 'package:yanci/app/services/text_style_util.dart';
 import 'package:yanci/gen/assets.gen.dart';
+import 'package:yanci/main.dart';
 
-class TakeIdPictureView extends StatelessWidget {
+class TakeIdPictureView extends StatefulWidget {
   const TakeIdPictureView({super.key});
+
+  @override
+  State<TakeIdPictureView> createState() => _TakeIdPictureViewState();
+}
+
+class _TakeIdPictureViewState extends State<TakeIdPictureView> {
+  final CameraController cameraController = CameraController(
+    cameras.firstWhere((element) => element.lensDirection == CameraLensDirection.back),
+    ResolutionPreset.max,
+  );
+  @override
+  void initState() {
+    initializeCamera();
+    super.initState();
+  }
+
+  Future<void> initializeCamera() async {
+    try {
+      await cameraController.initialize().then((_) {
+        if (!mounted) {
+          return;
+        }
+        setState(() {});
+      });
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  @override
+  void dispose() {
+    cameraController.dispose();
+    super.dispose();
+  }
+
+  final controller = Get.find<KycController>();
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<KycController>();
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
@@ -39,7 +75,7 @@ class TakeIdPictureView extends StatelessWidget {
                     child: SizedBox(
                       height: 354.kh,
                       width: 292.kw,
-                      child: CameraPreview(controller.cameraController),
+                      child: CameraPreview(cameraController),
                     ),
                   ),
                   Positioned(top: 0, child: Assets.svg.cameraBorder.svg()),
@@ -72,7 +108,7 @@ class TakeIdPictureView extends StatelessWidget {
             ),
             60.kheightBox,
             CustomImageCaptureWidget(
-              onTapCamera: () => controller.captureIdImage(),
+              onTapCamera: () => controller.captureIdImage(cameraController),
               onTapGallery: () {},
               onTapFiles: () {},
             ),

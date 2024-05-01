@@ -1,8 +1,9 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yanci/app/constants/string_constants.dart';
+import 'package:yanci/app/modules/explore/controllers/explore_controller.dart';
+import 'package:yanci/app/modules/home/controllers/home_controller.dart';
 import 'package:yanci/app/services/custom_button.dart';
 import 'package:yanci/app/services/text_style_util.dart';
 import 'package:yanci/gen/assets.gen.dart';
@@ -379,6 +380,720 @@ class DialogHelper {
         ),
       ),
       barrierDismissible: true,
+      barrierColor: const Color(0xff141A31).withOpacity(.4),
+      useSafeArea: true,
+    );
+  }
+
+  static void showTutorial() {
+    Get.dialog(
+      PopScope(
+        canPop: true,
+        onPopInvoked: (pop) => Future.value(false),
+        child: Center(
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: Get.context!.whiteColor,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: SizedBox(
+              width: 327.kw,
+              height: 514.kh,
+              child: Padding(
+                padding: EdgeInsets.all(16.kh),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: GestureDetector(
+                        onTap: () => hideDialog(),
+                        child: const Icon(Icons.close),
+                      ),
+                    ),
+                    Assets.images.appTutorial.image(),
+                    8.kheightBox,
+                    Text(
+                      StringConstants.tutorialTitle,
+                      textAlign: TextAlign.center,
+                      style: TextStyleUtil.kText24_6(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    8.kheightBox,
+                    Text(
+                      StringConstants.tutorialSubTitle,
+                      textAlign: TextAlign.center,
+                      style: TextStyleUtil.kText14_4(
+                        color: Get.context!.greyTextColor,
+                      ),
+                    ),
+                    20.kheightBox,
+                    CustomButton(
+                      title: StringConstants.launchQuickTips,
+                      borderRadius: 50,
+                      onTap: () {
+                        hideDialog();
+                        showStockTutorial();
+                      },
+                    ),
+                    10.kheightBox,
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+      barrierDismissible: false,
+      barrierColor: const Color(0xff141A31).withOpacity(.4),
+      useSafeArea: true,
+    );
+  }
+
+  static void showStockTutorial() {
+    Get.dialog(
+      PopScope(
+        canPop: true,
+        onPopInvoked: (pop) => Future.value(false),
+        child: Stack(
+          children: [
+            Positioned(
+              top: 25.kh,
+              left: 0,
+              child: SizedBox(
+                height: 35.kh,
+                width: 50.w,
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: ColoredBox(
+                        color: Get.context!.whiteColor,
+                        child: Center(
+                          child: Text(
+                            StringConstants.stocks,
+                            style: TextStyleUtil.kText16_5(fontWeight: FontWeight.w600, color: Get.context!.kcPrimaryColor),
+                          ),
+                        ),
+                      ),
+                    ),
+                    ColoredBox(
+                      color: Get.context!.kcPrimaryColor,
+                      child: SizedBox(
+                        height: 2.kh,
+                        width: double.infinity,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Positioned(
+              top: 60.kh,
+              left: 20.w,
+              child: Assets.svg.triangleUp.svg(height: 13.kh),
+            ),
+            Positioned(
+              top: 73.kh,
+              left: 13.w,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: Get.context!.whiteColor,
+                  borderRadius: BorderRadius.circular(8.kh),
+                ),
+                child: SizedBox(
+                  height: 200.kh,
+                  width: 284.kw,
+                  child: Padding(
+                    padding: EdgeInsets.all(16.kh),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              StringConstants.stocksTutorial,
+                              style: TextStyleUtil.kText19_6(),
+                            ),
+                            GestureDetector(onTap: () => hideDialog(), child: const Icon(Icons.close)),
+                          ],
+                        ),
+                        10.kheightBox,
+                        Text(
+                          StringConstants.stocksTutorialText,
+                          style: TextStyleUtil.kText16_5(
+                            fontWeight: FontWeight.w400,
+                            color: Get.context!.greyTextColor,
+                          ),
+                        ),
+                        const Spacer(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "1/6",
+                              style: TextStyleUtil.kText12_4(
+                                fontWeight: FontWeight.w600,
+                                color: Get.context!.greyTextColor,
+                              ),
+                            ),
+                            CustomButton(
+                              title: StringConstants.next,
+                              height: 40.kh,
+                              width: 112.kw,
+                              borderRadius: 50.kh,
+                              onTap: () {
+                                hideDialog();
+                                Get.find<ExploreController>().tabController.index = 1;
+                                showWatchListTutorial();
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      barrierDismissible: false,
+      barrierColor: const Color(0xff141A31).withOpacity(.4),
+      useSafeArea: true,
+    );
+  }
+
+  static void showWatchListTutorial() {
+    Get.dialog(
+      PopScope(
+        canPop: true,
+        onPopInvoked: (pop) => Future.value(false),
+        child: Stack(
+          children: [
+            Positioned(
+              top: 25.kh,
+              right: 0,
+              child: SizedBox(
+                height: 35.kh,
+                width: 50.w,
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: ColoredBox(
+                        color: Get.context!.whiteColor,
+                        child: Center(
+                          child: Text(
+                            StringConstants.watchlist,
+                            style: TextStyleUtil.kText16_5(fontWeight: FontWeight.w600, color: Get.context!.kcPrimaryColor),
+                          ),
+                        ),
+                      ),
+                    ),
+                    ColoredBox(
+                      color: Get.context!.kcPrimaryColor,
+                      child: SizedBox(
+                        height: 2.kh,
+                        width: double.infinity,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Positioned(
+              top: 60.kh,
+              right: 20.w,
+              child: Assets.svg.triangleUp.svg(height: 13.kh),
+            ),
+            Positioned(
+              top: 73.kh,
+              right: 13.w,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: Get.context!.whiteColor,
+                  borderRadius: BorderRadius.circular(8.kh),
+                ),
+                child: SizedBox(
+                  height: 180.kh,
+                  width: 284.kw,
+                  child: Padding(
+                    padding: EdgeInsets.all(16.kh),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              StringConstants.watchListTutorial,
+                              style: TextStyleUtil.kText19_6(),
+                            ),
+                            GestureDetector(onTap: () => hideDialog(), child: const Icon(Icons.close)),
+                          ],
+                        ),
+                        10.kheightBox,
+                        Text(
+                          StringConstants.watchlistTutorialText,
+                          style: TextStyleUtil.kText16_5(
+                            fontWeight: FontWeight.w400,
+                            color: Get.context!.greyTextColor,
+                          ),
+                        ),
+                        const Spacer(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "2/6",
+                              style: TextStyleUtil.kText12_4(
+                                fontWeight: FontWeight.w600,
+                                color: Get.context!.greyTextColor,
+                              ),
+                            ),
+                            CustomButton(
+                              title: StringConstants.next,
+                              height: 40.kh,
+                              width: 112.kw,
+                              borderRadius: 50.kh,
+                              onTap: () {
+                                hideDialog();
+                                Get.find<HomeController>().index.value = 0;
+                                showMyStocksTutorial();
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      barrierDismissible: false,
+      barrierColor: const Color(0xff141A31).withOpacity(.4),
+      useSafeArea: true,
+    );
+  }
+
+  static void showMyStocksTutorial() {
+    Get.dialog(
+      PopScope(
+        canPop: true,
+        onPopInvoked: (pop) => Future.value(false),
+        child: Stack(
+          children: [
+            Positioned(
+              bottom: 0.kh,
+              left: 0,
+              child: SizedBox(
+                height: 62.kh,
+                width: 20.w,
+                child: ColoredBox(
+                  color: Get.context!.whiteColor,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Assets.svg.myStocks.svg(colorFilter: ColorFilter.mode(Get.context!.kcPrimaryColor, BlendMode.srcIn)),
+                      Text(
+                        StringConstants.myStocks,
+                        style: TextStyleUtil.kText13_4(fontWeight: FontWeight.w600, color: Get.context!.kcPrimaryColor),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 67.kh,
+              left: 8.w,
+              child: Assets.svg.triangleDown.svg(height: 13.kh),
+            ),
+            Positioned(
+              bottom: 80.kh,
+              left: 15.kw,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: Get.context!.whiteColor,
+                  borderRadius: BorderRadius.circular(8.kh),
+                ),
+                child: SizedBox(
+                  height: 220.kh,
+                  width: 284.kw,
+                  child: Padding(
+                    padding: EdgeInsets.all(16.kh),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              StringConstants.myStocksTutorial,
+                              style: TextStyleUtil.kText19_6(),
+                            ),
+                            GestureDetector(onTap: () => hideDialog(), child: const Icon(Icons.close)),
+                          ],
+                        ),
+                        10.kheightBox,
+                        Text(
+                          StringConstants.myStocksTutorialText,
+                          style: TextStyleUtil.kText16_5(
+                            fontWeight: FontWeight.w400,
+                            color: Get.context!.greyTextColor,
+                          ),
+                        ),
+                        const Spacer(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "3/6",
+                              style: TextStyleUtil.kText12_4(
+                                fontWeight: FontWeight.w600,
+                                color: Get.context!.greyTextColor,
+                              ),
+                            ),
+                            CustomButton(
+                              title: StringConstants.next,
+                              height: 40.kh,
+                              width: 112.kw,
+                              borderRadius: 50.kh,
+                              onTap: () {
+                                hideDialog();
+                                Get.find<HomeController>().index.value = 3;
+                                showOrdersTutorial();
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      barrierDismissible: false,
+      barrierColor: const Color(0xff141A31).withOpacity(.4),
+      useSafeArea: true,
+    );
+  }
+
+  static void showOrdersTutorial() {
+    Get.dialog(
+      PopScope(
+        canPop: true,
+        onPopInvoked: (pop) => Future.value(false),
+        child: Stack(
+          children: [
+            Positioned(
+              bottom: 0.kh,
+              right: 20.w,
+              child: SizedBox(
+                height: 62.kh,
+                width: 20.w,
+                child: ColoredBox(
+                  color: Get.context!.whiteColor,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Assets.svg.orders.svg(colorFilter: ColorFilter.mode(Get.context!.kcPrimaryColor, BlendMode.srcIn)),
+                      Text(
+                        StringConstants.orders,
+                        style: TextStyleUtil.kText13_4(fontWeight: FontWeight.w600, color: Get.context!.kcPrimaryColor),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 67.kh,
+              right: 25.w,
+              child: Assets.svg.triangleDown.svg(height: 13.kh),
+            ),
+            Positioned(
+              bottom: 80.kh,
+              left: 20.kw,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: Get.context!.whiteColor,
+                  borderRadius: BorderRadius.circular(8.kh),
+                ),
+                child: SizedBox(
+                  height: 200.kh,
+                  width: 284.kw,
+                  child: Padding(
+                    padding: EdgeInsets.all(16.kh),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              StringConstants.ordersTutorial,
+                              style: TextStyleUtil.kText19_6(),
+                            ),
+                            GestureDetector(onTap: () => hideDialog(), child: const Icon(Icons.close)),
+                          ],
+                        ),
+                        10.kheightBox,
+                        Text(
+                          StringConstants.ordersTutorialText,
+                          style: TextStyleUtil.kText16_5(
+                            fontWeight: FontWeight.w400,
+                            color: Get.context!.greyTextColor,
+                          ),
+                        ),
+                        const Spacer(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "4/6",
+                              style: TextStyleUtil.kText12_4(
+                                fontWeight: FontWeight.w600,
+                                color: Get.context!.greyTextColor,
+                              ),
+                            ),
+                            CustomButton(
+                              title: StringConstants.next,
+                              height: 40.kh,
+                              width: 112.kw,
+                              borderRadius: 50.kh,
+                              onTap: () {
+                                hideDialog();
+                                Get.find<HomeController>().index.value = 1;
+                                showNewsTutorial();
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      barrierDismissible: false,
+      barrierColor: const Color(0xff141A31).withOpacity(.4),
+      useSafeArea: true,
+    );
+  }
+
+  static void showNewsTutorial() {
+    Get.dialog(
+      PopScope(
+        canPop: true,
+        onPopInvoked: (pop) => Future.value(false),
+        child: Stack(
+          children: [
+            Positioned(
+              bottom: 0.kh,
+              left: 20.w,
+              child: SizedBox(
+                height: 62.kh,
+                width: 20.w,
+                child: ColoredBox(
+                  color: Get.context!.whiteColor,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Assets.svg.news.svg(colorFilter: ColorFilter.mode(Get.context!.kcPrimaryColor, BlendMode.srcIn)),
+                      Text(
+                        StringConstants.news,
+                        style: TextStyleUtil.kText13_4(fontWeight: FontWeight.w600, color: Get.context!.kcPrimaryColor),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 67.kh,
+              left: 25.w,
+              child: Assets.svg.triangleDown.svg(height: 13.kh),
+            ),
+            Positioned(
+              bottom: 80.kh,
+              left: 20.kw,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: Get.context!.whiteColor,
+                  borderRadius: BorderRadius.circular(8.kh),
+                ),
+                child: SizedBox(
+                  height: 220.kh,
+                  width: 284.kw,
+                  child: Padding(
+                    padding: EdgeInsets.all(16.kh),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              StringConstants.newsTutorial,
+                              style: TextStyleUtil.kText19_6(),
+                            ),
+                            GestureDetector(onTap: () => hideDialog(), child: const Icon(Icons.close)),
+                          ],
+                        ),
+                        10.kheightBox,
+                        Text(
+                          StringConstants.newsTutorialText,
+                          style: TextStyleUtil.kText16_5(
+                            fontWeight: FontWeight.w400,
+                            color: Get.context!.greyTextColor,
+                          ),
+                        ),
+                        const Spacer(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "5/6",
+                              style: TextStyleUtil.kText12_4(
+                                fontWeight: FontWeight.w600,
+                                color: Get.context!.greyTextColor,
+                              ),
+                            ),
+                            CustomButton(
+                              title: StringConstants.next,
+                              height: 40.kh,
+                              width: 112.kw,
+                              borderRadius: 50.kh,
+                              onTap: () {
+                                hideDialog();
+                                Get.find<HomeController>().index.value = 4;
+                                showMoreTutorial();
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      barrierDismissible: false,
+      barrierColor: const Color(0xff141A31).withOpacity(.4),
+      useSafeArea: true,
+    );
+  }
+
+  static void showMoreTutorial() {
+    Get.dialog(
+      PopScope(
+        canPop: true,
+        onPopInvoked: (pop) => Future.value(false),
+        child: Stack(
+          children: [
+            Positioned(
+              bottom: 0.kh,
+              right: 0.w,
+              child: SizedBox(
+                height: 62.kh,
+                width: 20.w,
+                child: ColoredBox(
+                  color: Get.context!.whiteColor,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Assets.svg.more.svg(colorFilter: ColorFilter.mode(Get.context!.kcPrimaryColor, BlendMode.srcIn)),
+                      Text(
+                        StringConstants.more,
+                        style: TextStyleUtil.kText13_4(fontWeight: FontWeight.w600, color: Get.context!.kcPrimaryColor),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 67.kh,
+              right: 8.w,
+              child: Assets.svg.triangleDown.svg(height: 13.kh),
+            ),
+            Positioned(
+              bottom: 80.kh,
+              right: 20.kw,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: Get.context!.whiteColor,
+                  borderRadius: BorderRadius.circular(8.kh),
+                ),
+                child: SizedBox(
+                  height: 200.kh,
+                  width: 284.kw,
+                  child: Padding(
+                    padding: EdgeInsets.all(16.kh),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              StringConstants.moreTutorial,
+                              style: TextStyleUtil.kText19_6(),
+                            ),
+                            GestureDetector(onTap: () => hideDialog(), child: const Icon(Icons.close)),
+                          ],
+                        ),
+                        10.kheightBox,
+                        Text(
+                          StringConstants.moreTutorialText,
+                          style: TextStyleUtil.kText16_5(
+                            fontWeight: FontWeight.w400,
+                            color: Get.context!.greyTextColor,
+                          ),
+                        ),
+                        const Spacer(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "6/6",
+                              style: TextStyleUtil.kText12_4(
+                                fontWeight: FontWeight.w600,
+                                color: Get.context!.greyTextColor,
+                              ),
+                            ),
+                            CustomButton(
+                              title: StringConstants.finish,
+                              height: 40.kh,
+                              width: 112.kw,
+                              borderRadius: 50.kh,
+                              onTap: () {
+                                hideDialog();
+                                Get.find<ExploreController>().tabController.index = 0;
+                                Get.find<HomeController>().index.value = 2;
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      barrierDismissible: false,
       barrierColor: const Color(0xff141A31).withOpacity(.4),
       useSafeArea: true,
     );

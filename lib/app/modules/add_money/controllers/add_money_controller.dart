@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AddMoneyController extends GetxController {
-  late RxInt balance;
+  late RxDouble balance;
   @override
   void onInit() {
     balance = Get.arguments;
@@ -17,7 +17,7 @@ class AddMoneyController extends GetxController {
   }
 
   void addMoneyFromController() {
-    balance.value += int.parse(moneyController.text);
+    balance.value += int.tryParse(moneyController.text) ?? 0;
     Get.back();
   }
 

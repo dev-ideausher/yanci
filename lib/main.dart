@@ -1,7 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:yanci/app/data/models/stocks_model.dart';
+import 'package:yanci/app/modules/splash/bindings/splash_binding.dart';
 
-import 'app/modules/home/bindings/home_binding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -44,7 +44,7 @@ Future<void> main() async {
         locale: const Locale('en', 'US'),
         // translationsKeys: AppTranslation.translations,
         initialRoute: AppPages.INITIAL,
-        initialBinding: HomeBinding(),
+        initialBinding: SplashBinding(),
         getPages: AppPages.routes,
       ),
     ),

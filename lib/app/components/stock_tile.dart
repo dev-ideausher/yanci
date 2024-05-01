@@ -17,6 +17,7 @@ class StockTile extends StatelessWidget {
   final String? label;
   final Widget? icon;
   final bool isSlidable;
+  final bool isOwned;
   const StockTile({
     super.key,
     required this.stock,
@@ -26,6 +27,7 @@ class StockTile extends StatelessWidget {
     this.label,
     this.icon,
     this.isSlidable = true,
+    this.isOwned = false,
   });
 
   @override
@@ -52,10 +54,13 @@ class StockTile extends StatelessWidget {
               ],
             ),
       child: ListTile(
-        onTap: () => Get.toNamed(Routes.STOCK_DETAILS, arguments: [
-          stock,
-          StringConstants.stockDetails
-        ]),
+        onTap: () => Get.toNamed(
+          Routes.STOCK_DETAILS,
+          arguments: [
+            stock,
+            isOwned ? StringConstants.investmentDetails : StringConstants.stockDetails,
+          ],
+        ),
         visualDensity: VisualDensity.compact,
         dense: true,
         contentPadding: EdgeInsets.symmetric(horizontal: 16.kw, vertical: 10.kh),

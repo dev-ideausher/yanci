@@ -16,7 +16,6 @@ import 'package:yanci/app/modules/kyc/views/pages/set_your_pin.dart';
 import 'package:yanci/app/modules/kyc/views/pages/signature_page.dart';
 import 'package:yanci/app/routes/app_pages.dart';
 import 'package:yanci/app/services/dialog_helper.dart';
-import 'package:yanci/main.dart';
 
 class KycController extends GetxController {
   // data for drop dowwns
@@ -155,9 +154,6 @@ class KycController extends GetxController {
   ];
   String selectedRelation = StringConstants.wife;
 
-  late CameraController cameraController;
-  late CameraController selfieCameraController;
-
   final SignatureController signatureController = SignatureController(
     penStrokeWidth: 5,
     penColor: Colors.black,
@@ -166,27 +162,6 @@ class KycController extends GetxController {
     strokeCap: StrokeCap.butt,
     strokeJoin: StrokeJoin.round,
   );
-
-  @override
-  void onInit() async {
-    super.onInit();
-    try {
-      cameraController = CameraController(
-        cameras.firstWhere((element) => element.lensDirection == CameraLensDirection.back),
-        ResolutionPreset.max,
-      );
-      await cameraController.initialize();
-
-      selfieCameraController = CameraController(
-        cameras.firstWhere((element) => element.lensDirection == CameraLensDirection.front),
-        ResolutionPreset.max,
-      );
-      await selfieCameraController.initialize();
-    } catch (error, stackTrace) {
-      debugPrint("Error initializing cameras: $error\n$stackTrace");
-    }
-    debugPrint(cameraController.toString());
-  }
 
   RxInt index = 0.obs;
   Uint8List? signature;
@@ -247,9 +222,9 @@ class KycController extends GetxController {
     }
   }
 
-  void captureIdImage() async {
+  void captureIdImage(CameraController controller) async {
     try {
-      final XFile image = await cameraController.takePicture();
+      final XFile image = await controller.takePicture();
       idImage!.value = image;
       Get.back();
     } catch (e) {
@@ -261,9 +236,9 @@ class KycController extends GetxController {
     selfieWithId!.value = null;
   }
 
-  void captureSelfieImage() async {
+  void captureSelfieImage(CameraController controller) async {
     try {
-      final XFile image = await selfieCameraController.takePicture();
+      final XFile image = await controller.takePicture();
       selfieWithId!.value = image;
     } catch (e) {
       debugPrint(e.toString());
@@ -309,9 +284,6 @@ class KycController extends GetxController {
 
   @override
   void onClose() {
-    cameraController.dispose();
-    selfieCameraController.dispose();
-
     signatureController.dispose();
 
     firstNameController.dispose();
