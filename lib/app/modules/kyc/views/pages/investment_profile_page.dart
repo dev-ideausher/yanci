@@ -36,24 +36,28 @@ class InvestmentProfilePage extends StatelessWidget {
         ),
         10.kheightBox,
         StDropDown(
+          value: kycController.selectedObj,
           title: StRichText(text: StringConstants.investmentObjective, color: context.redColor),
           dropdownMenuEntries: kycController.investObj.map((e) => DropdownMenuEntry(value: e, label: e)).toList(),
           onSelected: (String val) => kycController.selectedObj = val,
         ),
         20.kheightBox,
         StDropDown(
+          value: kycController.selectedRisk,
           title: StRichText(text: StringConstants.riskTolerance, color: context.redColor),
           dropdownMenuEntries: kycController.riskTolerance.map((e) => DropdownMenuEntry(value: e, label: e)).toList(),
           onSelected: (String val) => kycController.selectedRisk = val,
         ),
         20.kheightBox,
         StDropDown(
+          value: kycController.selectedHorizon,
           title: StRichText(text: StringConstants.investmentHorizon, color: context.redColor),
           dropdownMenuEntries: kycController.investHorizon.map((e) => DropdownMenuEntry(value: e, label: e)).toList(),
           onSelected: (String val) => kycController.selectedHorizon = val,
         ),
         20.kheightBox,
         StDropDown(
+          value: kycController.selectedKnowledge,
           title: StRichText(text: StringConstants.investmentKnowledge, color: context.redColor),
           dropdownMenuEntries: kycController.investmentKnowledge.map((e) => DropdownMenuEntry(value: e, label: e)).toList(),
           onSelected: (String val) => kycController.selectedKnowledge = val,
@@ -71,6 +75,7 @@ class InvestmentProfilePage extends StatelessWidget {
         ),
         10.kheightBox,
         StDropDown(
+          value: kycController.selectedSource,
           title: StRichText(text: StringConstants.sourceOfFunds, color: context.redColor),
           dropdownMenuEntries: kycController.sourceOfFunds.map((e) => DropdownMenuEntry(value: e, label: e)).toList(),
           onSelected: (String val) => kycController.selectedSource = val,
@@ -94,12 +99,14 @@ class InvestmentProfilePage extends StatelessWidget {
         ),
         10.kheightBox,
         StDropDown(
+          value: kycController.selectedTopUps,
           title: StRichText(text: StringConstants.topUps, color: context.redColor),
           dropdownMenuEntries: kycController.topUps.map((e) => DropdownMenuEntry(value: e, label: e)).toList(),
           onSelected: (String val) => kycController.selectedTopUps = val,
         ),
         20.kheightBox,
         StDropDown(
+          value: kycController.selectedWithdrawal,
           title: StRichText(text: StringConstants.withdrawals, color: context.redColor),
           dropdownMenuEntries: kycController.withdrawals.map((e) => DropdownMenuEntry(value: e, label: e)).toList(),
           onSelected: (String val) => kycController.selectedWithdrawal = val,
@@ -140,6 +147,7 @@ class InvestmentProfilePage extends StatelessWidget {
         ),
         10.kheightBox,
         StDropDown(
+          value: kycController.selectedInfo,
           title: StRichText(text: StringConstants.clientAdditionalInfoText, color: context.redColor),
           dropdownMenuEntries: kycController.additionalInfo.map((e) => DropdownMenuEntry(value: e, label: e)).toList(),
           onSelected: (String val) => kycController.selectedInfo = val,

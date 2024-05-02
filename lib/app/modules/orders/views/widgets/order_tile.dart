@@ -97,6 +97,7 @@ class OrderTile extends StatelessWidget {
             ),
             Divider(
               color: context.disabledBorderColor,
+              height: 1.kh,
             ),
           ],
         ),

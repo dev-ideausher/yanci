@@ -181,6 +181,12 @@ class StringConstants {
   // id proof
   static const uploadIdProof = 'Upload a photo of your ID Proof';
   static const uploadIdProofDescription = 'Regulations require you to upload a national identity card. Don’t worry your data will stay safe and private period.';
+  static const regulationsRequired = 'Regulations require you to upload your ';
+  static const regulationsRequiredFirstPage = 'Regulations require you to upload first page of your ';
+  static const ghanaCard = 'Ghana card.';
+  static const passport = 'Passport.';
+  static const residentPermit = 'Resident permit.';
+  static const yourDataIsSafeWithUs = ' Your data is safe with us.';
   static const idSuccesfullyCaptured = 'Great Shot! Your ID photo is successfully captured. Please proceed to continue.';
   static const openCameraTakePhoto = 'Open camera & take photo';
   static const selectFile = 'Select File';

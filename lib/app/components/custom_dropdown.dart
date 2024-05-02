@@ -10,7 +10,7 @@ class StDropDown extends StatelessWidget {
   final Widget? title;
   final double width;
   final bool isForm;
-  final String? value;
+  final String value;
   const StDropDown({
     super.key,
     required this.dropdownMenuEntries,
@@ -18,7 +18,7 @@ class StDropDown extends StatelessWidget {
     required this.onSelected,
     this.width = 340,
     this.isForm = true,
-    this.value,
+    required this.value,
   });
 
   @override
@@ -42,7 +42,7 @@ class StDropDown extends StatelessWidget {
               surfaceTintColor: const MaterialStatePropertyAll(Colors.transparent),
               visualDensity: VisualDensity.comfortable,
             ),
-            initialSelection: value ?? dropdownMenuEntries[0].label,
+            initialSelection: value,
             enableSearch: false,
             selectedTrailingIcon: isForm
                 ? null

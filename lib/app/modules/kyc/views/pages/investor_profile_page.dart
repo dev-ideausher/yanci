@@ -36,18 +36,21 @@ class InvestorProfilePage extends StatelessWidget {
         ),
         10.kheightBox,
         StDropDown(
+          value: kycController.selectedEmploymentStatus,
           title: StRichText(text: StringConstants.employmentStatus, color: context.redColor),
           dropdownMenuEntries: kycController.employmentStatus.map((e) => DropdownMenuEntry(value: e, label: e)).toList(),
           onSelected: (String val) => kycController.selectedEmploymentStatus = val,
         ),
         20.kheightBox,
         StDropDown(
+          value: kycController.selectedOccupation,
           title: StRichText(text: StringConstants.occupation, color: context.redColor),
           dropdownMenuEntries: kycController.occupation.map((e) => DropdownMenuEntry(value: e, label: e)).toList(),
           onSelected: (String val) => kycController.selectedOccupation = val,
         ),
         20.kheightBox,
         StDropDown(
+          value: kycController.selectedIncome,
           title: StRichText(text: StringConstants.selectMonthlyIncome, color: context.redColor),
           dropdownMenuEntries: kycController.monthlyIncome.map((e) => DropdownMenuEntry(value: e, label: e)).toList(),
           onSelected: (String val) => kycController.selectedIncome = val,
@@ -60,18 +63,21 @@ class InvestorProfilePage extends StatelessWidget {
         ),
         20.kheightBox,
         StDropDown(
+          value: kycController.selectedNature,
           title: StRichText(text: StringConstants.natureOFBusiness, color: context.redColor),
           dropdownMenuEntries: kycController.natureOfBusiness.map((e) => DropdownMenuEntry(value: e, label: e)).toList(),
           onSelected: (String val) => kycController.selectedNature = val,
         ),
         20.kheightBox,
         StDropDown(
+          value: kycController.selectedSecurity,
           title: StRichText(text: StringConstants.everBoughtGhanaSecurity, color: context.redColor),
           dropdownMenuEntries: kycController.everBoughtGhanaSecurity.map((e) => DropdownMenuEntry(value: e, label: e)).toList(),
           onSelected: (String val) => kycController.selectedSecurity = val,
         ),
         20.kheightBox,
         StDropDown(
+          value: kycController.selectedHearYanci,
           title: StRichText(text: StringConstants.whereDidYouHearYanci, color: context.redColor),
           dropdownMenuEntries: kycController.whereHearYanci.map((e) => DropdownMenuEntry(value: e, label: e)).toList(),
           onSelected: (String val) => kycController.selectedHearYanci = val,

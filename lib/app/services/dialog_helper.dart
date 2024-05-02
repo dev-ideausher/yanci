@@ -411,7 +411,7 @@ class DialogHelper {
                         child: const Icon(Icons.close),
                       ),
                     ),
-                    Assets.images.appTutorial.image(),
+                    Assets.images.appTutorial.image(height: 230.kh, width: 230.kw),
                     8.kheightBox,
                     Text(
                       StringConstants.tutorialTitle,
@@ -459,10 +459,10 @@ class DialogHelper {
         child: Stack(
           children: [
             Positioned(
-              top: 25.kh,
+              top: 21,
               left: 0,
               child: SizedBox(
-                height: 35.kh,
+                height: 35,
                 width: 50.w,
                 child: Column(
                   children: [
@@ -489,12 +489,12 @@ class DialogHelper {
               ),
             ),
             Positioned(
-              top: 60.kh,
+              top: 60,
               left: 20.w,
-              child: Assets.svg.triangleUp.svg(height: 13.kh),
+              child: Assets.svg.triangleUp.svg(height: 13),
             ),
             Positioned(
-              top: 73.kh,
+              top: 73,
               left: 13.w,
               child: DecoratedBox(
                 decoration: BoxDecoration(
@@ -573,10 +573,10 @@ class DialogHelper {
         child: Stack(
           children: [
             Positioned(
-              top: 25.kh,
+              top: 21,
               right: 0,
               child: SizedBox(
-                height: 35.kh,
+                height: 35,
                 width: 50.w,
                 child: Column(
                   children: [
@@ -603,12 +603,12 @@ class DialogHelper {
               ),
             ),
             Positioned(
-              top: 60.kh,
+              top: 60,
               right: 20.w,
-              child: Assets.svg.triangleUp.svg(height: 13.kh),
+              child: Assets.svg.triangleUp.svg(height: 13),
             ),
             Positioned(
-              top: 73.kh,
+              top: 73,
               right: 13.w,
               child: DecoratedBox(
                 decoration: BoxDecoration(
@@ -687,10 +687,10 @@ class DialogHelper {
         child: Stack(
           children: [
             Positioned(
-              bottom: 0.kh,
+              bottom: 0,
               left: 0,
               child: SizedBox(
-                height: 62.kh,
+                height: 57,
                 width: 20.w,
                 child: ColoredBox(
                   color: Get.context!.whiteColor,
@@ -708,12 +708,12 @@ class DialogHelper {
               ),
             ),
             Positioned(
-              bottom: 67.kh,
+              bottom: 60,
               left: 8.w,
-              child: Assets.svg.triangleDown.svg(height: 13.kh),
+              child: Assets.svg.triangleDown.svg(height: 13),
             ),
             Positioned(
-              bottom: 80.kh,
+              bottom: 73,
               left: 15.kw,
               child: DecoratedBox(
                 decoration: BoxDecoration(
@@ -792,10 +792,10 @@ class DialogHelper {
         child: Stack(
           children: [
             Positioned(
-              bottom: 0.kh,
+              bottom: 0,
               right: 20.w,
               child: SizedBox(
-                height: 62.kh,
+                height: 57,
                 width: 20.w,
                 child: ColoredBox(
                   color: Get.context!.whiteColor,
@@ -813,12 +813,12 @@ class DialogHelper {
               ),
             ),
             Positioned(
-              bottom: 67.kh,
+              bottom: 60,
               right: 25.w,
-              child: Assets.svg.triangleDown.svg(height: 13.kh),
+              child: Assets.svg.triangleDown.svg(height: 13),
             ),
             Positioned(
-              bottom: 80.kh,
+              bottom: 73,
               left: 20.kw,
               child: DecoratedBox(
                 decoration: BoxDecoration(
@@ -897,10 +897,10 @@ class DialogHelper {
         child: Stack(
           children: [
             Positioned(
-              bottom: 0.kh,
+              bottom: 0,
               left: 20.w,
               child: SizedBox(
-                height: 62.kh,
+                height: 57,
                 width: 20.w,
                 child: ColoredBox(
                   color: Get.context!.whiteColor,
@@ -918,12 +918,12 @@ class DialogHelper {
               ),
             ),
             Positioned(
-              bottom: 67.kh,
+              bottom: 60,
               left: 25.w,
-              child: Assets.svg.triangleDown.svg(height: 13.kh),
+              child: Assets.svg.triangleDown.svg(height: 13),
             ),
             Positioned(
-              bottom: 80.kh,
+              bottom: 73,
               left: 20.kw,
               child: DecoratedBox(
                 decoration: BoxDecoration(
@@ -1002,10 +1002,10 @@ class DialogHelper {
         child: Stack(
           children: [
             Positioned(
-              bottom: 0.kh,
+              bottom: 0,
               right: 0.w,
               child: SizedBox(
-                height: 62.kh,
+                height: 57,
                 width: 20.w,
                 child: ColoredBox(
                   color: Get.context!.whiteColor,
@@ -1023,12 +1023,12 @@ class DialogHelper {
               ),
             ),
             Positioned(
-              bottom: 67.kh,
+              bottom: 60,
               right: 8.w,
-              child: Assets.svg.triangleDown.svg(height: 13.kh),
+              child: Assets.svg.triangleDown.svg(height: 13),
             ),
             Positioned(
-              bottom: 80.kh,
+              bottom: 73,
               right: 20.kw,
               child: DecoratedBox(
                 decoration: BoxDecoration(

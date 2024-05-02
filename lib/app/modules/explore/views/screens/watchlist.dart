@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:yanci/app/components/stock_tile.dart';
 import 'package:yanci/app/constants/string_constants.dart';

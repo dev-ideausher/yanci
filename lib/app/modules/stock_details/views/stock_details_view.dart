@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:yanci/app/components/custom_divider.dart';
 import 'package:yanci/app/components/graph_component.dart';
 import 'package:yanci/app/constants/string_constants.dart';
@@ -76,16 +77,22 @@ class StockDetailsView extends GetView<StockDetailsController> {
                       ],
                     ),
                     const Spacer(),
-                    CircleAvatar(
-                      radius: 20.kh,
-                      backgroundColor: context.avatarColor,
-                      child: Center(child: Assets.svg.bookmark.svg()),
+                    GestureDetector(
+                      onTap: () => controller.bookMarkTapped(),
+                      child: CircleAvatar(
+                        radius: 20.kh,
+                        backgroundColor: context.avatarColor,
+                        child: Center(child: Assets.svg.bookmark.svg(height: 20.kh)),
+                      ),
                     ),
                     10.kwidthBox,
-                    CircleAvatar(
-                      radius: 20.kh,
-                      backgroundColor: context.avatarColor,
-                      child: Center(child: Assets.svg.share.svg()),
+                    GestureDetector(
+                      onTap: () => Share.shareUri(Uri.parse("https://stockdetails")),
+                      child: CircleAvatar(
+                        radius: 20.kh,
+                        backgroundColor: context.avatarColor,
+                        child: Center(child: Assets.svg.share.svg(height: 20.kh)),
+                      ),
                     ),
                   ],
                 ),

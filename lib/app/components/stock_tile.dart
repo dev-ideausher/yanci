@@ -63,7 +63,7 @@ class StockTile extends StatelessWidget {
         ),
         visualDensity: VisualDensity.compact,
         dense: true,
-        contentPadding: EdgeInsets.symmetric(horizontal: 16.kw, vertical: 10.kh),
+        contentPadding: EdgeInsets.symmetric(horizontal: 10.kw, vertical: 10.kh),
         title: Text(
           stock.stockName,
           style: TextStyleUtil.kText16_5(
@@ -79,6 +79,7 @@ class StockTile extends StatelessWidget {
         ),
         trailing: SizedBox(
           width: 176.kw,
+          height: double.infinity,
           child: Row(
             children: [
               SizedBox(
@@ -97,6 +98,7 @@ class StockTile extends StatelessWidget {
               ),
               5.kwidthBox,
               Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(

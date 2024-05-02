@@ -35,7 +35,7 @@ class KycController extends GetxController {
 
   List<String> nationality = [
     StringConstants.residentGhanaian,
-    StringConstants.residentGhanaian,
+    StringConstants.residentForeigner,
     StringConstants.nonResidentGhanaian,
     StringConstants.nonResidentForeigner,
   ];
@@ -159,7 +159,7 @@ class KycController extends GetxController {
     penColor: Colors.black,
     exportBackgroundColor: Colors.transparent,
     exportPenColor: Colors.black,
-    strokeCap: StrokeCap.butt,
+    strokeCap: StrokeCap.round,
     strokeJoin: StrokeJoin.round,
   );
 

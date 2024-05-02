@@ -165,6 +165,7 @@ class TextStyleUtil {
       fontSize: 16.kh,
       decoration: textDecoration,
       letterSpacing: 0,
+      height: 1,
     ).copyWith(decorationColor: color);
   }
 

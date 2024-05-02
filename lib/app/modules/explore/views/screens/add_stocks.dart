@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:yanci/app/components/custom_textfield.dart';
 import 'package:yanci/app/constants/string_constants.dart';
 import 'package:yanci/app/data/models/stocks_model.dart';

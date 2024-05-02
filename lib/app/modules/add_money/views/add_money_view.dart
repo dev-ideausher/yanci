@@ -105,7 +105,7 @@ class AddMoneyView extends GetView<AddMoneyController> {
         child: BottomAppBar(
           padding: EdgeInsets.zero,
           surfaceTintColor: context.whiteColor,
-          height: 135.kh,
+          height: 136.kh,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [

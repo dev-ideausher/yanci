@@ -45,6 +45,7 @@ class EditProfile extends StatelessWidget {
               ),
               20.kheightBox,
               StDropDown(
+                value: controller.selectedGender,
                 title: Text(
                   StringConstants.gender,
                   style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w500),
@@ -63,6 +64,7 @@ class EditProfile extends StatelessWidget {
               ),
               20.kheightBox,
               StDropDown(
+                value: controller.selectedMaritalStatus,
                 title: Text(
                   StringConstants.maritalStatus,
                   style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w500),
@@ -72,6 +74,7 @@ class EditProfile extends StatelessWidget {
               ),
               20.kheightBox,
               StDropDown(
+                value: controller.selectedNationality,
                 title: Text(
                   StringConstants.nationality,
                   style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w500),

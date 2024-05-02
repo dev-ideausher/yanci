@@ -39,6 +39,7 @@ class BeneficiaryPage extends StatelessWidget {
         ),
         20.kheightBox,
         StDropDown(
+          value: kycController.selectedRelation,
           title: StRichText(text: StringConstants.relationshipToAccHolder, color: context.redColor),
           dropdownMenuEntries: kycController.relationToAccHolder.map((e) => DropdownMenuEntry(value: e, label: e)).toList(),
           onSelected: (String val) => kycController.selectedRelation = val,

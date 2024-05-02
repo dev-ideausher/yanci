@@ -24,7 +24,7 @@ class ProfileController extends GetxController {
 
   List<String> nationality = [
     StringConstants.residentGhanaian,
-    StringConstants.residentGhanaian,
+    StringConstants.residentForeigner,
     StringConstants.nonResidentGhanaian,
     StringConstants.nonResidentForeigner,
   ];

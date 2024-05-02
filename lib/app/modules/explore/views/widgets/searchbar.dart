@@ -35,7 +35,7 @@ class SearchBarWithFilter extends StatelessWidget {
                   height: 40.kh,
                   width: 40.kh,
                   child: Center(
-                    child: Assets.svg.filter.svg(),
+                    child: Assets.svg.filter.svg(height: 20.kh),
                   ),
                 ),
               ),

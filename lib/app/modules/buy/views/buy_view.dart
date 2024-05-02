@@ -193,6 +193,7 @@ class BuyView extends GetView<BuyController> {
                                           width: 150.kw,
                                           height: 40.kh,
                                           child: StDropDown(
+                                            value: controller.selectedTimeInForce.value,
                                             dropdownMenuEntries: const [
                                               DropdownMenuEntry(value: StringConstants.dayOrder, label: StringConstants.dayOrder),
                                               DropdownMenuEntry(value: StringConstants.goodTillCancelled, label: StringConstants.goodTillCancelled),

@@ -17,7 +17,7 @@ class BottomSheetHelper {
         canPop: canPop,
         onPopInvoked: (pop) => Future.value(true),
         child: SizedBox(
-          height: 260.kh,
+          height: 282.kh,
           width: double.maxFinite,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 14.kw).copyWith(

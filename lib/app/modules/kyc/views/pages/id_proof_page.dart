@@ -64,11 +64,7 @@ class IdProofPage extends StatelessWidget {
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      StringConstants.uploadIdProofDescription,
-                      textAlign: TextAlign.center,
-                      style: TextStyleUtil.kText14_4(),
-                    ),
+                    _buildTitle(),
                     50.kheightBox,
                     ClipRRect(
                       borderRadius: BorderRadius.circular(10.kh),
@@ -136,6 +132,31 @@ class IdProofPage extends StatelessWidget {
                 ),
         ),
       ],
+    );
+  }
+
+  Widget _buildTitle() {
+    final kycController = Get.find<KycController>();
+    return RichText(
+      textAlign: TextAlign.center,
+      text: TextSpan(
+        text: kycController.selectedNationality == StringConstants.nonResidentForeigner ? StringConstants.regulationsRequiredFirstPage : StringConstants.regulationsRequired,
+        style: TextStyleUtil.kText14_4(color: Get.context!.greyTextColor),
+        children: [
+          TextSpan(
+            text: kycController.selectedNationality == StringConstants.nonResidentForeigner
+                ? StringConstants.passport
+                : kycController.selectedNationality == StringConstants.residentForeigner
+                    ? StringConstants.residentPermit
+                    : StringConstants.ghanaCard,
+            style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w600, color: Get.context!.greyTextColor),
+          ),
+          TextSpan(
+            text: StringConstants.yourDataIsSafeWithUs,
+            style: TextStyleUtil.kText14_4(color: Get.context!.greyTextColor),
+          ),
+        ],
+      ),
     );
   }
 }

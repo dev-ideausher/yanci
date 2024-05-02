@@ -52,6 +52,7 @@ class PersonalInfoPage extends StatelessWidget {
         ),
         20.kheightBox,
         StDropDown(
+          value: kycController.selectedGender,
           title: StRichText(text: StringConstants.gender, color: context.redColor),
           dropdownMenuEntries: kycController.genders.map((e) => DropdownMenuEntry(value: e, label: e)).toList(),
           onSelected: (String val) => kycController.selectedGender = val,
@@ -66,18 +67,21 @@ class PersonalInfoPage extends StatelessWidget {
         ),
         20.kheightBox,
         StDropDown(
+          value: kycController.selectedMaritalStatus,
           title: StRichText(text: StringConstants.maritalStatus, color: context.redColor),
           dropdownMenuEntries: kycController.maritalStatus.map((e) => DropdownMenuEntry(value: e, label: e)).toList(),
           onSelected: (String val) => kycController.selectedMaritalStatus = val,
         ),
         20.kheightBox,
         StDropDown(
+          value: kycController.selectedNationality,
           title: StRichText(text: StringConstants.nationality, color: context.redColor),
           dropdownMenuEntries: kycController.nationality.map((e) => DropdownMenuEntry(value: e, label: e)).toList(),
           onSelected: (String val) => kycController.selectedNationality = val,
         ),
         20.kheightBox,
         StDropDown(
+          value: kycController.selectedCountry,
           title: StRichText(text: StringConstants.countryOfBirth, color: context.redColor),
           dropdownMenuEntries: kycController.countries.map((e) => DropdownMenuEntry(value: e, label: e)).toList(),
           onSelected: (String val) => kycController.selectedCountry = val,

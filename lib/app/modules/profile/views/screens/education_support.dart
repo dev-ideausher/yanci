@@ -27,7 +27,7 @@ class EducationSupport extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(20.kh).copyWith(top: 0),
+          padding: EdgeInsets.all(16.kh).copyWith(top: 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -89,7 +89,7 @@ class EducationSupport extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(8.0.kh),
             child: SizedBox(
-              width: 221.kw,
+              width: 220.kw,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
