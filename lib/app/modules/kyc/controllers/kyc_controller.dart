@@ -267,9 +267,16 @@ class KycController extends GetxController {
 
   void verifyAcc() {
     DialogHelper.showSuccess(
-      then: (p0) => index++,
-      title: StringConstants.verified,
-      description: StringConstants.accountVerified,
+      then: (p0) {
+        Get.back();
+        DialogHelper.showSuccess(
+          then: (p0) => index++,
+          title: StringConstants.verified,
+          description: StringConstants.accountVerified,
+        );
+      },
+      title: StringConstants.submittedSuccessfully,
+      description: StringConstants.yourSubmissionRecieved,
     );
   }
 

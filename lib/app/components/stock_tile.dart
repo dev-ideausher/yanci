@@ -39,17 +39,14 @@ class StockTile extends StatelessWidget {
               extentRatio: 0.2,
               motion: const DrawerMotion(),
               children: [
-                SlidableAction(
+                CustomSlidableAction(
                   flex: 1,
                   onPressed: onPressed,
                   backgroundColor: slidableBackGroundColor ?? context.greenStockColor,
                   foregroundColor: slidableForeGroundColor,
-
-                  /// Change IconData? to Widget in the flutterSlidable package and make it a required field
-                  ///
-                  /// Needed a customizable icon so made this change in the package
-                  icon: icon ?? const Icon(Icons.bookmark_border),
-                  label: label,
+                  child: Center(
+                    child: icon ?? const Icon(Icons.bookmark_border),
+                  ),
                 ),
               ],
             ),

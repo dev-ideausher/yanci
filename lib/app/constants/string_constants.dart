@@ -222,6 +222,8 @@ class StringConstants {
   static const motherInLaw = 'Mother-in-law';
   static const brotherInLaw = 'Brother-in-law';
   static const sisterInLaw = 'Sister-in-law';
+  static const submittedSuccessfully = 'Submitted successfully';
+  static const yourSubmissionRecieved = 'Your submission is received. Yanci team will contact you soon.';
 
   // bank details page
   static const bankDetails = 'Banking Details';

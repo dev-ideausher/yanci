@@ -127,36 +127,39 @@ class DialogHelper {
             child: SizedBox(
               width: 312.kw,
               height: 340.kh,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  50.kheightBox,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      15.kwidthBox,
-                      Assets.images.successful.image(),
-                    ],
-                  ),
-                  8.kheightBox,
-                  Text(
-                    title,
-                    style: TextStyleUtil.kText20_6(
-                      fontWeight: FontWeight.w700,
-                      color: Get.context!.kcPrimaryColor,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.kh),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    50.kheightBox,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        15.kwidthBox,
+                        Assets.images.successful.image(),
+                      ],
                     ),
-                  ),
-                  8.kheightBox,
-                  Text(
-                    description,
-                    textAlign: TextAlign.center,
-                    style: TextStyleUtil.kText16_5(
-                      fontWeight: FontWeight.w400,
-                      color: Get.context!.blackColor,
+                    8.kheightBox,
+                    Text(
+                      title,
+                      style: TextStyleUtil.kText20_6(
+                        fontWeight: FontWeight.w700,
+                        color: Get.context!.kcPrimaryColor,
+                      ),
                     ),
-                  ),
-                  10.kheightBox,
-                ],
+                    8.kheightBox,
+                    Text(
+                      description,
+                      textAlign: TextAlign.center,
+                      style: TextStyleUtil.kText16_5(
+                        fontWeight: FontWeight.w400,
+                        color: Get.context!.blackColor,
+                      ),
+                    ),
+                    10.kheightBox,
+                  ],
+                ),
               ),
             ),
           ),

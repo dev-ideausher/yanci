@@ -33,7 +33,7 @@ class BankDetails extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.all(20.kh).copyWith(bottom: 0),
+        padding: EdgeInsets.all(20.kh),
         child: CustomButton.outline(
           onTap: () => Get.to(() => const AddBankAccount()),
           title: StringConstants.addAnotherBank,

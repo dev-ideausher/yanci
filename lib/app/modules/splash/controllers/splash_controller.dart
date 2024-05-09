@@ -8,7 +8,7 @@ class SplashController extends GetxController {
   void onInit() {
     DependencyInjection.init();
     Future.delayed(const Duration(seconds: 3), () {
-      Get.offNamed(Routes.KYC);
+      Get.offNamed(Routes.HOME);
     });
     super.onInit();
   }
