@@ -14,14 +14,14 @@ class SignInProviderButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onTap,
       style: ButtonStyle(
-        padding: const MaterialStatePropertyAll(EdgeInsets.all(10)),
-        elevation: const MaterialStatePropertyAll(3),
-        fixedSize: MaterialStatePropertyAll(Size(70.kw, 60.kh)),
-        foregroundColor: MaterialStatePropertyAll(Get.context!.whiteColor),
-        backgroundColor: MaterialStatePropertyAll(Get.context!.whiteColor),
-        surfaceTintColor: MaterialStatePropertyAll(Get.context!.whiteColor),
-        shadowColor: MaterialStatePropertyAll(Get.context!.dotNotActive),
-        shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+        padding: const WidgetStatePropertyAll(EdgeInsets.all(10)),
+        elevation: const WidgetStatePropertyAll(3),
+        fixedSize: WidgetStatePropertyAll(Size(70.kw, 60.kh)),
+        foregroundColor: WidgetStatePropertyAll(Get.context!.whiteColor),
+        backgroundColor: WidgetStatePropertyAll(Get.context!.whiteColor),
+        surfaceTintColor: WidgetStatePropertyAll(Get.context!.whiteColor),
+        shadowColor: WidgetStatePropertyAll(Get.context!.dotNotActive),
+        shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
       ),
       child: Center(
         child: img,

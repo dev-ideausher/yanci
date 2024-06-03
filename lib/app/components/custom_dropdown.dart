@@ -38,8 +38,8 @@ class StDropDown extends StatelessWidget {
             onSelected: (value) => onSelected(value!),
             width: width.kw,
             menuStyle: MenuStyle(
-              backgroundColor: MaterialStatePropertyAll(context.whiteColor),
-              surfaceTintColor: const MaterialStatePropertyAll(Colors.transparent),
+              backgroundColor: WidgetStatePropertyAll(context.whiteColor),
+              surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
               visualDensity: VisualDensity.comfortable,
             ),
             initialSelection: value,

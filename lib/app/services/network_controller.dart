@@ -12,8 +12,8 @@ class NetworkController extends GetxController {
     _connectivity.onConnectivityChanged.listen(_updateConnectivityStatus);
   }
 
-  void _updateConnectivityStatus(ConnectivityResult connectivityResult) {
-    if (connectivityResult == ConnectivityResult.none) {
+  void _updateConnectivityStatus(List<ConnectivityResult> connectivityResult) {
+    if (connectivityResult.contains(ConnectivityResult.none)) {
       Get.rawSnackbar(
           messageText: Text(
             'PLEASE CONNECT TO THE INTERNET',

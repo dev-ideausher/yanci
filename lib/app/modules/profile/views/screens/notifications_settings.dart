@@ -55,7 +55,7 @@ class NotificationsSettings extends StatelessWidget {
                         activeTrackColor: const Color(0xff27AE60),
                         inactiveTrackColor: context.redColor,
                         inactiveThumbColor: context.whiteColor,
-                        trackOutlineWidth: const MaterialStatePropertyAll(0),
+                        trackOutlineWidth: const WidgetStatePropertyAll(0),
                       ),
                       Text(
                         controller.generalNotificationValue.value ? StringConstants.on : StringConstants.off,
@@ -95,7 +95,7 @@ class NotificationsSettings extends StatelessWidget {
                         activeTrackColor: const Color(0xff27AE60),
                         inactiveTrackColor: context.redColor,
                         inactiveThumbColor: context.whiteColor,
-                        trackOutlineWidth: const MaterialStatePropertyAll(0),
+                        trackOutlineWidth: const WidgetStatePropertyAll(0),
                       ),
                       Text(
                         controller.marketNotificationValue.value ? StringConstants.on : StringConstants.off,
