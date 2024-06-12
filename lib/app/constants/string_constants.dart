@@ -464,4 +464,18 @@ class StringConstants {
   static const String verifyBankAcc = 'Verify Bank Account';
   static const String yanciProtectsBankInfo = 'YANCI protect your financial information';
   static const String edit = 'Edit';
+
+  // Reports
+  static const String contractNote = 'Contract Note';
+  static const String pdfOfContractNote = 'Pdf of Contract Note';
+  static const String statementOfAccount = 'Statement of account';
+  static const String pdfOfStatementOfAccount = 'Pdf of Statement of account';
+  static const String profitAndLossReport = 'Profit and Loss Report';
+  static const String pdfOfProfitAndLossReport = 'Pdf of Profit and Loss Report';
+  static const String valuationReport = 'Valuation Report';
+  static const String pdfOfValuationReport = 'Pdf of Valuation Report';
+  static const String annualReport = 'Annual Report';
+  static const String pdfOfAnnualReport = 'Pdf of Annual Report';
+  static const String chooseMonth = 'Choose month';
+  static const String chooseDate = 'Choose date';
 }
