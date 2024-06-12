@@ -30,22 +30,38 @@ class ReportsView extends GetView<ReportsController> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            expandableTile(title: StringConstants.contractNote, subtitle: StringConstants.pdfOfContractNote),
+            expandableTile(
+              title: StringConstants.contractNote,
+              subtitle: StringConstants.pdfOfContractNote,
+            ),
             5.kheightBox,
-            expandableTile(title: StringConstants.statementOfAccount, subtitle: StringConstants.pdfOfStatementOfAccount),
+            expandableTile(
+              title: StringConstants.statementOfAccount,
+              subtitle: StringConstants.pdfOfStatementOfAccount,
+              isMonthPicker: true,
+            ),
             5.kheightBox,
-            expandableTile(title: StringConstants.profitAndLossReport, subtitle: StringConstants.pdfOfProfitAndLossReport),
+            expandableTile(
+              title: StringConstants.profitAndLossReport,
+              subtitle: StringConstants.pdfOfProfitAndLossReport,
+            ),
             5.kheightBox,
-            expandableTile(title: StringConstants.valuationReport, subtitle: StringConstants.pdfOfValuationReport),
+            expandableTile(
+              title: StringConstants.valuationReport,
+              subtitle: StringConstants.pdfOfValuationReport,
+            ),
             5.kheightBox,
-            expandableTile(title: StringConstants.annualReport, subtitle: StringConstants.pdfOfAnnualReport),
+            expandableTile(
+              title: StringConstants.annualReport,
+              subtitle: StringConstants.pdfOfAnnualReport,
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget expandableTile({required String title, required String subtitle}) {
+  Widget expandableTile({required String title, required String subtitle, bool isMonthPicker = false}) {
     return DecoratedBox(
       decoration: BoxDecoration(color: Get.context!.whiteColor),
       child: Theme(
@@ -86,33 +102,66 @@ class ReportsView extends GetView<ReportsController> {
                     onTap: () async {
                       controller.selectedDateTime.value = await pickDate(controller.selectedDateTime.value, "GENERATE") ?? controller.selectedDateTime.value;
                     },
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Get.context!.disabledBorderColor),
-                        borderRadius: BorderRadius.circular(6.kh),
-                      ),
-                      child: SizedBox(
-                        height: 40.kh,
-                        width: 143.kw,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 12.kw, vertical: 8.kh),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Obx(
-                                () => Text(
-                                  formatDate(controller.selectedDateTime.value),
+                    child: isMonthPicker
+                        ? DecoratedBox(
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Get.context!.disabledBorderColor),
+                              borderRadius: BorderRadius.circular(6.kh),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 12.kw, vertical: 8.kh),
+                              child: Obx(
+                                () => DropdownButton<String>(
+                                  value: controller.selectedMonth.value,
+                                  icon: const Icon(Icons.keyboard_arrow_down_rounded),
+                                  iconSize: 24,
+                                  isDense: true,
+                                  dropdownColor: Colors.white,
+                                  elevation: 16,
                                   style: TextStyleUtil.kText14_4(
                                     fontWeight: FontWeight.w600,
                                   ),
+                                  underline: Container(),
+                                  onChanged: controller.selectMonth,
+                                  items: controller.past12Months.map<DropdownMenuItem<String>>(
+                                    (String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(value),
+                                      );
+                                    },
+                                  ).toList(),
                                 ),
                               ),
-                              Assets.svg.calendar.svg(),
-                            ],
+                            ),
+                          )
+                        : DecoratedBox(
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Get.context!.disabledBorderColor),
+                              borderRadius: BorderRadius.circular(6.kh),
+                            ),
+                            child: SizedBox(
+                              height: 40.kh,
+                              width: 143.kw,
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 12.kw, vertical: 8.kh),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Obx(
+                                      () => Text(
+                                        formatDate(controller.selectedDateTime.value),
+                                        style: TextStyleUtil.kText14_4(
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ),
+                                    Assets.svg.calendar.svg(),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
                   ),
                 ],
               ),
