@@ -10,6 +10,8 @@ import 'package:yanci/app/modules/profile/views/profile_view.dart';
 import 'package:yanci/gen/assets.gen.dart';
 
 class HomeController extends GetxController {
+
+
   List<Map<String, dynamic>> bottomTabs = [
     {
       'icon': Assets.svg.myStocks,
@@ -51,4 +53,5 @@ class HomeController extends GetxController {
   void changeIndex(int i) {
     index.value = i;
   }
+
 }

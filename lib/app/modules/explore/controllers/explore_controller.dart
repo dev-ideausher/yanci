@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yanci/app/data/models/stocks_model.dart';
 import 'package:yanci/app/services/dialog_helper.dart';
+import 'package:yanci/app/services/dio/api_service.dart';
 import 'package:yanci/app/services/storage.dart';
 
 class ExploreController extends GetxController with GetSingleTickerProviderStateMixin {
@@ -9,20 +10,18 @@ class ExploreController extends GetxController with GetSingleTickerProviderState
   final watchListNameController = TextEditingController();
   final stockNameController = TextEditingController();
   final GlobalKey<FormState> key = GlobalKey<FormState>();
+
   @override
   void onInit() {
     tabController = TabController(length: 2, vsync: this);
     super.onInit();
+
   }
 
   RxInt selectedWatchlist = 0.obs;
-  RxList<RxList> watchList = [
-    [].obs
-  ].obs;
+  RxList<RxList> watchList = [[].obs].obs;
 
-  RxList<String> watchListNames = <String>[
-    "Watchlist 1"
-  ].obs;
+  RxList<String> watchListNames = <String>["Watchlist 1"].obs;
 
   void addWatchList() {
     if (key.currentState?.validate() ?? watchListNameController.text.trim().isEmpty) {
@@ -77,4 +76,6 @@ class ExploreController extends GetxController with GetSingleTickerProviderState
     stockNameController.dispose();
     super.onClose();
   }
+
+
 }

@@ -23,7 +23,7 @@ class AppInterceptors extends Interceptor {
     await Helpers.validateToken(
       onSuccess: () {
         options.headers = {
-          "token": Get.find<GetStorageService>().encjwToken
+          "Authorization": "Bearer ${Get.find<GetStorageService>().encjwToken}"
         };
         super.onRequest(options, handler);
       },

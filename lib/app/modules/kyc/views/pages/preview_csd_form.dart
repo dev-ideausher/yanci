@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:get/get.dart';
 import 'package:yanci/app/constants/string_constants.dart';
 import 'package:yanci/app/modules/kyc/controllers/kyc_controller.dart';
@@ -14,34 +15,42 @@ class PreviewCSDformPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final kycController = Get.find<KycController>();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(
-          StringConstants.previewYourCSDForm,
-          style: TextStyleUtil.kText18_6(fontWeight: FontWeight.w700),
-        ),
-        20.kheightBox,
-        DecoratedBox(
-          decoration: BoxDecoration(
-            border: Border.all(color: context.disabledColor),
-            borderRadius: BorderRadius.circular(10.kh),
-          ),
-          child: SizedBox(
-            height: 508.kh,
-            width: 342.kh,
-            child: Center(
-              child: Assets.images.csdKyc.image(width: 330.kw, height: 467.kh),
+    return Obx(
+      () => kycController.isLoadCdr.value
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  StringConstants.previewYourCSDForm,
+                  style: TextStyleUtil.kText18_6(fontWeight: FontWeight.w700),
+                ),
+                20.kheightBox,
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: context.disabledColor),
+                    borderRadius: BorderRadius.circular(10.kh),
+                  ),
+                  child: SizedBox(
+                    height: 508.kh,
+                    width: 342.kh,
+                    child: Center(
+                      child: PDF(
+                        swipeHorizontal: true,
+                      ).cachedFromUrl(kycController.cdrFileUrl.value),
+                    ),
+                  ),
+                ),
+                20.kheightBox,
+                CustomButton(
+                  title: StringConstants.proceedToESign,
+                  onTap: () => kycController.homePage(),
+                  borderRadius: 50,
+                ),
+              ],
             ),
-          ),
-        ),
-        20.kheightBox,
-        CustomButton(
-          title: StringConstants.proceedToESign,
-          onTap: () => kycController.nextPage(),
-          borderRadius: 50,
-        ),
-      ],
     );
   }
 }

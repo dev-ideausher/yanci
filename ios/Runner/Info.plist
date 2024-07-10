@@ -49,5 +49,20 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>CFBundleURLTypes</key>
+    <array>
+    	<dict>
+    		<key>CFBundleTypeRole</key>
+    		<string>Editor</string>
+    		<key>CFBundleURLSchemes</key>
+    		<array>
+    			<string>com.googleusercontent.apps.762355201555-hsup6rik1e6hsdtfp7a4jm6783plh8sb</string>
+    		</array>
+    	</dict>
+    </array>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Photo Library Use</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Camera Library Use</string>
 </dict>
 </plist>

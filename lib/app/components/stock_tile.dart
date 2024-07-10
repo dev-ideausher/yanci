@@ -75,13 +75,13 @@ class StockTile extends StatelessWidget {
           ),
         ),
         trailing: SizedBox(
-          width: 176.kw,
+          width: 186.kw,
           height: double.infinity,
           child: Row(
             children: [
               SizedBox(
                 height: 20.kh,
-                width: 70.kw,
+                width: 60.kw,
                 child: StockLineChart(
                   lineColor: stock.isProfit ? context.greenStockColor : context.redColor,
                   points: stock.points,
@@ -94,24 +94,26 @@ class StockTile extends StatelessWidget {
                 ),
               ),
               5.kwidthBox,
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "${StringConstants.ghanaCurrency} ${stock.price}",
-                    style: TextStyleUtil.kText16_5(
-                      fontWeight: FontWeight.w600,
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "${StringConstants.ghanaCurrency} ${stock.price}",
+                      style: TextStyleUtil.kText16_5(
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  ),
-                  Text(
-                    stock.isProfit ? "+${stock.percentage}(+${stock.percentage}%)" : "-${stock.percentage}(-${stock.percentage}%)",
-                    style: TextStyleUtil.kText12_4(
-                      fontWeight: FontWeight.w500,
-                      color: stock.isProfit ? context.greenStockColor : context.redStockColor,
+                    Text(
+                      stock.isProfit ? "+${stock.percentage}(+${stock.percentage}%)" : "-${stock.percentage}(-${stock.percentage}%)",
+                      style: TextStyleUtil.kText12_4(
+                        fontWeight: FontWeight.w500,
+                        color: stock.isProfit ? context.greenStockColor : context.redStockColor,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),

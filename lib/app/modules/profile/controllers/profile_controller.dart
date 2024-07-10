@@ -3,7 +3,11 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:yanci/app/constants/string_constants.dart';
 import 'package:yanci/app/modules/home/controllers/home_controller.dart';
+import 'package:yanci/app/modules/profile/views/screens/edit_profile.dart';
+import 'package:yanci/app/routes/app_pages.dart';
+import 'package:yanci/app/services/auth.dart';
 import 'package:yanci/app/services/dialog_helper.dart';
+import 'package:yanci/app/services/storage.dart';
 
 import '../../orders/controllers/orders_controller.dart';
 
@@ -131,5 +135,14 @@ class ProfileController extends GetxController {
 
     queryController.dispose();
     super.onClose();
+  }
+
+  editProfile() {
+    Get.to(const EditProfile());
+  }
+
+  logout() {
+    Auth().logOutUser();
+    Get.offAllNamed(Routes.LOGIN);
   }
 }

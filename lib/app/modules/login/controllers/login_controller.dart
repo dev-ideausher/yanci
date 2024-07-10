@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yanci/app/routes/app_pages.dart';
 
+import '../../../services/auth.dart';
+
 class LoginController extends GetxController {
   var isPassVisible = false.obs;
   var password = ''.obs;
@@ -12,6 +14,8 @@ class LoginController extends GetxController {
   var passwordController = TextEditingController();
 
   RxBool isLoding = false.obs;
+
+  var auth=Auth();
 
   String? passwordValidater(String value) {
     if (value.isEmpty) {
@@ -26,8 +30,9 @@ class LoginController extends GetxController {
   void checkLogin() {
     if (!formkey.currentState!.validate()) {
       return;
+    } else {
+      Auth().loginEmailPass(email: emailController.text, pass: passwordController.text);
     }
-    Get.offAllNamed(Routes.HOME);
   }
 
   @override
@@ -36,4 +41,13 @@ class LoginController extends GetxController {
     passwordController.dispose();
     super.onClose();
   }
+  googleLogin() {
+    auth.google();
+  }
+
+  appleLogin() {
+    auth.apple();
+  }
+
+  yahooLogin() {}
 }

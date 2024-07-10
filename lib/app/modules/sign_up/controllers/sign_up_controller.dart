@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yanci/app/constants/string_constants.dart';
 import 'package:yanci/app/routes/app_pages.dart';
+import 'package:yanci/app/services/auth.dart';
 import 'package:yanci/app/services/dialog_helper.dart';
 
 class SignUpController extends GetxController {
@@ -13,7 +14,7 @@ class SignUpController extends GetxController {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   var confirmPasswordController = TextEditingController();
-
+  var auth=Auth();
   RxBool isLoding = false.obs;
 
   String? passwordValidater(String value) {
@@ -32,11 +33,7 @@ class SignUpController extends GetxController {
     if (!formkey.currentState!.validate()) {
       return;
     } else {
-      DialogHelper.showSuccess(
-        then: (p0) => Get.offAllNamed(Routes.KYC),
-        title: StringConstants.successful,
-        description: StringConstants.accHasBeenCreated,
-      );
+      Auth().createEmailPass(email: emailController.text, pass: passwordController.text);
     }
   }
 
@@ -47,4 +44,13 @@ class SignUpController extends GetxController {
     confirmPasswordController.dispose();
     super.onClose();
   }
+  googleLogin() {
+    auth.google();
+  }
+
+  appleLogin() {
+    auth.apple();
+  }
+
+  yahooLogin() {}
 }

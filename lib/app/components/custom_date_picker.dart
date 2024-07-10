@@ -11,11 +11,13 @@ class StDatePicker extends StatelessWidget {
   final DateTime date;
   final String title;
   final bool isRequired;
+  final double? height;
   const StDatePicker({
     super.key,
     required this.date,
     this.onTap,
     required this.title,
+    this.height,
     this.isRequired = true,
   });
 
@@ -42,7 +44,7 @@ class StDatePicker extends StatelessWidget {
           child: InkWell(
             onTap: onTap,
             child: SizedBox(
-              height: 60.kh,
+              height: height??60.kh,
               width: double.infinity,
               child: Padding(
                 padding: EdgeInsets.all(10.kh),

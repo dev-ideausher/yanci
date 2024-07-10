@@ -117,11 +117,11 @@ class OnBoardView extends GetView<OnBoardController> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SignInProviderButton(onTap: () {}, img: Assets.svg.googleLogo.svg(height: 50.kh, width: 50.kw)),
+              SignInProviderButton(onTap: () =>controller.googleLogin(), img: Assets.svg.googleLogo.svg(height: 50.kh, width: 50.kw)),
               10.kwidthBox,
-              SignInProviderButton(onTap: () {}, img: Assets.svg.appleLogo.svg(height: 50.kh, width: 50.kw)),
+              SignInProviderButton(onTap: () =>controller.appleLogin(), img: Assets.svg.appleLogo.svg(height: 50.kh, width: 50.kw)),
               10.kwidthBox,
-              SignInProviderButton(onTap: () {}, img: Assets.svg.yahooLogo.svg(height: 50.kh, width: 50.kw)),
+              SignInProviderButton(onTap: () =>controller.yahooLogin(), img: Assets.svg.yahooLogo.svg(height: 50.kh, width: 50.kw)),
             ],
           ),
         ],

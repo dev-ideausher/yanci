@@ -171,7 +171,14 @@ class DialogHelper {
     ).then(then);
   }
 
-  static void showBuyDialog({required String title, required String description, required VoidCallback onTap, required double height, String? buttonText1, String? buttonText2, Color? buttoncolor}) {
+  static void showBuyDialog(
+      {required String title,
+      required String description,
+      required VoidCallback onTap,
+      required double height,
+      String? buttonText1,
+      String? buttonText2,
+      Color? buttoncolor}) {
     Get.dialog(
       PopScope(
         canPop: true,

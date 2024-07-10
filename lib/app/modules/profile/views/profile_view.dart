@@ -23,6 +23,7 @@ import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
   const ProfileView({super.key});
+
   @override
   Widget build(BuildContext context) {
     controller;
@@ -36,7 +37,7 @@ class ProfileView extends GetView<ProfileController> {
 
             // Profile section
             InkWell(
-              onTap: () => Get.to(() => const EditProfile()),
+              onTap: () => controller.editProfile(),
               child: Padding(
                 padding: EdgeInsets.all(20.kh),
                 child: const ProfileTile(),
@@ -128,6 +129,12 @@ class ProfileView extends GetView<ProfileController> {
               subtitle: StringConstants.privacyPolicy,
               leading: Assets.svg.termsAndConditions.svg(),
               onTap: () => Get.to(() => const PrivacyPolicy()),
+            ),
+            SettingsTile(
+              title: StringConstants.logout,
+              subtitle: "",
+              leading: Assets.svg.logout.svg(),
+              onTap: () => controller.logout(),
             ),
           ],
         ),

@@ -1,23 +1,25 @@
 import 'package:camera/camera.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:yanci/app/data/models/stocks_model.dart';
 import 'package:yanci/app/modules/splash/bindings/splash_binding.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:yanci/firebase_options.dart';
+import 'app/constants/string_constants.dart';
 import 'app/routes/app_pages.dart';
 import 'app/services/storage.dart';
 
 late List<CameraDescription> cameras;
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await initGetServices();
   cameras = await availableCameras();
   SystemChrome.setPreferredOrientations(
-    [
-      DeviceOrientation.portraitUp
-    ],
+    [DeviceOrientation.portraitUp],
   );
   generateRandomStockData();
 

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "762355201555",
+    "project_id": "yanci-f84ab",
+    "storage_bucket": "yanci-f84ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762355201555:android:57bc835a9d33a56dd671e6",
+        "android_client_info": {
+          "package_name": "com.iu.yanci"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "762355201555-umq7tspbsus1cu4i8458m557n950vlq4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.iu.yanci",
+            "certificate_hash": "7b31c2a942d8ce94d077643b6f968bc810129a4c"
+          }
+        },
+        {
+          "client_id": "762355201555-4oe3pm32ep71n8abcsae034ttn6uf4lh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTRNarCxQXjdY3hGwVd5sLNSD2tuEZ8KA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "762355201555-4oe3pm32ep71n8abcsae034ttn6uf4lh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

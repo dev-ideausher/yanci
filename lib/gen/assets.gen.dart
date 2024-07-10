@@ -248,6 +248,8 @@ class $AssetsSvgGen {
   /// File path: assets/svg/terms_and_conditions.svg
   SvgGenImage get termsAndConditions =>
       const SvgGenImage('assets/svg/terms_and_conditions.svg');
+  SvgGenImage get logout =>
+      const SvgGenImage('assets/svg/logout.svg');
 
   /// File path: assets/svg/wallet.svg
   SvgGenImage get wallet => const SvgGenImage('assets/svg/wallet.svg');

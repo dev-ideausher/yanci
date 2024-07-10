@@ -10,7 +10,8 @@ bool isValidEmail(
   }
 
   if (inputString != null && inputString.isNotEmpty) {
-    const pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    const pattern =
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
 
     final regExp = RegExp(pattern);
 
@@ -71,6 +72,26 @@ bool isText(
   return isInputStringValid;
 }
 
+bool isValidPin(String? inputString, {bool isRequired = false}) {
+  bool isInputStringValid = false;
+
+  // Check if the input string is required and if it's null or empty
+  if (!isRequired && (inputString == null || inputString.isEmpty)) {
+    isInputStringValid = true;
+  }
+
+  // If the input string is not empty, validate it against the pattern
+  if (inputString != null && inputString.isNotEmpty) {
+    // Regular expression to check if the input is exactly 4 digits
+    const pattern = r'^\d{4}$';
+    final regExp = RegExp(pattern);
+
+    isInputStringValid = regExp.hasMatch(inputString);
+  }
+
+  return isInputStringValid;
+}
+
 /// Checks if string is phone number
 
 bool isValidPhone(String? inputString, {bool isRequired = false}) {
@@ -109,5 +130,28 @@ bool isEmptyOrNull(
 
   return isInputStringValid;
 }
+
+bool isValidInput(
+  String? inputString, {
+  bool isRequired = false,
+  RegExp? customPattern, // Optional parameter for custom pattern
+  bool allowEmpty = true, // Allows empty strings if not required
+}) {
+  if (inputString == null || inputString.isEmpty) {
+    return !isRequired; // Return true if not required and empty or null, false otherwise
+  }
+
+  if (customPattern != null) {
+    return customPattern.hasMatch(inputString);
+  }
+
+  return true; // If no custom pattern is provided, just return true if the string is not empty
+}
+
+bool isCommonText(String? inputString) {
+  return isValidInput(inputString, isRequired: true);
+}
+
+
 
 //r'^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$'

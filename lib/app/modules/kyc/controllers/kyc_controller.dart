@@ -1,7 +1,16 @@
+import 'dart:io';
+
 import 'package:camera/camera.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/get_instance.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:signature/signature.dart';
 import 'package:yanci/app/constants/string_constants.dart';
 import 'package:yanci/app/modules/kyc/views/pages/bank_details_page.dart';
@@ -16,8 +25,19 @@ import 'package:yanci/app/modules/kyc/views/pages/set_your_pin.dart';
 import 'package:yanci/app/modules/kyc/views/pages/signature_page.dart';
 import 'package:yanci/app/routes/app_pages.dart';
 import 'package:yanci/app/services/dialog_helper.dart';
+import 'package:yanci/app/services/dio/api_service.dart';
+import 'package:path/path.dart' as path;
+import 'package:http_parser/http_parser.dart';
+import 'package:yanci/app/services/snackbar.dart';
+import 'package:yanci/app/services/storage.dart';
+
+import '../../../services/yanci_image_picker.dart';
 
 class KycController extends GetxController {
+  Rxn<XFile>? passportPic = Rxn<XFile>();
+  List<String> titles = [StringConstants.mr, StringConstants.mrs, StringConstants.miss, StringConstants.master, StringConstants.dr];
+  String selectedTitle = StringConstants.mr;
+
   // data for drop dowwns
   List<String> genders = [
     StringConstants.male,
@@ -33,29 +53,224 @@ class KycController extends GetxController {
   ];
   String selectedMaritalStatus = StringConstants.single;
 
-  List<String> nationality = [
+  List<String> residentialStatuss = [
     StringConstants.residentGhanaian,
     StringConstants.residentForeigner,
     StringConstants.nonResidentGhanaian,
     StringConstants.nonResidentForeigner,
   ];
-  String selectedNationality = StringConstants.residentGhanaian;
+  String selectedResidentialStatus = StringConstants.residentGhanaian;
 
   List<String> countries = [
-    StringConstants.ghana,
+    'Afghanistan',
+    'Albania',
+    'Algeria',
+    'Andorra',
+    'Angola',
+    'Antigua and Barbuda',
+    'Argentina',
+    'Armenia',
+    'Australia',
+    'Austria',
+    'Azerbaijan',
+    'Bahamas',
+    'Bahrain',
+    'Bangladesh',
+    'Barbados',
+    'Belarus',
+    'Belgium',
+    'Belize',
+    'Benin',
+    'Bhutan',
+    'Bolivia',
+    'Bosnia and Herzegovina',
+    'Botswana',
+    'Brazil',
+    'Brunei',
+    'Bulgaria',
+    'Burkina Faso',
+    'Burundi',
+    'Cabo Verde',
+    'Cambodia',
+    'Cameroon',
+    'Canada',
+    'Central African Republic',
+    'Chad',
+    'Chile',
+    'China',
+    'Colombia',
+    'Comoros',
+    'Congo (Congo-Brazzaville)',
+    'Costa Rica',
+    'Croatia',
+    'Cuba',
+    'Cyprus',
+    'Czechia (Czech Republic)',
+    'Democratic Republic of the Congo',
+    'Denmark',
+    'Djibouti',
+    'Dominica',
+    'Dominican Republic',
+    'Ecuador',
+    'Egypt',
+    'El Salvador',
+    'Equatorial Guinea',
+    'Eritrea',
+    'Estonia',
+    'Eswatini (fmr. "Swaziland")',
+    'Ethiopia',
+    'Fiji',
+    'Finland',
+    'France',
+    'Gabon',
+    'Gambia',
+    'Georgia',
+    'Germany',
+    'Ghana',
+    'Greece',
+    'Grenada',
+    'Guatemala',
+    'Guinea',
+    'Guinea-Bissau',
+    'Guyana',
+    'Haiti',
+    'Honduras',
+    'Hungary',
+    'Iceland',
+    'India',
+    'Indonesia',
+    'Iran',
+    'Iraq',
+    'Ireland',
+    'Israel',
+    'Italy',
+    'Jamaica',
+    'Japan',
+    'Jordan',
+    'Kazakhstan',
+    'Kenya',
+    'Kiribati',
+    'Kuwait',
+    'Kyrgyzstan',
+    'Laos',
+    'Latvia',
+    'Lebanon',
+    'Lesotho',
+    'Liberia',
+    'Libya',
+    'Liechtenstein',
+    'Lithuania',
+    'Luxembourg',
+    'Madagascar',
+    'Malawi',
+    'Malaysia',
+    'Maldives',
+    'Mali',
+    'Malta',
+    'Marshall Islands',
+    'Mauritania',
+    'Mauritius',
+    'Mexico',
+    'Micronesia',
+    'Moldova',
+    'Monaco',
+    'Mongolia',
+    'Montenegro',
+    'Morocco',
+    'Mozambique',
+    'Myanmar (formerly Burma)',
+    'Namibia',
+    'Nauru',
+    'Nepal',
+    'Netherlands',
+    'New Zealand',
+    'Nicaragua',
+    'Niger',
+    'Nigeria',
+    'North Korea',
+    'North Macedonia',
+    'Norway',
+    'Oman',
+    'Pakistan',
+    'Palau',
+    'Palestine State',
+    'Panama',
+    'Papua New Guinea',
+    'Paraguay',
+    'Peru',
+    'Philippines',
+    'Poland',
+    'Portugal',
+    'Qatar',
+    'Romania',
+    'Russia',
+    'Rwanda',
+    'Saint Kitts and Nevis',
+    'Saint Lucia',
+    'Saint Vincent and the Grenadines',
+    'Samoa',
+    'San Marino',
+    'Sao Tome and Principe',
+    'Saudi Arabia',
+    'Senegal',
+    'Serbia',
+    'Seychelles',
+    'Sierra Leone',
+    'Singapore',
+    'Slovakia',
+    'Slovenia',
+    'Solomon Islands',
+    'Somalia',
+    'South Africa',
+    'South Korea',
+    'South Sudan',
+    'Spain',
+    'Sri Lanka',
+    'Sudan',
+    'Suriname',
+    'Sweden',
+    'Switzerland',
+    'Syria',
+    'Tajikistan',
+    'Tanzania',
+    'Thailand',
+    'Timor-Leste',
+    'Togo',
+    'Tonga',
+    'Trinidad and Tobago',
+    'Tunisia',
+    'Turkey',
+    'Turkmenistan',
+    'Tuvalu',
+    'Uganda',
+    'Ukraine',
+    'United Arab Emirates',
+    'United Kingdom',
+    'United States of America',
+    'Uruguay',
+    'Uzbekistan',
+    'Vanuatu',
+    'Vatican City',
+    'Venezuela',
+    'Vietnam',
+    'Yemen',
+    'Zambia',
+    'Zimbabwe',
   ];
-  String selectedCountry = StringConstants.ghana;
+  String selectedCountry = "United States of America";
 
   List<String> employmentStatus = [
     StringConstants.iMEmployed,
     StringConstants.iMUnemployed,
-    StringConstants.iOwnBusiness,
-    StringConstants.selfEmployed,
   ];
   String selectedEmploymentStatus = StringConstants.iMEmployed;
 
   List<String> occupation = [
     StringConstants.privateJob,
+    StringConstants.governmentJob,
+    StringConstants.iOwnBusiness,
+    StringConstants.selfEmployed,
+    StringConstants.student
   ];
   String selectedOccupation = StringConstants.privateJob;
 
@@ -76,9 +291,7 @@ class KycController extends GetxController {
   ];
   String selectedSecurity = StringConstants.yes;
 
-  List<String> whereHearYanci = [
-    StringConstants.socialMedia,
-  ];
+  List<String> whereHearYanci = [StringConstants.socialMedia, StringConstants.marketingCampaign, StringConstants.wordOfMouth, StringConstants.self];
   String selectedHearYanci = StringConstants.socialMedia;
 
   List<String> investObj = [
@@ -96,24 +309,22 @@ class KycController extends GetxController {
   ];
   String selectedRisk = StringConstants.high;
 
-  List<String> investHorizon = [
-    StringConstants.longTerm,
-    StringConstants.midTerm,
-    StringConstants.shortTerm,
-  ];
+  List<String> investHorizon = [StringConstants.longTerm, StringConstants.shortTerm];
   String selectedHorizon = StringConstants.longTerm;
 
   List<String> investmentKnowledge = [
-    StringConstants.high,
-    StringConstants.medium,
-    StringConstants.low,
+    StringConstants.novice,
+    StringConstants.intermediate,
+    StringConstants.expert,
   ];
   String selectedKnowledge = StringConstants.high;
 
   List<String> sourceOfFunds = [
     StringConstants.salary,
     StringConstants.businessProfit,
-    StringConstants.rentalIncome,
+    StringConstants.businessProfit,
+    StringConstants.interest,
+    StringConstants.otherSources,
   ];
   String selectedSource = StringConstants.salary;
 
@@ -133,11 +344,8 @@ class KycController extends GetxController {
   ];
   String selectedWithdrawal = StringConstants.monthly;
 
-  List<String> additionalInfo = [
-    StringConstants.none,
-  ];
+  List<String> additionalInfo = [StringConstants.none];
   String selectedInfo = StringConstants.none;
-
   List<String> relationToAccHolder = [
     StringConstants.wife,
     StringConstants.husband,
@@ -151,6 +359,14 @@ class KycController extends GetxController {
     StringConstants.motherInLaw,
     StringConstants.brotherInLaw,
     StringConstants.sisterInLaw,
+    StringConstants.uncle,
+    StringConstants.aunt,
+    StringConstants.grandfather,
+    StringConstants.grandmother,
+    StringConstants.sonInLaw,
+    StringConstants.daughterInLaw,
+    StringConstants.grandson,
+    StringConstants.granddaughter
   ];
   String selectedRelation = StringConstants.wife;
 
@@ -169,17 +385,19 @@ class KycController extends GetxController {
   Rxn<XFile>? selfieWithId = Rxn<XFile>();
   Rx<DateTime> dateOfBirth = DateTime.now().obs;
 
-  final List<Widget> pages = const [
+  //pin
+  final TextEditingController pinController = TextEditingController();
+  final List<Widget> pages = [
     PersonalInfoPage(),
     IdProofPage(),
-    SelfieWithIdPage(),
+    const SelfieWithIdPage(),
     BankDetailsPage(),
     InvestorProfilePage(),
     InvestmentProfilePage(),
     BeneficiaryPage(),
-    SignaturePage(),
-    PreviewCSDformPage(),
+    const SignaturePage(),
     SetYourPinPage(),
+    const PreviewCSDformPage(),
   ];
 
   // personal info
@@ -192,9 +410,18 @@ class KycController extends GetxController {
   final cityController = TextEditingController();
   final streetController = TextEditingController();
   final gpsController = TextEditingController();
+  final referralCodeController = TextEditingController();
+
+  // id proof
+
+  final ghanaCardNumberController = TextEditingController();
+  Rx<DateTime> cardStartDate = DateTime.now().obs;
+  Rx<DateTime> cardExpiryDate = DateTime.now().obs;
+  final placeOfIssueController = TextEditingController();
 
   // investor profile
   final employerNameController = TextEditingController();
+
   // investment profile
   final initialInvestmentAmountController = TextEditingController();
   final topupController = TextEditingController();
@@ -216,16 +443,63 @@ class KycController extends GetxController {
   final branchNameController = TextEditingController();
   final routingNumberController = TextEditingController();
 
-  void nextPage() {
-    if (index.value < pages.length - 1) {
-      index.value++;
+  //CDR Url
+
+  final RxString cdrFileUrl = "".obs;
+  final RxBool isLoadCdr = false.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    if (Get.find<GetStorageService>().nationality.isNotEmpty) {
+      selectedResidentialStatus = Get.find<GetStorageService>().nationality;
     }
+    index.value = Get.arguments;
+  }
+
+  Future<void> nextPage() async {
+    if (index.value == 0) {
+      await addUserAndAddress();
+    } else if (index.value == 1 || index.value == 2) {
+      if (idImage?.value != null && selfieWithId?.value != null) {
+        await updateIdProof();
+      } else {
+        showMySnackbar(msg: StringConstants.fillAllFields, title: StringConstants.error);
+      }
+    } else if (index.value == 3) {
+      addBankDetail();
+    } else if (index.value == 4) {
+      addInvestorProfile();
+    } else if (index.value == 5) {
+      addInvestmentProfile();
+    } else if (index.value == 6) {
+      addBeneficiaryInformation();
+    } else if (index.value == 7) {
+      saveSignature();
+    } else if (index.value == 8) {
+      addUpdatePinNumber();
+    } else {}
+    /*if (index.value < pages.length - 1) {
+      index.value++;
+    }*/
   }
 
   void captureIdImage(CameraController controller) async {
     try {
       final XFile image = await controller.takePicture();
-      idImage!.value = image;
+      idImage!.value = await YanciImagePicker.compressImage(File(image.path));
+
+      Get.back();
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  chooseFile() async {
+    try {
+      final picker = ImagePicker();
+      final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+      idImage!.value = await YanciImagePicker.compressImage(File(pickedImage!.path));
       Get.back();
     } catch (e) {
       debugPrint(e.toString());
@@ -257,36 +531,19 @@ class KycController extends GetxController {
     }
   }
 
-  void setPin() {
-    DialogHelper.showSuccess(
-      then: (p0) => Get.offAllNamed(Routes.HOME),
-      title: StringConstants.successful,
-      description: StringConstants.profileHasBeenCreated,
-    );
-  }
-
-  void verifyAcc() {
-    DialogHelper.showSuccess(
-      then: (p0) {
-        Get.back();
-        DialogHelper.showSuccess(
-          then: (p0) => index++,
-          title: StringConstants.verified,
-          description: StringConstants.accountVerified,
-        );
-      },
-      title: StringConstants.submittedSuccessfully,
-      description: StringConstants.yourSubmissionRecieved,
-    );
-  }
-
   void resetSignature() {
     signatureController.clear();
   }
 
   void saveSignature() async {
-    signature = await signatureController.toPngBytes();
-    index++;
+    if (signatureController.isNotEmpty) {
+      signature = await signatureController.toPngBytes();
+      if (signature != null) {
+        addUpdateSignature();
+      }
+    }
+
+    // index++;
   }
 
   @override
@@ -322,5 +579,257 @@ class KycController extends GetxController {
     topupController.dispose();
     regualWithdrawalController.dispose();
     super.onClose();
+  }
+
+  Future<void> addUserAndAddress() async {
+    try {
+      if (passportPic?.value != null) {
+        final filePassportPic = passportPic!.value!.path;
+        final extensionPic = path.extension(passportPic!.value!.path.toString()).replaceAll(".", "");
+        final response = await APIManager.users(body: {
+          'passportPic': await MultipartFile.fromFile(filePassportPic, filename: 'passportPic', contentType: MediaType('image', extensionPic)),
+          "title": firstNameController.text,
+          "firstName": firstNameController.text,
+          "lastName": lastNameController.text,
+          "gender": selectedGender,
+          "nationality": selectedResidentialStatus,
+          "maritalStatus": selectedMaritalStatus,
+          "originCountry": selectedCountry,
+          "dob": dateOfBirth.value.toString(),
+          "phone": phoneNumberController.text
+        });
+        if (response.data['status'] ?? false) {
+          await updateAdress();
+        } else {
+          showMySnackbar(msg: response.data['message'], title: StringConstants.error);
+        }
+      } else {
+        showMySnackbar(msg: StringConstants.passportPicRequired, title: StringConstants.error);
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> updateAdress() async {
+    try {
+      final latLong = gpsController.text.split(',').map((s) => s.trim()).toList();
+      final lat = latLong.first;
+      final long = latLong.last;
+      final response = await APIManager.addUpdateAddress(body: {
+        "country": countryController.text,
+        "state": stateController.text,
+        "city": cityController.text,
+        "address": streetController.text,
+        "latitude": lat,
+        "longitude": long
+      });
+      if (response.data['status'] ?? false) {
+        if (index.value < pages.length - 1) {
+          index.value++;
+        }
+      } else {
+        showMySnackbar(msg: response.data['message'], title: StringConstants.error);
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  updateIdProof() async {
+    try {
+      final pathFile = idImage!.value!.path;
+      final extension = path.extension(idImage!.value!.path.toString()).replaceAll(".", "");
+
+      final proofPicFile = selfieWithId!.value!.path;
+      final extensionPic = path.extension(selfieWithId!.value!.path.toString()).replaceAll(".", "");
+
+      final response = await APIManager.addUpdateProof(body: {
+        'proofPic': await MultipartFile.fromFile(pathFile, filename: 'proofPic', contentType: MediaType('image', extension)),
+        'proofWithId': await MultipartFile.fromFile(proofPicFile, filename: 'proofWithId', contentType: MediaType('image', extensionPic)),
+        'cardNumber': ghanaCardNumberController.text,
+        'issueDate': cardStartDate.value.timeZoneOffset,
+        'expiryDate': cardExpiryDate.value.toString(),
+        'placeOfIssue': placeOfIssueController.text
+      });
+
+      if (response.data['status'] ?? false) {
+        showMySnackbar(msg: response.data['message'], title: StringConstants.successful);
+      } else {
+        showMySnackbar(msg: response.data['message'], title: StringConstants.error);
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> addBankDetail() async {
+    try {
+      // need to confirm :   "bankName":"ICICI Bank",
+      final response = await APIManager.addUpdateBankDetails(body: {
+        "accountNumber": accountNumberController.text,
+        "accountName": nameAsPerAccController.text,
+        "swiftCode": swiftCodeController.text,
+        "branchName": branchNameController.text,
+        "routingNumber": routingNumberController.text,
+      });
+      if (response.data['status'] ?? false) {
+        if (index.value < pages.length - 1) {
+          index.value++;
+        }
+      } else {
+        showMySnackbar(msg: response.data['message']);
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> addInvestorProfile() async {
+    try {
+      final response = await APIManager.addUpdateInvestorProfile(body: {
+        "employmentStatus": selectedEmploymentStatus,
+        "occupation": selectedOccupation,
+        "monthlyIncome": selectedIncome,
+        "employer": employerNameController.text,
+        "businessNature": selectedNature,
+        "ghanaSecurity": selectedSecurity.toLowerCase(),
+        "informationSource": selectedHearYanci
+      });
+      if (response.data['status'] ?? false) {
+        if (index.value < pages.length - 1) {
+          index.value++;
+        }
+      } else {
+        showMySnackbar(msg: response.data['message']);
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> addInvestmentProfile() async {
+    try {
+      final response = await APIManager.addUpdateInvestmentProfile(body: {
+        "investmentObjective": selectedObj,
+        "riskTolerance": selectedRisk,
+        "investmentHorizon": selectedHorizon,
+        "investmentKnowledge": selectedKnowledge,
+        "fundSource": selectedSource,
+        "topUpPeriod": selectedTopUps,
+        "withdrawalPeriod": selectedWithdrawal,
+        "initialInvestmentAmount": initialInvestmentAmountController.text,
+        "regularTopUpAmount": topupController.text,
+        "regularWithdrawalAmount": regualWithdrawalController.text,
+        "clientAdditionalInformation": selectedInfo
+      });
+      if (response.data['status'] ?? false) {
+        if (index.value < pages.length - 1) {
+          index.value++;
+        }
+      } else {
+        showMySnackbar(msg: response.data['message']);
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> addBeneficiaryInformation() async {
+    try {
+      final latLong = beneficiaryGpsController.text.split(',').map((s) => s.trim()).toList();
+      final lat = latLong.first;
+      final long = latLong.last;
+      final response = await APIManager.addUpdateBeneficiaryInformation(body: {
+        "fullName": beneficiaryNameController.text,
+        "relationship": selectedRelation,
+        "phone": beneficiaryPhoneNumberController.text,
+        "country": beneficiaryCountryController.text,
+        "state": beneficiaryStateController.text,
+        "city": beneficiaryCityController.text,
+        "streetAddress": beneficiaryStreetController.text,
+        "latitude": lat,
+        "longitude": long
+      });
+      if (response.data['status'] ?? false) {
+        DialogHelper.showSuccess(
+          then: (p0) {
+            Get.back();
+            DialogHelper.showSuccess(
+              then: (p0) => index++,
+              title: StringConstants.verified,
+              description: StringConstants.accountVerified,
+            );
+          },
+          title: StringConstants.submittedSuccessfully,
+          description: StringConstants.yourSubmissionRecieved,
+        );
+      } else {
+        showMySnackbar(msg: response.data['message']);
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> addUpdateSignature() async {
+    try {
+      final response = await APIManager.addUpdateSignature(body: {
+        'signature': MultipartFile.fromBytes(signature!, filename: 'signature', contentType: MediaType('image', 'png')),
+      });
+      if (response.data['status'] ?? false) {
+        index++;
+      } else {
+        showMySnackbar(msg: response.data['message']);
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> addUpdatePinNumber() async {
+    try {
+      final response = await APIManager.addUpdatePinNumber(body: {"pinNumber": pinController.text});
+      if (response.data['status'] ?? false) {
+        DialogHelper.showSuccess(
+          then: (p0) {
+            index++;
+            getKycData();
+          },
+          title: StringConstants.successful,
+          description: StringConstants.profileHasBeenCreated,
+        );
+      } else {
+        showMySnackbar(msg: response.data['message']);
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> getKycData() async {
+    isLoadCdr.value = true;
+    try {
+      final response = await APIManager.generateKycPdf();
+      cdrFileUrl.value = response.data['pdf'].toString();
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    isLoadCdr.value = false;
+  }
+
+  homePage() {
+    Get.find<GetStorageService>().isLoggedIn = true;
+    Get.offAllNamed(Routes.HOME);
+  }
+
+  getPassPortPic(BuildContext context) {
+    YanciImagePicker.imgOpt(
+        context: context,
+        onBack: (XFile? pickedImage) async {
+          if (pickedImage != null) {
+            passportPic?.value = pickedImage;
+          }
+        });
   }
 }

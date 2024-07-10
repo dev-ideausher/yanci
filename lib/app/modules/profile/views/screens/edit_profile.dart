@@ -103,9 +103,7 @@ class EditProfile extends StatelessWidget {
                   ),
                 ),
                 textInputType: TextInputType.phone,
-                inputFormatters: [
-                  LengthLimitingTextInputFormatter(10)
-                ],
+                inputFormatters: [LengthLimitingTextInputFormatter(10)],
                 title: Text(
                   StringConstants.phoneNumber,
                   style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w500),

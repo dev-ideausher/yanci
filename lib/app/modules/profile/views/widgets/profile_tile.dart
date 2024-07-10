@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:yanci/app/constants/string_constants.dart';
 import 'package:yanci/app/services/colors.dart';
 import 'package:yanci/app/services/responsive_size.dart';
 import 'package:yanci/app/services/text_style_util.dart';
 import 'package:yanci/gen/assets.gen.dart';
+
+import '../../../../services/storage.dart';
 
 class ProfileTile extends StatelessWidget {
   const ProfileTile({super.key});
@@ -14,7 +18,8 @@ class ProfileTile extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 37.kh,
-          backgroundImage: Assets.images.profile.provider(),
+          backgroundImage:
+              Get.find<GetStorageService>().profilePic.isEmpty ? Assets.images.profile.provider() : NetworkImage(Get.find<GetStorageService>().profilePic),
         ),
         15.kwidthBox,
         Column(

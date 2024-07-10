@@ -24,7 +24,8 @@ class StringConstants {
   static const watchListTutorial = "Watchlist 👁️";
   static const watchlistTutorialText = "Keep a close eye on your favorite stocks with our customizable watchlist feature.";
   static const myStocksTutorial = "My Stocks 💹";
-  static const myStocksTutorialText = "Track your investment journey with Total PnL graph, invested capital, and returns and holdings all in one convenient My Stocks section.";
+  static const myStocksTutorialText =
+      "Track your investment journey with Total PnL graph, invested capital, and returns and holdings all in one convenient My Stocks section.";
   static const ordersTutorial = "Orders 🛒";
   static const ordersTutorialText = "Efficiently manage your placed orders and track their status with our streamlined Orders section.";
   static const newsTutorial = "News 📰";
@@ -34,21 +35,28 @@ class StringConstants {
 
   // glossary dialog buy stock
   static const glossary = "Glossary";
-  static const marketOrderText = "A market order is an instruction to buy or sell a security immediately at the best available current price. It prioritizes speed of execution over price.";
-  static const limitOrderText = "A limit order is an instruction to buy or sell a security at a specific price or better. It ensures price certainty but does not guarantee execution.";
+  static const marketOrderText =
+      "A market order is an instruction to buy or sell a security immediately at the best available current price. It prioritizes speed of execution over price.";
+  static const limitOrderText =
+      "A limit order is an instruction to buy or sell a security at a specific price or better. It ensures price certainty but does not guarantee execution.";
   static const stopLoss = "Stop Loss";
-  static const stopLossText = "A stop loss is an order placed with a broker to buy or sell once the stock reaches a certain price. It's designed to limit an investor's loss on a security's position. Once the stock hits the specified stop price, the stop loss order becomes a market order, executing at the next available price.";
+  static const stopLossText =
+      "A stop loss is an order placed with a broker to buy or sell once the stock reaches a certain price. It's designed to limit an investor's loss on a security's position. Once the stock hits the specified stop price, the stop loss order becomes a market order, executing at the next available price.";
   static const timeInForce = "Time In Force";
-  static const timeInForceText = "Time in Force refers to instructions given when placing a trade about how long an order will remain active before it is executed or expires.";
+  static const timeInForceText =
+      "Time in Force refers to instructions given when placing a trade about how long an order will remain active before it is executed or expires.";
   static const dayOrder = "Day Order";
   static const dayOrderDO = "Day Order (DO)";
-  static const dayOrderDOText = "which shall mean and denote an order that is valid only for that day it is given and unless stated all orders shall be presumed to be day orders.";
+  static const dayOrderDOText =
+      "which shall mean and denote an order that is valid only for that day it is given and unless stated all orders shall be presumed to be day orders.";
   static const goodTillCancelledGTC = "Good Till Cancelled (GTC)";
   static const goodTillCancelled = "Good Till Cancelled";
-  static const goodTillCancelledGTCText = "If a limit order is placed with a GTC attribute, then this order remains valid for fixed number of days, which by default is 30 days. It is not automatically deleted from the list of pending orders.";
+  static const goodTillCancelledGTCText =
+      "If a limit order is placed with a GTC attribute, then this order remains valid for fixed number of days, which by default is 30 days. It is not automatically deleted from the list of pending orders.";
   static const goodTillDate = "Good Till Date";
   static const goodTillDateGTD = "Good Till Date (GTD)";
-  static const goodTillDateGTDText = "If you place a limit order with a GTD attribute, then this remains, valid till defined number of days (calendar days) from the day on which it was input. The order will automatically cancel by the system on the expiry date.";
+  static const goodTillDateGTDText =
+      "If you place a limit order with a GTD attribute, then this remains, valid till defined number of days (calendar days) from the day on which it was input. The order will automatically cancel by the system on the expiry date.";
   static const buyingPower = "Buying Power:";
   static const atMarket = "At Market";
   static const proceedToBuy = "Proceed to buy ?";
@@ -118,6 +126,8 @@ class StringConstants {
   static const streetaddress = 'Street Address';
   static const gpsAddress = 'GPS Address';
   static const addressHere = 'Address Here';
+  static const writeCodeHere = 'Write code here';
+  static const referralCode = 'Referral Code';
 
   // investor profile
   static const investorProfile = 'Investor Profile';
@@ -126,7 +136,7 @@ class StringConstants {
   static const employmentStatus = 'Employment Status';
   static const iMEmployed = 'I’m employed';
   static const iMUnemployed = 'I’m not employed';
-  static const iOwnBusiness = 'I own business';
+  static const iOwnBusiness = 'Vusiness';
   static const selfEmployed = 'Self Employed';
   static const occupation = 'Occupation';
   static const privateJob = 'Private Job';
@@ -138,7 +148,7 @@ class StringConstants {
   static const everBoughtGhanaSecurity = 'Have you ever bought a Ghana security such as a treasury bill, bond, shares etc.';
   static const yes = 'Yes';
   static const no = 'No';
-  static const whereDidYouHearYanci = 'Where did you hear about Yanci ?';
+  static const whereDidYouHearYanci = 'Where have you heard about Yanci ?';
   static const socialMedia = 'Social Media';
 
   // investment profile
@@ -175,16 +185,18 @@ class StringConstants {
   static const regualrTopUpAmount = 'Regular top up amount (expected)?';
   static const regualrWithdrawalAmount = 'Regular withdrawals amount (expected)?';
   static const clientAdditionalInfo = 'Client Additional Information';
-  static const clientAdditionalInfoText = 'Do you/your spouse or any other immediate family member is including parents, in laws, siblings, and dependents fall under the following?';
+  static const clientAdditionalInfoText =
+      'Do you/your spouse or any other immediate family member is including parents, in laws, siblings, and dependents fall under the following?';
   static const none = 'None';
 
   // id proof
   static const uploadIdProof = 'Upload a photo of your ID Proof';
-  static const uploadIdProofDescription = 'Regulations require you to upload a national identity card. Don’t worry your data will stay safe and private period.';
+  static const uploadIdProofDescription =
+      'Regulations require you to upload a national identity card. Don’t worry your data will stay safe and private period.';
   static const regulationsRequired = 'Regulations require you to upload your ';
   static const regulationsRequiredFirstPage = 'Regulations require you to upload first page of your ';
   static const ghanaCard = 'Ghana card.';
-  static const passport = 'Passport.';
+  static const passport = 'Passport ';
   static const residentPermit = 'Resident permit.';
   static const yourDataIsSafeWithUs = ' Your data is safe with us.';
   static const idSuccesfullyCaptured = 'Great Shot! Your ID photo is successfully captured. Please proceed to continue.';
@@ -194,6 +206,7 @@ class StringConstants {
   static const saveAndContinue = 'Save And Continue';
   static const verified = "Verified!";
   static const idProofVerified = "Your ID Proof has been verified successfully.";
+
   // photo id card
   static const photoIdCard = 'Photo ID Card';
   static const photoIdCardDescp = 'Please point the camera at the ID Card';
@@ -478,4 +491,108 @@ class StringConstants {
   static const String pdfOfAnnualReport = 'Pdf of Annual Report';
   static const String chooseMonth = 'Choose month';
   static const String chooseDate = 'Choose date';
+
+  static const String invalidFirstName = 'Please enter a valid first name';
+  static const String invalidLastName = 'Please enter a valid last name';
+  static const String invalidEmail = 'Please enter a valid email address';
+  static const String invalidPassword = 'Please enter a valid password';
+
+  static var invalidCountry = 'Please enter a valid country';
+  static var invalidState = 'Please enter a valid state';
+  static var invalidCity = 'Please enter a valid city';
+  static var invalidZipCode = 'Please enter a valid zip code';
+
+  static var invalidAddress = 'Please enter a valid address';
+
+  static var invalidStreet = 'Please enter a valid street';
+
+  static var invalidGps = 'Please enter a valid gps';
+
+  static var validPhone = 'Please enter a valid phone number';
+
+  static var ghanaCardNumber =  "Number";
+
+  static var invalidGhanaCardNumber = 'Please enter a valid Ghana Card Number';
+
+  static var issueDate = "Issue Date";
+
+  static var expiryDate = "Expiry Date";
+
+  static var placeOfIssue = "Place of Issue";
+
+  static String chooseFromLibrary = "Choose from library";
+
+  static String takePhoto = "Take Photo";
+
+  static var fillAllFields = "Please fill all the fields";
+
+  static var error = "Error";
+
+  static var invalidAccountNumber = 'Please enter a valid Account Number';
+
+  static var invalidSwiftCode = "Please enter a valid Swift Code";
+
+  static var invalidBranchName = "Please enter a valid Branch Name";
+
+  static var invalidRoutingNumber = "Please enter a valid Routing Number";
+
+  static var invalidEmployerName = "Please enter a valid Employer Name";
+
+  static var invalidRegualrTopUpAmount = "Please enter a valid Regular TopUp Amount";
+
+  static var invalidRegualrWithdrawalAmount = "Please enter a valid Regular Withdrawal Amount";
+
+  static var invalidInvestmentAmount = "Please enter a valid Investment Amount";
+
+  static var invalidFullName = "Please enter a valid Full name";
+
+  static var logout = "Logout";
+
+  static var title = "Title";
+
+  static var mr = "Mr.";
+  static var mrs = "Mrs";
+  static var miss = "Miss";
+  static var master = "Master";
+  static var dr = "Dr";
+
+  static var residentialStatus = "Residential Status";
+
+  static var passportPicRequired = "Passport Picture Required";
+
+  static var governmentJob = "Government job";
+
+  static var student = "Student";
+
+  static var marketingCampaign = "Marketing Campaign";
+
+  static var wordOfMouth = "Word of mouth";
+
+  static var self = "Self";
+
+  static var novice ="Novice";
+
+  static var intermediate ="Intermediate";
+
+  static var expert ="Expert";
+
+  static var interest ="Interest";
+
+  static var otherSources ="Other sources";
+
+  static var uncle  ="Uncle";
+
+  static var aunt ="Aunt";
+
+  static var grandfather  ="Grandfather";
+
+  static var grandmother  ="Grandmother";
+
+  static var sonInLaw ="Son in law";
+
+  static var daughterInLaw  ="Daughter in law";
+
+  static var grandson ="Grandson";
+
+  static var granddaughter  ="Granddaughter";
 }

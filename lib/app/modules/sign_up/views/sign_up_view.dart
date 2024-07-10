@@ -17,6 +17,7 @@ import '../controllers/sign_up_controller.dart';
 
 class SignUpView extends GetView<SignUpController> {
   const SignUpView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,11 +125,11 @@ class SignUpView extends GetView<SignUpController> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SignInProviderButton(onTap: () {}, img: Assets.svg.googleLogo.svg(height: 50.kh, width: 50.kw)),
+                    SignInProviderButton(onTap: () => controller.googleLogin(), img: Assets.svg.googleLogo.svg(height: 50.kh, width: 50.kw)),
                     10.kwidthBox,
-                    SignInProviderButton(onTap: () {}, img: Assets.svg.appleLogo.svg(height: 50.kh, width: 50.kw)),
+                    SignInProviderButton(onTap: () => controller.appleLogin(), img: Assets.svg.appleLogo.svg(height: 50.kh, width: 50.kw)),
                     10.kwidthBox,
-                    SignInProviderButton(onTap: () {}, img: Assets.svg.yahooLogo.svg(height: 50.kh, width: 50.kw)),
+                    SignInProviderButton(onTap: () => controller.yahooLogin(), img: Assets.svg.yahooLogo.svg(height: 50.kh, width: 50.kw)),
                   ],
                 ),
                 20.kheightBox,
