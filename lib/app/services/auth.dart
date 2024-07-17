@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
+import 'package:yanci/app/services/snackbar.dart';
 import '../constants/string_constants.dart';
 import '../data/models/login_model.dart';
 import '../routes/app_pages.dart';
@@ -10,12 +11,31 @@ import 'dialog_helper.dart';
 import 'dio/api_service.dart';
 import 'dio/exceptions.dart';
 import 'storage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Auth extends GetxService {
   final auth = FirebaseAuthenticationService();
   AuthCredential? _pendingCredential;
   final _firebaseAuth = FirebaseAuth.instance;
   var phoneUpdate = "";
+
+  Future<UserCredential?> signInWithYahoo() async {
+    // Create a YahooAuthProvider
+    final yahooProvider = YahooAuthProvider();
+
+    try {
+      // Sign in using Firebase
+      final userCredential = await FirebaseAuth.instance.signInWithProvider(yahooProvider);
+
+      if (userCredential.user != null) {
+        handleGetContact();
+      }
+    } catch (error) {
+      // Handle errors
+      print(error);
+      return null;
+    }
+  }
 
   google() async {
     //TODO: do the required setup mentioned in https://pub.dev/packages/google_sign_in
@@ -45,7 +65,15 @@ class Auth extends GetxService {
 
   createEmailPass({required String email, required String pass}) async {
     await auth.createAccountWithEmail(email: email, password: pass).then((value) async {
-      await handleGetContact();
+      if (value.user != null) {
+        if (value.user!.emailVerified) {
+          await handleGetContact();
+        } else {
+          showMySnackbar(title: "Email verify ", msg: "Please verify your email and continue");
+        }
+      } else {
+        showMySnackbar(msg: value.errorMessage ?? "");
+      }
     });
   }
 

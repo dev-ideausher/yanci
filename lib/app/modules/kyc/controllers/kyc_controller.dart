@@ -53,13 +53,16 @@ class KycController extends GetxController {
   ];
   String selectedMaritalStatus = StringConstants.single;
 
-  List<String> residentialStatuss = [
+  String selectedNationality = StringConstants.nationalities.first;
+
+  RxList<String> residentialStatuss = [
+    StringConstants.selectResidentialStatuss,
     StringConstants.residentGhanaian,
     StringConstants.residentForeigner,
     StringConstants.nonResidentGhanaian,
     StringConstants.nonResidentForeigner,
-  ];
-  String selectedResidentialStatus = StringConstants.residentGhanaian;
+  ].obs;
+  RxString selectedResidentialStatus = StringConstants.selectResidentialStatuss.obs;
 
   List<String> countries = [
     'Afghanistan',
@@ -452,7 +455,7 @@ class KycController extends GetxController {
   void onInit() {
     super.onInit();
     if (Get.find<GetStorageService>().nationality.isNotEmpty) {
-      selectedResidentialStatus = Get.find<GetStorageService>().nationality;
+      selectedResidentialStatus.value = Get.find<GetStorageService>().nationality;
     }
     index.value = Get.arguments;
   }
@@ -583,28 +586,33 @@ class KycController extends GetxController {
 
   Future<void> addUserAndAddress() async {
     try {
-      if (passportPic?.value != null) {
-        final filePassportPic = passportPic!.value!.path;
-        final extensionPic = path.extension(passportPic!.value!.path.toString()).replaceAll(".", "");
-        final response = await APIManager.users(body: {
-          'passportPic': await MultipartFile.fromFile(filePassportPic, filename: 'passportPic', contentType: MediaType('image', extensionPic)),
-          "title": firstNameController.text,
-          "firstName": firstNameController.text,
-          "lastName": lastNameController.text,
-          "gender": selectedGender,
-          "nationality": selectedResidentialStatus,
-          "maritalStatus": selectedMaritalStatus,
-          "originCountry": selectedCountry,
-          "dob": dateOfBirth.value.toString(),
-          "phone": phoneNumberController.text
-        });
-        if (response.data['status'] ?? false) {
-          await updateAdress();
-        } else {
-          showMySnackbar(msg: response.data['message'], title: StringConstants.error);
-        }
+      if (selectedResidentialStatus.value == StringConstants.selectResidentialStatuss) {
+        showMySnackbar(msg: StringConstants.selectResidentialStatuss);
       } else {
-        showMySnackbar(msg: StringConstants.passportPicRequired, title: StringConstants.error);
+        if (passportPic?.value != null) {
+          final filePassportPic = passportPic!.value!.path;
+          final extensionPic = path.extension(passportPic!.value!.path.toString()).replaceAll(".", "");
+          final response = await APIManager.users(body: {
+            'passportPic': await MultipartFile.fromFile(filePassportPic, filename: 'passportPic', contentType: MediaType('image', extensionPic)),
+            "title": selectedTitle,
+            "firstName": firstNameController.text,
+            "lastName": lastNameController.text,
+            "gender": selectedGender,
+            "nationality": selectedNationality,
+            "residentialStatus": selectedResidentialStatus.value,
+            "maritalStatus": selectedMaritalStatus,
+            "originCountry": selectedCountry,
+            "dob": dateOfBirth.value.toString(),
+            "phone": phoneNumberController.text
+          });
+          if (response.data['status'] ?? false) {
+            await updateAdress();
+          } else {
+            showMySnackbar(msg: response.data['message'], title: StringConstants.error);
+          }
+        } else {
+          showMySnackbar(msg: StringConstants.passportPicRequired, title: StringConstants.error);
+        }
       }
     } catch (e) {
       debugPrint(e.toString());
@@ -648,13 +656,13 @@ class KycController extends GetxController {
         'proofPic': await MultipartFile.fromFile(pathFile, filename: 'proofPic', contentType: MediaType('image', extension)),
         'proofWithId': await MultipartFile.fromFile(proofPicFile, filename: 'proofWithId', contentType: MediaType('image', extensionPic)),
         'cardNumber': ghanaCardNumberController.text,
-        'issueDate': cardStartDate.value.timeZoneOffset,
+        'issueDate': cardStartDate.value.toString(),
         'expiryDate': cardExpiryDate.value.toString(),
         'placeOfIssue': placeOfIssueController.text
       });
 
       if (response.data['status'] ?? false) {
-        showMySnackbar(msg: response.data['message'], title: StringConstants.successful);
+        index++;
       } else {
         showMySnackbar(msg: response.data['message'], title: StringConstants.error);
       }

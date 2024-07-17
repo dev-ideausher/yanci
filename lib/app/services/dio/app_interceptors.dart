@@ -22,9 +22,7 @@ class AppInterceptors extends Interceptor {
     isOverlayLoader ? DialogHelper.showLoading() : null;
     await Helpers.validateToken(
       onSuccess: () {
-        options.headers = {
-          "Authorization": "Bearer ${Get.find<GetStorageService>().encjwToken}"
-        };
+        options.headers = {"Authorization": "Bearer ${Get.find<GetStorageService>().encjwToken}"};
         super.onRequest(options, handler);
       },
     );
@@ -43,7 +41,9 @@ class AppInterceptors extends Interceptor {
     try {
       final errorMessage = DioExceptions.fromDioError(err).toString();
       isOverlayLoader ? DialogHelper.hideDialog() : null;
-      showSnakbar == true ? showMySnackbar(msg: errorMessage, title: 'Error') : null;
+      if (errorMessage != "User doesn't exist. Please create account") {
+        showSnakbar == true ? showMySnackbar(msg: errorMessage, title: 'Error') : null;
+      }
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -72,18 +72,18 @@ class AppInterceptors extends Interceptor {
     return Dio().request<dynamic>(requestOptions.path, data: requestOptions.data, queryParameters: requestOptions.queryParameters, options: options);
   }
 
-  // Future<bool> refreshToken() async {
-  //   try {
-  //     Get.find<GetStorageService>().setEncjwToken =
-  //         (await FirebaseAuth.instance.currentUser?.getIdToken(true))!;
-  //     print('hello from app_interceptor : ${true}');
-  //     return true;
-  //   } catch (e) {
-  //     print('hello from app_interceptor : ${false}');
+// Future<bool> refreshToken() async {
+//   try {
+//     Get.find<GetStorageService>().setEncjwToken =
+//         (await FirebaseAuth.instance.currentUser?.getIdToken(true))!;
+//     print('hello from app_interceptor : ${true}');
+//     return true;
+//   } catch (e) {
+//     print('hello from app_interceptor : ${false}');
 
-  //     return false;
-  //   }
-  // }
+//     return false;
+//   }
+// }
 }
 
 class Helpers {

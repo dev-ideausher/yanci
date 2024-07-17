@@ -13,6 +13,8 @@ class Endpoints {
   static const String addUpdatePinNumber = "users/addUpdatePinNumber";
   static const String addUpdateSignature = "users/addUpdateSignature";
   static const String generateKycPdf = "users/generateKycPdf";
+  static const String homepage = "users/homepage";
+  static const String agreeToLatestVersion = "users/agreeToLatestVersion/";
 
   static const String login = "auth/login";
   static const String register = "auth/register";

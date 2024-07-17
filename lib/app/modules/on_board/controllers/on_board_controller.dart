@@ -27,5 +27,7 @@ class OnBoardController extends GetxController {
     auth.apple();
   }
 
-  yahooLogin() {}
+  yahooLogin() {
+    auth.signInWithYahoo();
+  }
 }

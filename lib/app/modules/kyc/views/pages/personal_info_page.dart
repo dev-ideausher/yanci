@@ -112,10 +112,41 @@ class PersonalInfoPage extends StatelessWidget {
           ),
           20.kheightBox,
           StDropDown(
-            value: kycController.selectedResidentialStatus,
-            title: StRichText(text: StringConstants.residentialStatus, color: context.redColor),
-            dropdownMenuEntries: kycController.residentialStatuss.map((e) => DropdownMenuEntry(value: e, label: e)).toList(),
-            onSelected: (String val) => kycController.selectedResidentialStatus = val,
+            value: kycController.selectedNationality,
+            title: Text(
+              StringConstants.nationality,
+              style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w500),
+            ),
+            dropdownMenuEntries: StringConstants.nationalities.map((e) => DropdownMenuEntry(value: e, label: e)).toList(),
+            onSelected: (String val) {
+              kycController.selectedResidentialStatus.value = StringConstants.selectResidentialStatuss;
+
+              kycController.selectedNationality = val;
+              if (kycController.selectedNationality == StringConstants.nationalities[68]) {
+                kycController.residentialStatuss.value = [
+                  StringConstants.selectResidentialStatuss,
+                  StringConstants.residentGhanaian,
+                  StringConstants.residentForeigner
+                ];
+              } else {
+                kycController.residentialStatuss.value = [
+                  StringConstants.selectResidentialStatuss,
+                  StringConstants.nonResidentGhanaian,
+                  StringConstants.nonResidentForeigner
+                ];
+              }
+              kycController.residentialStatuss.refresh();
+              print("object");
+            },
+          ),
+          20.kheightBox,
+          Obx(
+            () => StDropDown(
+              value: kycController.selectedResidentialStatus.value,
+              title: StRichText(text: StringConstants.residentialStatus, color: context.redColor),
+              dropdownMenuEntries: kycController.residentialStatuss.map((e) => DropdownMenuEntry(value: e, label: e)).toList(),
+              onSelected: (String val) => kycController.selectedResidentialStatus.value = val,
+            ),
           ),
           20.kheightBox,
           StDropDown(

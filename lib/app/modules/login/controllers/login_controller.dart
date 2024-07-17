@@ -49,5 +49,7 @@ class LoginController extends GetxController {
     auth.apple();
   }
 
-  yahooLogin() {}
+  yahooLogin() {
+    auth.signInWithYahoo();
+  }
 }

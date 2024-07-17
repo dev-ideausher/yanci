@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yanci/app/data/models/stocks_model.dart';
+import 'package:yanci/app/routes/app_pages.dart';
 import 'package:yanci/app/services/dialog_helper.dart';
 import 'package:yanci/app/services/dio/api_service.dart';
 import 'package:yanci/app/services/storage.dart';
@@ -12,10 +13,10 @@ class ExploreController extends GetxController with GetSingleTickerProviderState
   final GlobalKey<FormState> key = GlobalKey<FormState>();
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     tabController = TabController(length: 2, vsync: this);
     super.onInit();
-
+    await getHomepage();
   }
 
   RxInt selectedWatchlist = 0.obs;
@@ -63,10 +64,10 @@ class ExploreController extends GetxController with GetSingleTickerProviderState
   @override
   void onReady() {
     super.onReady();
-    if (!GetStorageService().isFirstTime) {
-      DialogHelper.showTutorial();
-      GetStorageService().isFirstTime = true;
-    }
+//    if (!GetStorageService().isFirstTime) {
+    DialogHelper.showTutorial();
+    GetStorageService().isFirstTime = true;
+    //  }
   }
 
   @override
@@ -77,5 +78,18 @@ class ExploreController extends GetxController with GetSingleTickerProviderState
     super.onClose();
   }
 
-
+  getHomepage() async {
+    try {
+      final response = await APIManager.homepage();
+      if ((response.data['status'] ?? false) == false) {
+        if (response.data['outdatedDocument'] == "privacy_policy") {
+          Get.offAllNamed(Routes.PRIVACY_POLICY, arguments: response.data['latestVersion']);
+        } else {
+          Get.offAllNamed(Routes.TERMS, arguments: response.data['latestVersion']);
+        }
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
 }

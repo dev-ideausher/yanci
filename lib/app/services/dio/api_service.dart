@@ -40,4 +40,9 @@ class APIManager {
   ///GET API
 
   static Future<Response> generateKycPdf() async => await DioClient(Dio(), showSnakbar: true, isOverlayLoader: false).get(Endpoints.generateKycPdf);
+
+  static Future<Response> homepage() async => await DioClient(Dio(), showSnakbar: true, isOverlayLoader: false).get(Endpoints.homepage);
+
+  static Future<Response> agreeToLatestVersion({required String type}) async =>
+      await DioClient(Dio(), showSnakbar: true, isOverlayLoader: true).get(Endpoints.agreeToLatestVersion + type);
 }

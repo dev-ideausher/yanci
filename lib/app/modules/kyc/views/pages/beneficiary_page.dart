@@ -102,6 +102,7 @@ class BeneficiaryPage extends StatelessWidget {
             title: StRichText(text: StringConstants.gpsAddress, color: context.redColor),
             hint: StringConstants.addressHere,
             controller: kycController.beneficiaryGpsController,
+            textInputType: const TextInputType.numberWithOptions(decimal: true, signed: true),
             validator: (value) => !isCommonText(value) ? StringConstants.invalidGps : null,
           ),
           20.kheightBox,

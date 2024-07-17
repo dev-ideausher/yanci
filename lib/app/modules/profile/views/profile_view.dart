@@ -8,11 +8,10 @@ import 'package:yanci/app/modules/profile/views/screens/edit_profile.dart';
 import 'package:yanci/app/modules/profile/views/screens/education_support.dart';
 import 'package:yanci/app/modules/profile/views/screens/faq_screen.dart';
 import 'package:yanci/app/modules/profile/views/screens/notifications_settings.dart';
-import 'package:yanci/app/modules/profile/views/screens/privacy_policy.dart';
 import 'package:yanci/app/modules/profile/views/screens/reset_password.dart';
-import 'package:yanci/app/modules/profile/views/screens/terms_of_use.dart';
 import 'package:yanci/app/modules/profile/views/widgets/profile_tile.dart';
 import 'package:yanci/app/modules/profile/views/widgets/settings_tile.dart';
+import 'package:yanci/app/modules/terms/views/terms_view.dart';
 import 'package:yanci/app/routes/app_pages.dart';
 import 'package:yanci/app/services/colors.dart';
 import 'package:yanci/app/services/responsive_size.dart';
@@ -59,11 +58,10 @@ class ProfileView extends GetView<ProfileController> {
               onTap: () => Get.to(() => const BankDetails()),
             ),
             SettingsTile(
-              title: StringConstants.allOrders,
-              subtitle: StringConstants.trackOrdersOrdersDetails,
-              leading: Assets.svg.allOrder.svg(),
-              onTap: () => controller.onAllOrdersTapped(),
-            ),
+                title: StringConstants.allOrders,
+                subtitle: StringConstants.trackOrdersOrdersDetails,
+                leading: Assets.svg.allOrder.svg(),
+                onTap: () => controller.onAllOrdersTapped()),
 
             // settings
             Padding(
@@ -122,13 +120,13 @@ class ProfileView extends GetView<ProfileController> {
               title: StringConstants.termsOfUse,
               subtitle: StringConstants.termsOfUse,
               leading: Assets.svg.termsAndConditions.svg(),
-              onTap: () => Get.to(() => const TermsOfUse()),
+              onTap: () => Get.toNamed(Routes.TERMS),
             ),
             SettingsTile(
               title: StringConstants.privacyPolicy,
               subtitle: StringConstants.privacyPolicy,
               leading: Assets.svg.termsAndConditions.svg(),
-              onTap: () => Get.to(() => const PrivacyPolicy()),
+              onTap: () => Get.toNamed(Routes.PRIVACY_POLICY),
             ),
             SettingsTile(
               title: StringConstants.logout,

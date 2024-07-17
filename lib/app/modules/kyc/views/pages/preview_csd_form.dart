@@ -15,6 +15,7 @@ class PreviewCSDformPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final kycController = Get.find<KycController>();
+    kycController.getKycData();
     return Obx(
       () => kycController.isLoadCdr.value
           ? const Center(

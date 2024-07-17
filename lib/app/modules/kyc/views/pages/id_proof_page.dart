@@ -80,16 +80,12 @@ class IdProofPage extends StatelessWidget {
                         children: [
                           Expanded(
                             child: StTextField(
-                              title: StRichText(text:"${kycController.selectedResidentialStatus == StringConstants.nonResidentForeigner
-                                  ? StringConstants.passport
-                                  : kycController.selectedResidentialStatus == StringConstants.residentForeigner
-                                  ? StringConstants.residentPermit
-                                  : StringConstants.ghanaCard}${StringConstants.ghanaCardNumber}", color: context.redColor),
-                              hint:"${kycController.selectedResidentialStatus == StringConstants.nonResidentForeigner
-                                  ? StringConstants.passport
-                                  : kycController.selectedResidentialStatus == StringConstants.residentForeigner
-                                  ? StringConstants.residentPermit
-                                  : StringConstants.ghanaCard}${StringConstants.ghanaCardNumber}",
+                              title: StRichText(
+                                  text: isGhanaian(kycController.selectedResidentialStatus.value)
+                                      ? "${StringConstants.ghanaCard} ${StringConstants.ghanaCardNumber}"
+                                      : StringConstants.passport,
+                                  color: context.redColor),
+                              hint: isGhanaian(kycController.selectedResidentialStatus.value) ? StringConstants.ghanaCardNumber : StringConstants.passport,
                               controller: kycController.ghanaCardNumberController,
                               textInputType: TextInputType.number,
                               validator: (value) => !isCommonText(value) ? StringConstants.invalidGhanaCardNumber : null,
@@ -206,17 +202,11 @@ class IdProofPage extends StatelessWidget {
     return RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-        text: kycController.selectedResidentialStatus == StringConstants.nonResidentForeigner
-            ? StringConstants.regulationsRequiredFirstPage
-            : StringConstants.regulationsRequired,
+        text: isGhanaian(kycController.selectedResidentialStatus.value) ? StringConstants.regulationsRequired : StringConstants.regulationsRequiredFirstPage,
         style: TextStyleUtil.kText14_4(color: Get.context!.greyTextColor),
         children: [
           TextSpan(
-            text: kycController.selectedResidentialStatus == StringConstants.nonResidentForeigner
-                ? StringConstants.passport
-                : kycController.selectedResidentialStatus == StringConstants.residentForeigner
-                    ? StringConstants.residentPermit
-                    : StringConstants.ghanaCard,
+            text: isGhanaian(kycController.selectedResidentialStatus.value) ? StringConstants.ghanaCard:StringConstants.passport,
             style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w600, color: Get.context!.greyTextColor),
           ),
           TextSpan(
@@ -226,5 +216,15 @@ class IdProofPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  isGhanaian(String value) {
+    if (value == StringConstants.nonResidentForeigner) {
+      return false;
+    } else if (value == StringConstants.nonResidentGhanaian) {
+      return false;
+    } else {
+      return true;
+    }
   }
 }
