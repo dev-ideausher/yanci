@@ -11,7 +11,6 @@ import 'dialog_helper.dart';
 import 'dio/api_service.dart';
 import 'dio/exceptions.dart';
 import 'storage.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class Auth extends GetxService {
   final auth = FirebaseAuthenticationService();
@@ -35,6 +34,7 @@ class Auth extends GetxService {
       print(error);
       return null;
     }
+    return null;
   }
 
   google() async {
@@ -88,7 +88,7 @@ class Auth extends GetxService {
       if (loginModel.data != null) {
         setDataLoginUser(loginModel.data);
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
       if (errorMessage == "User doesn't exist. Please create account") {
         register();

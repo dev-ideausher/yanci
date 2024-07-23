@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:yanci/firebase_options.dart';
-import 'app/constants/string_constants.dart';
 import 'app/routes/app_pages.dart';
 import 'app/services/storage.dart';
 

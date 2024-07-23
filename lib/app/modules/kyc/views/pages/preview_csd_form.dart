@@ -7,7 +7,6 @@ import 'package:yanci/app/services/colors.dart';
 import 'package:yanci/app/services/custom_button.dart';
 import 'package:yanci/app/services/responsive_size.dart';
 import 'package:yanci/app/services/text_style_util.dart';
-import 'package:yanci/gen/assets.gen.dart';
 
 class PreviewCSDformPage extends StatelessWidget {
   const PreviewCSDformPage({super.key});
@@ -38,7 +37,7 @@ class PreviewCSDformPage extends StatelessWidget {
                     height: 508.kh,
                     width: 342.kh,
                     child: Center(
-                      child: PDF(
+                      child: const PDF(
                         swipeHorizontal: true,
                       ).cachedFromUrl(kycController.cdrFileUrl.value),
                     ),

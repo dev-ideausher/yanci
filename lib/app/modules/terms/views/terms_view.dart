@@ -9,7 +9,7 @@ import '../../../services/text_style_util.dart';
 import '../controllers/terms_controller.dart';
 
 class TermsView extends GetView<TermsController> {
-  const TermsView({Key? key}) : super(key: key);
+  const TermsView({super.key});
 
   @override
   Widget build(BuildContext context) {

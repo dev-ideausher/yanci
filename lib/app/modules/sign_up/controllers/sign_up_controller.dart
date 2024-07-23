@@ -3,10 +3,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:yanci/app/constants/string_constants.dart';
-import 'package:yanci/app/routes/app_pages.dart';
 import 'package:yanci/app/services/auth.dart';
-import 'package:yanci/app/services/dialog_helper.dart';
 
 class SignUpController extends GetxController {
   var isPassVisible = false.obs;
@@ -26,7 +23,7 @@ class SignUpController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    timer = Timer.periodic(Duration(seconds: 3), (_) async {
+    timer = Timer.periodic(const Duration(seconds: 3), (_) async {
       try {
         return await checkEmailVerified();
       } catch (e) {
