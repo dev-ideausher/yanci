@@ -11,7 +11,11 @@ class PrivacyPolicyController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    privacyPolicyText.value = Get.arguments;
+    if (Get.arguments != null) {
+      privacyPolicyText.value = Get.arguments;
+    }/* else {
+      privacyPolicy();
+    }*/
   }
 
   privacyPolicy() async {

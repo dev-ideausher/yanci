@@ -11,7 +11,9 @@ class TermsController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    termsOfUseText.value = Get.arguments;
+    if (Get.arguments != null) {
+      termsOfUseText.value = Get.arguments;
+    }
   }
 
   termsOfUse() async {
