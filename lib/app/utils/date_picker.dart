@@ -33,6 +33,36 @@ Future<DateTime?> pickDate(DateTime? initialDate, [String confirmText = "OK"]) a
   return pickedDate;
 }
 
+Future<DateTime?> pickDate18(DateTime? initialDate, [String confirmText = "OK"]) async {
+  final DateTime? pickedDate = await showDatePicker(
+    builder: (context, child) {
+      return Theme(
+        data: Theme.of(context).copyWith(
+          colorScheme: ColorScheme.light(
+            primary: Get.context!.kcPrimaryColor, // header background color
+            onPrimary: Colors.white, // header text color
+            onSurface: Colors.black, // body text color
+          ),
+          textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(
+              foregroundColor: Get.context!.kcPrimaryColor, // button text color
+            ),
+          ),
+        ),
+        child: child!,
+      );
+    },
+    confirmText: confirmText,
+    cancelText: "CANCEL",
+    context: Get.context!,
+    initialDate: initialDate ?? DateTime.now(),
+    firstDate: DateTime(DateTime.now().year - 100, DateTime.now().month, DateTime.now().day),
+    lastDate: DateTime(DateTime.now().year - 18, DateTime.now().month, DateTime.now().day),
+  );
+
+  return pickedDate;
+}
+
 String formatDate(DateTime date) {
   return DateFormat('dd-MM-yyyy').format(date);
 }

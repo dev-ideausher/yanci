@@ -87,7 +87,7 @@ class StringConstants {
   static const passwordText = 'Enter Password';
   static const email = 'Email';
   static const password = 'Password';
-  static const dontHaveAnAccount = 'Dont\'t have an account?';
+  static const dontHaveAnAccount = 'Don\'t have an account?';
 
   // Sign up screen
   static const confirmPassword = 'Confirm Password';

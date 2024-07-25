@@ -48,23 +48,26 @@ class PersonalInfoPage extends StatelessWidget {
           ),
           10.kheightBox,
           Obx(
-            () => Container(
-              height: 150.kh,
-              width: 120.kh,
-              decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(8.kh)), color: context.greyColor),
-              child: kycController.passportPic?.value != null
-                  ? SizedBox(
-                      height: 150.kh,
-                      width: 100.kh,
-                      child: Image.file(
-                        File(kycController.passportPic!.value!.path),
-                        fit: BoxFit.fill,
-                      ),
-                    )
-                  : InkWell(
-                      onTap: () => kycController.getPassPortPic(context),
-                      child: const Icon(Icons.camera_alt_outlined),
-                    ),
+            () => InkWell(
+              onTap: () => kycController.getPassPortPic(context),
+              child: Container(
+                height: 150.kh,
+                width: 120.kh,
+                decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(8.kh)), color: context.greyColor),
+                child: kycController.passportPic?.value != null
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(8.kh)),
+                        child: SizedBox(
+                          height: 150.kh,
+                          width: 100.kh,
+                          child: Image.file(
+                            File(kycController.passportPic!.value!.path),
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      )
+                    : const Icon(Icons.camera_alt_outlined),
+              ),
             ),
           ),
           20.kheightBox,
@@ -78,6 +81,8 @@ class PersonalInfoPage extends StatelessWidget {
           StTextField(
             title: StRichText(text: StringConstants.firstName, color: context.redColor),
             hint: StringConstants.firstName,
+            textInputType: TextInputType.name,
+            inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]'))],
             validator: (value) => !isCommonText(value) ? StringConstants.invalidFirstName : null,
             controller: kycController.firstNameController,
           ),
@@ -85,6 +90,8 @@ class PersonalInfoPage extends StatelessWidget {
           StTextField(
             title: StRichText(text: StringConstants.lastName, color: context.redColor),
             hint: StringConstants.lastName,
+            textInputType: TextInputType.name,
+            inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]'))],
             validator: (value) => !isCommonText(value) ? StringConstants.invalidLastName : null,
             controller: kycController.lastNameController,
           ),
@@ -99,7 +106,7 @@ class PersonalInfoPage extends StatelessWidget {
           Obx(
             () => StDatePicker(
               date: kycController.dateOfBirth.value,
-              onTap: () async => kycController.dateOfBirth.value = await pickDate(kycController.dateOfBirth.value) ?? kycController.dateOfBirth.value,
+              onTap: () async => kycController.dateOfBirth.value = await pickDate18(kycController.dateOfBirth.value) ?? kycController.dateOfBirth.value,
               title: StringConstants.dateOfBirth,
             ),
           ),

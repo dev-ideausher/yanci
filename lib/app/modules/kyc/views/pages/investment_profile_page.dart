@@ -13,8 +13,10 @@ import 'package:yanci/app/services/text_style_util.dart';
 import '../../../../utils/validation.dart';
 
 class InvestmentProfilePage extends StatelessWidget {
-   InvestmentProfilePage({super.key});
+  InvestmentProfilePage({super.key});
+
   final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     final kycController = Get.find<KycController>();
@@ -88,19 +90,14 @@ class InvestmentProfilePage extends StatelessWidget {
           StTextField(
             title: StRichText(text: StringConstants.initialInvestmentAmount, color: context.redColor),
             hint: StringConstants.initialInvestmentAmount,
+            textInputType: TextInputType.number,
             controller: kycController.initialInvestmentAmountController,
-            validator: (value) => !isCommonText(value) ? StringConstants.invalidInvestmentAmount: null,
+            validator: (value) => !isCommonText(value) ? StringConstants.invalidInvestmentAmount : null,
           ),
           20.kheightBox,
           SizedBox(
             width: double.infinity,
-            child: Text(
-              StringConstants.anticipatedAccountActivity,
-              textAlign: TextAlign.left,
-              style: TextStyleUtil.kText16_5(
-                fontWeight: FontWeight.w600,
-              ),
-            ),
+            child: Text(StringConstants.anticipatedAccountActivity, textAlign: TextAlign.left, style: TextStyleUtil.kText16_5(fontWeight: FontWeight.w600)),
           ),
           10.kheightBox,
           StDropDown(
@@ -131,15 +128,17 @@ class InvestmentProfilePage extends StatelessWidget {
           StTextField(
             title: StRichText(text: StringConstants.regualrTopUpAmount, color: context.redColor),
             hint: StringConstants.regualrTopUpAmount,
+            textInputType: TextInputType.number,
             controller: kycController.topupController,
-            validator: (value) => !isCommonText(value) ? StringConstants.invalidRegualrTopUpAmount: null,
+            validator: (value) => !isCommonText(value) ? StringConstants.invalidRegualrTopUpAmount : null,
           ),
           20.kheightBox,
           StTextField(
             title: StRichText(text: StringConstants.regualrWithdrawalAmount, color: context.redColor),
             hint: StringConstants.regualrWithdrawalAmount,
+            textInputType: TextInputType.number,
             controller: kycController.regualWithdrawalController,
-            validator: (value) => !isCommonText(value) ? StringConstants.invalidRegualrWithdrawalAmount: null,
+            validator: (value) => !isCommonText(value) ? StringConstants.invalidRegualrWithdrawalAmount : null,
           ),
           20.kheightBox,
           SizedBox(

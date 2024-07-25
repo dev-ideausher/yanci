@@ -16,31 +16,8 @@ class DialogHelper {
       PopScope(
         canPop: canPop,
         onPopInvoked: (pop) => Future.value(false),
-        child: SizedBox(
-          child: Column(
-            children: [
-              SizedBox(height: 60.h),
-              Center(
-                child: Container(
-                  height: 80.kh,
-                  width: 80.kh,
-                  decoration: BoxDecoration(
-                    color: Get.context!.brandColor1,
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20.0.kh),
-                    ),
-                  ),
-                  padding: EdgeInsets.all(12.kh),
-                  child: const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                ),
-              ),
-              // message != null ? SizedBox(height: 8.kh) : const SizedBox(),
-              // message != null ? Text(message) : const SizedBox(),
-            ],
-          ),
+        child: const SizedBox(
+          child: Center(child: CircularProgressIndicator()),
         ),
       ),
       barrierDismissible: false,
@@ -76,9 +53,7 @@ class DialogHelper {
                     Text(
                       "$name?",
                       textAlign: TextAlign.center,
-                      style: TextStyleUtil.kText18_6(
-                        color: Get.context!.blackColor,
-                      ),
+                      style: TextStyleUtil.kText18_6(color: Get.context!.blackColor),
                     ),
                     30.kheightBox,
                     Row(

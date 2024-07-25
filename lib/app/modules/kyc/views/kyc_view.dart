@@ -11,53 +11,80 @@ class KycView extends GetView<KycController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Obx(
-            () => Icon(
-              Icons.arrow_back_rounded,
-              size: 24.kh,
-              color: controller.index.value == 0 ? context.disabledColor : context.blackColor,
-            ),
-          ),
-          onPressed: () {
-            if (controller.index.value > 0) {
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (pop) {
+        if (controller.index.value > 0) {
+          if (controller.index.value == 1) {
+            if (controller.isIdImageSelected.value) {
+              controller.isIdImageSelected?.value = false;
+            } else {
               controller.index.value--;
             }
-          },
-        ),
-        title: Obx(
-          () => controller.index.value < 8
-              ? Stack(
-                  children: [
-                    DecoratedBox(
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(40), color: context.greyColor),
-                      child: SizedBox(
-                        height: 6.kh,
-                        width: 266.kw,
-                      ),
-                    ),
-                    Obx(
-                      () => DecoratedBox(
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(40), color: context.kcPrimaryColor),
+          } else {
+            controller.index.value--;
+          }
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          leading: Visibility(
+            visible: controller.index.value != 0,
+            child: IconButton(
+              icon: Obx(
+                () => Icon(
+                  Icons.arrow_back_rounded,
+                  size: 24.kh,
+                  color: controller.index.value == 0 ? context.disabledColor : context.blackColor,
+                ),
+              ),
+              onPressed: () {
+                if (controller.index.value > 0) {
+                  if (controller.index.value == 1) {
+                    if (controller.isIdImageSelected.value) {
+                      controller.isIdImageSelected?.value = false;
+                    } else {
+                      controller.index.value--;
+                    }
+                  } else {
+                    controller.index.value--;
+                  }
+                }
+              },
+            ),
+          ),
+          title: Obx(
+            () => controller.index.value < 8
+                ? Stack(
+                    children: [
+                      DecoratedBox(
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(40), color: context.greyColor),
                         child: SizedBox(
                           height: 6.kh,
-                          width: (266.kw / 8) * (controller.index.value + 1),
+                          width: 266.kw,
                         ),
                       ),
-                    ),
-                  ],
-                )
-              : const SizedBox(),
+                      Obx(
+                        () => DecoratedBox(
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(40), color: context.kcPrimaryColor),
+                          child: SizedBox(
+                            height: 6.kh,
+                            width: (266.kw / 8) * (controller.index.value + 1),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                : const SizedBox(),
+          ),
         ),
-      ),
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Obx(
-            () => controller.pages[controller.index.value],
+        body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Obx(
+              () => controller.pages[controller.index.value],
+            ),
           ),
         ),
       ),

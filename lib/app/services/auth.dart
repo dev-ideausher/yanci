@@ -69,6 +69,7 @@ class Auth extends GetxService {
         if (value.user!.emailVerified) {
           await handleGetContact();
         } else {
+          await value.user?.sendEmailVerification();
           showMySnackbar(title: "Email verify ", msg: "Please verify your email and continue");
         }
       } else {

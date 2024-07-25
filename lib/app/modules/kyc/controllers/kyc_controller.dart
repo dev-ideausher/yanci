@@ -4,6 +4,7 @@ import 'package:camera/camera.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -384,8 +385,10 @@ class KycController extends GetxController {
   RxInt index = 0.obs;
   Uint8List? signature;
   Rxn<XFile>? idImage = Rxn<XFile>();
+  RxBool isIdImageSelected = false.obs;
   Rxn<XFile>? selfieWithId = Rxn<XFile>();
-  Rx<DateTime> dateOfBirth = DateTime.now().obs;
+
+  Rx<DateTime> dateOfBirth = DateTime(DateTime.now().year - 18, DateTime.now().month, DateTime.now().day).obs;
 
   //pin
   final TextEditingController pinController = TextEditingController();
@@ -462,8 +465,14 @@ class KycController extends GetxController {
   Future<void> nextPage() async {
     if (index.value == 0) {
       await addUserAndAddress();
-    } else if (index.value == 1 || index.value == 2) {
-      if (idImage?.value != null && selfieWithId?.value != null) {
+    } else if (index.value == 1) {
+      if (idImage?.value != null) {
+        index++;
+      } else {
+        showMySnackbar(msg: StringConstants.fillAllFields, title: StringConstants.error);
+      }
+    } else if (index.value == 2) {
+      if (selfieWithId?.value != null) {
         await updateIdProof();
       } else {
         showMySnackbar(msg: StringConstants.fillAllFields, title: StringConstants.error);
@@ -490,7 +499,7 @@ class KycController extends GetxController {
     try {
       final XFile image = await controller.takePicture();
       idImage!.value = await YanciImagePicker.compressImage(File(image.path));
-
+      isIdImageSelected.value = true;
       Get.back();
     } catch (e) {
       debugPrint(e.toString());
@@ -502,6 +511,7 @@ class KycController extends GetxController {
       final picker = ImagePicker();
       final pickedImage = await picker.pickImage(source: ImageSource.gallery);
       idImage!.value = await YanciImagePicker.compressImage(File(pickedImage!.path));
+      isIdImageSelected.value = true;
       Get.back();
     } catch (e) {
       debugPrint(e.toString());
@@ -526,7 +536,10 @@ class KycController extends GetxController {
       return;
     } else {
       DialogHelper.showSuccess(
-        then: (p0) => index++,
+        then: (p0) {
+          isIdImageSelected.value = false;
+          Get.back();
+        },
         title: StringConstants.verified,
         description: StringConstants.idProofVerified,
       );
