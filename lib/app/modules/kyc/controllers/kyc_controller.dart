@@ -31,6 +31,7 @@ import 'package:http_parser/http_parser.dart';
 import 'package:yanci/app/services/snackbar.dart';
 import 'package:yanci/app/services/storage.dart';
 
+import '../../../components/otp_dialog.dart';
 import '../../../services/yanci_image_picker.dart';
 
 class KycController extends GetxController {
@@ -409,7 +410,8 @@ class KycController extends GetxController {
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final placeOfBirthController = TextEditingController();
-  final phoneNumberController = TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
+  final TextEditingController eOtp = TextEditingController();
   final countryController = TextEditingController();
   final stateController = TextEditingController();
   final cityController = TextEditingController();
@@ -851,5 +853,24 @@ class KycController extends GetxController {
             passportPic?.value = pickedImage;
           }
         });
+  }
+
+  sendOTP({isResend = false}) async {
+    Get.dialog(OtpDialog(onTap: () {
+      //verfiyOtp();
+    }));
+    /* try {
+      final response = await APIManager.sendOtp();
+      if (response.data['status'] == true) {
+*/ /*        Get.dialog(OtpDialog(
+            text: LocaleKeys.app_eventSuccessfullyCreatedon.tr,
+            img: Assets.svgEventCreated,
+            onTap: () {
+              verfiyOtp();
+            }));*/ /*
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }*/
   }
 }

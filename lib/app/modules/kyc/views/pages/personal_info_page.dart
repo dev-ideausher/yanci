@@ -16,6 +16,7 @@ import 'package:yanci/app/services/responsive_size.dart';
 import 'package:yanci/app/services/text_style_util.dart';
 import 'package:yanci/app/utils/date_picker.dart';
 
+import '../../../../components/custom_search_dropdown.dart';
 import '../../../../utils/validation.dart';
 
 class PersonalInfoPage extends StatelessWidget {
@@ -118,13 +119,13 @@ class PersonalInfoPage extends StatelessWidget {
             onSelected: (String val) => kycController.selectedMaritalStatus = val,
           ),
           20.kheightBox,
-          StDropDown(
+          StDropSearchDown(
             value: kycController.selectedNationality,
             title: Text(
               StringConstants.nationality,
               style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w500),
             ),
-            dropdownMenuEntries: StringConstants.nationalities.map((e) => DropdownMenuEntry(value: e, label: e)).toList(),
+            dropdownMenuEntries: StringConstants.nationalities,
             onSelected: (String val) {
               kycController.selectedResidentialStatus.value = StringConstants.selectResidentialStatuss;
 
@@ -143,7 +144,6 @@ class PersonalInfoPage extends StatelessWidget {
                 ];
               }
               kycController.residentialStatuss.refresh();
-              print("object");
             },
           ),
           20.kheightBox,
@@ -156,10 +156,10 @@ class PersonalInfoPage extends StatelessWidget {
             ),
           ),
           20.kheightBox,
-          StDropDown(
+          StDropSearchDown(
             value: kycController.selectedCountry,
             title: StRichText(text: StringConstants.countryOfBirth, color: context.redColor),
-            dropdownMenuEntries: kycController.countries.map((e) => DropdownMenuEntry(value: e, label: e)).toList(),
+            dropdownMenuEntries: kycController.countries,
             onSelected: (String val) => kycController.selectedCountry = val,
           ),
           20.kheightBox,
@@ -178,6 +178,7 @@ class PersonalInfoPage extends StatelessWidget {
             title: StRichText(text: StringConstants.phoneNumber, color: context.redColor),
             hint: StringConstants.phoneNumber,
             controller: kycController.phoneNumberController,
+            maxLength: 10,
             validator: (value) => !isValidPhone(value, isRequired: true) ? StringConstants.validPhone : null,
             suffixIcon: TextButton(
               child: Text(
@@ -187,7 +188,7 @@ class PersonalInfoPage extends StatelessWidget {
                   color: context.kcPrimaryColor,
                 ),
               ),
-              onPressed: () {},
+              onPressed: () => kycController.sendOTP(),
             ),
           ),
           20.kheightBox,

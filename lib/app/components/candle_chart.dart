@@ -1,5 +1,6 @@
+import 'package:custom_syncfusion_flutter_charts/charts.dart';
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
+
 
 class StockCandleChart extends StatelessWidget {
   final TrackballBehavior? trackballBehavior;
@@ -16,7 +17,7 @@ class StockCandleChart extends StatelessWidget {
         minimum: DateTime(2016),
         maximum: DateTime(2016, 10),
       ),
-      primaryYAxis: const NumericAxis(
+      primaryYAxis:  NumericAxis(
         isVisible: false,
         minimum: 60,
         maximum: 140,

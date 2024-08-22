@@ -79,8 +79,8 @@ class Auth extends GetxService {
   }
 
   Future<void> handleGetContact() async {
-    final mytoken = await _firebaseAuth.currentUser!.getIdToken(true);
-    Get.find<GetStorageService>().encjwToken = mytoken!;
+    final mytoken = await _firebaseAuth.currentUser?.getIdToken(true);
+    Get.find<GetStorageService>().encjwToken = mytoken??"";
     final currentUser = _firebaseAuth.currentUser!;
     // {"name": currentUser.displayName ?? "", "email": currentUser.email ?? "", "phone": currentUser.phoneNumber ?? ""
     try {
@@ -147,7 +147,7 @@ class Auth extends GetxService {
       );
     } else {
       List<bool Function()> conditions = [
-        () => data?.personalWithAddressInfo ?? false,
+        () => false,
         () => data?.proofInfo ?? false,
         () => data?.bankingInfo ?? false,
         () => data?.investorInfo ?? false,

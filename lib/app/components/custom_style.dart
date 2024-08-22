@@ -34,6 +34,8 @@ class StStyle {
       hintStyle: hintStyle ?? TextStyleUtil.kText14_4(color: hintColor ?? Get.context!.kNotActive),
       fillColor: backGroundColor ?? Get.context!.kGreyBack,
       filled: true,
+      counterStyle: const TextStyle(height: double.minPositive,),
+      counterText: "",
       focusedErrorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8.kh), borderSide: BorderSide(color: Get.context!.kcPrimaryColor, width: 1.kh)),
       errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8.kh), borderSide: BorderSide(color: backGroundColor ?? Get.context!.kNotActive, width: 1.kh)),
       enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8.kh), borderSide: BorderSide(color: Get.context!.borderColor, width: 1.kh)),

@@ -8,6 +8,7 @@ class APIManager {
   static Future<Response> register() async => await DioClient(Dio(), showSnakbar: true, isOverlayLoader: true).post(Endpoints.register);
 
   static Future<Response> login() async => await DioClient(Dio(), showSnakbar: true, isOverlayLoader: true).post(Endpoints.login);
+  static Future<Response> sendOtp() async => await DioClient(Dio(), showSnakbar: true, isOverlayLoader: true).post(Endpoints.sendOtp);
 
   ///PATCH API
   static Future<Response> users({required dynamic body}) async =>

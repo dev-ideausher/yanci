@@ -1,5 +1,5 @@
+import 'package:custom_syncfusion_flutter_charts/charts.dart';
 import 'package:get/get.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:yanci/app/data/models/stocks_model.dart';
 import 'package:yanci/app/modules/explore/controllers/explore_controller.dart';
 

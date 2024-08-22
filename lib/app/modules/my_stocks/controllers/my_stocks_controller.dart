@@ -1,5 +1,6 @@
+import 'package:custom_syncfusion_flutter_charts/charts.dart';
 import 'package:get/get.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
+
 import 'package:yanci/app/constants/string_constants.dart';
 
 class MyStocksController extends GetxController {

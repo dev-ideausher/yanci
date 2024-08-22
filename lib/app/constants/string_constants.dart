@@ -621,6 +621,23 @@ class StringConstants {
     'Omani', 'Pakistani', 'Palauan', 'Palestinian', 'Panamanian', 'Papua New Guinean'
   ];
 
+  static String pinCannotBeEmpty= "Pin cannot be empty";
+  static String pinMustBeExactly5Digits= "Pin must be exactly 5 digits";
+  static String pinMustContainOnlyDigits= "Pin must contain only digits";
+  static String otp= "OTP";
+  static String verifyContactNumber= "Verify contact number";
+  static String pleaseEnterOtp= "Please, Enter the OTP that has been send to this phone number as a SMS";
+  static String enterOtp="Enter OTP";
+  static String didntReceiveOtp= "Didn't receive OTP?";
+
   static String proceedToTermsOfUse= "Proceed to Terms of Use";
+
+  static String ghc= "GHC";
+
+  static var selectOne  = "Select one";
+
+  static var resendOTP  = "Resend OTP";
+
+  static var search  = 'Search...';
 
 }

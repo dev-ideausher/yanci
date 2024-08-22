@@ -91,6 +91,10 @@ class InvestmentProfilePage extends StatelessWidget {
             title: StRichText(text: StringConstants.initialInvestmentAmount, color: context.redColor),
             hint: StringConstants.initialInvestmentAmount,
             textInputType: TextInputType.number,
+            prefixIcon: Padding(
+              padding: EdgeInsets.only(top: 16.0.kh, left: 8.0.kw, right: 8.0.kw),
+              child: Text(StringConstants.ghc, style: TextStyleUtil.kText16_5(fontWeight: FontWeight.w500)),
+            ),
             controller: kycController.initialInvestmentAmountController,
             validator: (value) => !isCommonText(value) ? StringConstants.invalidInvestmentAmount : null,
           ),
@@ -129,6 +133,10 @@ class InvestmentProfilePage extends StatelessWidget {
             title: StRichText(text: StringConstants.regualrTopUpAmount, color: context.redColor),
             hint: StringConstants.regualrTopUpAmount,
             textInputType: TextInputType.number,
+            prefixIcon: Padding(
+              padding: EdgeInsets.only(top: 16.0.kh, left: 8.0.kw, right: 8.0.kw),
+              child: Text(StringConstants.ghc, style: TextStyleUtil.kText16_5(fontWeight: FontWeight.w500)),
+            ),
             controller: kycController.topupController,
             validator: (value) => !isCommonText(value) ? StringConstants.invalidRegualrTopUpAmount : null,
           ),
@@ -137,6 +145,10 @@ class InvestmentProfilePage extends StatelessWidget {
             title: StRichText(text: StringConstants.regualrWithdrawalAmount, color: context.redColor),
             hint: StringConstants.regualrWithdrawalAmount,
             textInputType: TextInputType.number,
+            prefixIcon: Padding(
+              padding: EdgeInsets.only(top: 16.0.kh, left: 8.0.kw, right: 8.0.kw),
+              child: Text(StringConstants.ghc, style: TextStyleUtil.kText16_5(fontWeight: FontWeight.w500)),
+            ),
             controller: kycController.regualWithdrawalController,
             validator: (value) => !isCommonText(value) ? StringConstants.invalidRegualrWithdrawalAmount : null,
           ),

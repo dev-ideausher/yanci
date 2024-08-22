@@ -18,7 +18,7 @@ class Endpoints {
 
   static const String login = "auth/login";
   static const String register = "auth/register";
-
+  static String sendOtp = "send-phone-otp";
   // receiveTimeout
   static const int receiveTimeout = 150000;
 
