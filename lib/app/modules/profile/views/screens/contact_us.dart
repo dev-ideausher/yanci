@@ -59,11 +59,11 @@ class ContactUs extends StatelessWidget {
                               color: context.redColor,
                             ),
                             dropdownMenuEntries: const [
-                              DropdownMenuEntry(value: StringConstants.query, label: StringConstants.general),
-                              DropdownMenuEntry(value: StringConstants.feedback, label: StringConstants.transactionFailed),
-                              DropdownMenuEntry(value: StringConstants.feedback, label: StringConstants.moneyIssue),
-                              DropdownMenuEntry(value: StringConstants.feedback, label: StringConstants.refund),
-                              DropdownMenuEntry(value: StringConstants.feedback, label: StringConstants.cancellation),
+                              DropdownMenuEntry(value: StringConstants.general, label: StringConstants.general),
+                              DropdownMenuEntry(value: StringConstants.transactionFailed, label: StringConstants.transactionFailed),
+                              DropdownMenuEntry(value: StringConstants.moneyIssue, label: StringConstants.moneyIssue),
+                              DropdownMenuEntry(value: StringConstants.refund, label: StringConstants.refund),
+                              DropdownMenuEntry(value: StringConstants.cancellation, label: StringConstants.cancellation),
                             ],
                             onSelected: (p0) => controller.selectedTypeOfQuery.value = p0,
                           ),
@@ -81,6 +81,7 @@ class ContactUs extends StatelessWidget {
               ),
               TextField(
                 maxLines: 5,
+                controller: controller.queryController,
                 cursorColor: context.kcPrimaryColor,
                 decoration: StStyle.stInputDecoration(
                   backGroundColor: context.whiteColor,

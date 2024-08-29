@@ -5,7 +5,6 @@ import 'package:yanci/app/constants/string_constants.dart';
 import 'package:yanci/app/modules/profile/views/screens/bank_details.dart';
 import 'package:yanci/app/modules/profile/views/screens/contact_us.dart';
 import 'package:yanci/app/modules/profile/views/screens/education_support.dart';
-import 'package:yanci/app/modules/profile/views/screens/faq_screen.dart';
 import 'package:yanci/app/modules/profile/views/screens/notifications_settings.dart';
 import 'package:yanci/app/modules/profile/views/screens/reset_password.dart';
 import 'package:yanci/app/modules/profile/views/widgets/profile_tile.dart';
@@ -106,7 +105,7 @@ class ProfileView extends GetView<ProfileController> {
               title: StringConstants.faqs,
               subtitle: StringConstants.frequentlyAskedQuestions,
               leading: Assets.svg.faq.svg(),
-              onTap: () => Get.to(() => const FaqScreen()),
+              onTap: () => Get.toNamed(Routes.FAQ),
             ),
             SettingsTile(
               title: StringConstants.contatcUs,

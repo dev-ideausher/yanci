@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -11,6 +13,7 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    print(lengthOfLongestSubstring("abcabcbb"));
     return Obx(
       () => Scaffold(
         body: controller.mainScreen[controller.index.value],
@@ -37,5 +40,19 @@ class HomeView extends GetView<HomeController> {
         ),
       ),
     );
+  }
+  int lengthOfLongestSubstring(String s) {
+    int maxLength = 0;
+    int start = 0;
+    Map<String, int> map = {};
+    for (int i = 0; i < s.length; i++) {
+      if (map.containsKey(s[i])) {
+        start = max(start, map[s[i]]! + 1);
+      }
+      map[s[i]] = i;
+      maxLength = max(maxLength, i - start + 1);
+    }
+
+    return maxLength;
   }
 }

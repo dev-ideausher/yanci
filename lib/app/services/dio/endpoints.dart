@@ -23,6 +23,8 @@ class Endpoints {
 
 
   static const String getQuery = "support/ticket/all";
+  static const String getFaq = "support/faq/search";
+  static const String submitQuery = "support/ticket/create";
 
   // receiveTimeout
   static const int receiveTimeout = 150000;

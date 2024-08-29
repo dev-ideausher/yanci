@@ -6,6 +6,8 @@ import '../modules/buy/bindings/buy_binding.dart';
 import '../modules/buy/views/buy_view.dart';
 import '../modules/explore/bindings/explore_binding.dart';
 import '../modules/explore/views/explore_view.dart';
+import '../modules/faq/bindings/faq_binding.dart';
+import '../modules/faq/views/faq_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/kyc/bindings/kyc_binding.dart';
@@ -151,6 +153,11 @@ class AppPages {
       name: _Paths.TERMS,
       page: () => const TermsView(),
       binding: TermsBinding(),
+    ),
+    GetPage(
+      name: _Paths.FAQ,
+      page: () => const FaqView(),
+      binding: FaqBinding(),
     ),
   ];
 }

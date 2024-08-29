@@ -10,6 +10,8 @@ class APIManager {
   static Future<Response> login() async => await DioClient(Dio(), showSnakbar: true, isOverlayLoader: true).post(Endpoints.login);
 
   static Future<Response> sendOtp() async => await DioClient(Dio(), showSnakbar: true, isOverlayLoader: true).post(Endpoints.sendOtp);
+  static Future<Response> submitQuery({required dynamic body}) async => await DioClient(Dio(), showSnakbar: true, isOverlayLoader: true).post(Endpoints
+      .submitQuery, data: jsonEncode(body));
 
   ///PATCH API
   static Future<Response> users({required dynamic body}) async =>
@@ -43,6 +45,7 @@ class APIManager {
   static Future<Response> user() async => await DioClient(Dio(), showSnakbar: true, isOverlayLoader: false).get(Endpoints.users);
 
   static Future<Response> getQuery() async => await DioClient(Dio(), showSnakbar: true, isOverlayLoader: false).get(Endpoints.getQuery);
+  static Future<Response> getFaq({  Map<String, dynamic>? queryParameters}) async => await DioClient(Dio(), showSnakbar: true, isOverlayLoader: false).get(Endpoints.getFaq, queryParameters: queryParameters);
 
   static Future<Response> generateKycPdf() async => await DioClient(Dio(), showSnakbar: true, isOverlayLoader: false).get(Endpoints.generateKycPdf);
 

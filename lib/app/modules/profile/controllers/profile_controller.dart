@@ -10,6 +10,7 @@ import 'package:yanci/app/services/auth.dart';
 import 'package:yanci/app/services/dialog_helper.dart';
 import 'package:yanci/app/services/dio/api_service.dart';
 
+import '../../../services/snackbar.dart';
 import '../../orders/controllers/orders_controller.dart';
 
 class ProfileController extends GetxController {
@@ -53,7 +54,9 @@ class ProfileController extends GetxController {
   RxInt selectedEdIndex = 0.obs;
   RxString selectedContact = StringConstants.query.obs;
   RxString selectedTypeOfQuery = StringConstants.general.obs;
-  Rx<DateTime> dateOfBirth = DateTime.now().obs;
+  Rx<DateTime> dateOfBirth = DateTime
+      .now()
+      .obs;
 
   TextEditingController passwordController = TextEditingController();
   TextEditingController newPasswordController = TextEditingController();
@@ -114,15 +117,38 @@ class ProfileController extends GetxController {
     homeController.index.value = 3;
   }
 
-  void submitQuery() {
-    DialogHelper.showSuccess(
-      then: (p0) {
-        queryController.clear();
-        Get.back();
-      },
-      title: StringConstants.submitted,
-      description: StringConstants.submittedQuery,
-    );
+  Future<void> submitQuery() async {
+    if (queryController.text.isEmpty) {
+      showMySnackbar(msg: "Please enter a description", title: StringConstants.error);
+      return;
+    } else if (queryController.text.length < 10) {
+      showMySnackbar(msg: "Description must be at least 10 characters long");
+    } else {
+      Map<String, String> requestBody = {
+        "type": selectedContact.value == StringConstants.query ? "QUERY" : "FEEDBACK",
+        "description": queryController.text,
+      };
+      if (selectedContact.value == StringConstants.query) {
+        requestBody["title"] = selectedTypeOfQuery.value;
+      }
+      try {
+        final response = await APIManager.submitQuery(body: requestBody);
+        if (response.data['data'] != null) {
+          DialogHelper.showSuccess(
+            then: (p0) {
+              queryController.clear();
+              Get.back();
+            },
+            title: StringConstants.submitted,
+            description: StringConstants.submittedQuery,
+          );
+        } else {
+          showMySnackbar(msg: response.data['data'], title: StringConstants.error);
+        }
+      } catch (e) {
+        debugPrint(e.toString());
+      }
+    }
   }
 
   @override
