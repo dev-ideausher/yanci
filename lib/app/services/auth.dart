@@ -147,7 +147,7 @@ class Auth extends GetxService {
       );
     } else {
       List<bool Function()> conditions = [
-        () => false,
+        () => data?.personalWithAddressInfo ?? false,
         () => data?.proofInfo ?? false,
         () => data?.bankingInfo ?? false,
         () => data?.investorInfo ?? false,

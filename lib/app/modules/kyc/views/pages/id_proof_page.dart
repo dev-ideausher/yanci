@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yanci/app/constants/string_constants.dart';
 import 'package:yanci/app/modules/kyc/controllers/kyc_controller.dart';
+import 'package:yanci/app/modules/kyc/views/card/image_card.dart';
 import 'package:yanci/app/modules/kyc/views/take_id_picture_view.dart';
 import 'package:yanci/app/services/colors.dart';
 import 'package:yanci/app/services/custom_button.dart';
@@ -36,47 +37,46 @@ class IdProofPage extends StatelessWidget {
           ),
           20.kheightBox,
           Obx(
-                () =>
-            kycController.isIdImageSelected.value
+            () => kycController.isIdImageSelected.value
                 ? Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  StringConstants.idSuccesfullyCaptured,
-                  textAlign: TextAlign.center,
-                  style: TextStyleUtil.kText14_4(),
-                ),
-                20.kheightBox,
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10.kh),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 204.kh,
-                    child: Image.file(
-                      File(kycController.idImage!.value!.path),
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ),
-                20.kheightBox,
-                CustomButton.outline(
-                  title: StringConstants.change,
-                  onTap: () => Get.to(() => const TakeIdPictureView()),
-                  borderRadius: 50,
-                ),
-                190.kheightBox,
-                CustomButton(
-                  title: StringConstants.saveAndContinue,
-                  onTap: () => kycController.verifyId(),
-                  borderRadius: 50,
-                ),
-              ],
-            )
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        StringConstants.idSuccesfullyCaptured,
+                        textAlign: TextAlign.center,
+                        style: TextStyleUtil.kText14_4(),
+                      ),
+                      20.kheightBox,
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10.kh),
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: 204.kh,
+                          child: Image.file(
+                            File(kycController.idImage!.value!.path),
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+                      20.kheightBox,
+                      CustomButton.outline(
+                        title: StringConstants.change,
+                        onTap: () => Get.to(() => const TakeIdPictureView()),
+                        borderRadius: 50,
+                      ),
+                      190.kheightBox,
+                      CustomButton(
+                        title: StringConstants.saveAndContinue,
+                        onTap: () => kycController.verifyId(),
+                        borderRadius: 50,
+                      ),
+                    ],
+                  )
                 : Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                _buildTitle(),
-                20.kheightBox,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      _buildTitle(),
+                      /* 20.kheightBox,
                 Row(
                   children: [
                     Expanded(
@@ -126,9 +126,13 @@ class IdProofPage extends StatelessWidget {
                       ),
                     ),
                   ],
-                ),
-                20.kheightBox,
-                ClipRRect(
+                ),*/
+                      12.kheightBox,
+                      ImageCard(onTap: () => kycController.chooseFile(), idImage: kycController.idImage, frontOrBack: StringConstants.front),
+                      12.kheightBox,
+                      ImageCard(
+                          onTap: () => kycController.chooseFile(isIdImageBack: true), idImage: kycController.idImageBack, frontOrBack: StringConstants.back),
+                      /*ClipRRect(
                   borderRadius: BorderRadius.circular(10.kh),
                   child: Stack(
                     children: [
@@ -180,28 +184,29 @@ class IdProofPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                ),
-                30.kheightBox,
-                Text(
-                  "Or",
-                  style: TextStyleUtil.kText14_4(
-                    color: context.blackColor,
+                ),*/
+
+                      24.kheightBox,
+                      Text(
+                        "Or",
+                        style: TextStyleUtil.kText14_4(
+                          color: context.blackColor,
+                        ),
+                      ),
+                      12.kheightBox,
+                      CustomButton.outline(
+                        title: StringConstants.openCameraTakePhoto,
+                        onTap: () => Get.to(() => const TakeIdPictureView()),
+                        borderRadius: 50,
+                      ),
+                      20.kheightBox,
+                      CustomButton(
+                        title: StringConstants.continueText,
+                        onTap: () => (formKey.currentState!.validate()) ? kycController.nextPage() : null,
+                        borderRadius: 50,
+                      ),
+                    ],
                   ),
-                ),
-                40.kheightBox,
-                CustomButton.outline(
-                  title: StringConstants.openCameraTakePhoto,
-                  onTap: () => Get.to(() => const TakeIdPictureView()),
-                  borderRadius: 50,
-                ),
-                20.kheightBox,
-                CustomButton(
-                  title: StringConstants.continueText,
-                  onTap: () => (formKey.currentState!.validate()) ? kycController.nextPage() : null,
-                  borderRadius: 50,
-                ),
-              ],
-            ),
           ),
         ],
       ),

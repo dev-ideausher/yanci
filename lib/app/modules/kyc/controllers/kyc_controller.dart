@@ -32,6 +32,7 @@ import 'package:yanci/app/services/snackbar.dart';
 import 'package:yanci/app/services/storage.dart';
 
 import '../../../components/otp_dialog.dart';
+import '../../../services/dio/exceptions.dart';
 import '../../../services/yanci_image_picker.dart';
 
 class KycController extends GetxController {
@@ -58,8 +59,6 @@ class KycController extends GetxController {
 
   RxList<String> residentialStatuss = [
     StringConstants.selectResidentialStatuss,
-    StringConstants.residentGhanaian,
-    StringConstants.residentForeigner,
     StringConstants.nonResidentGhanaian,
     StringConstants.nonResidentForeigner,
   ].obs;
@@ -386,6 +385,7 @@ class KycController extends GetxController {
   RxInt index = 0.obs;
   Uint8List? signature;
   Rxn<XFile>? idImage = Rxn<XFile>();
+  Rxn<XFile>? idImageBack = Rxn<XFile>();
   RxBool isIdImageSelected = false.obs;
   Rxn<XFile>? selfieWithId = Rxn<XFile>();
 
@@ -421,10 +421,10 @@ class KycController extends GetxController {
 
   // id proof
 
-  final ghanaCardNumberController = TextEditingController();
+/*  final ghanaCardNumberController = TextEditingController();
   Rx<DateTime> cardStartDate = DateTime.now().obs;
   Rx<DateTime> cardExpiryDate = DateTime.now().obs;
-  final placeOfIssueController = TextEditingController();
+  final placeOfIssueController = TextEditingController();*/
 
   // investor profile
   final employerNameController = TextEditingController();
@@ -468,7 +468,7 @@ class KycController extends GetxController {
     if (index.value == 0) {
       await addUserAndAddress();
     } else if (index.value == 1) {
-      if (idImage?.value != null) {
+      if (idImage?.value != null && idImageBack?.value != null) {
         index++;
       } else {
         showMySnackbar(msg: StringConstants.fillAllFields, title: StringConstants.error);
@@ -508,12 +508,17 @@ class KycController extends GetxController {
     }
   }
 
-  chooseFile() async {
+  chooseFile({bool isIdImageBack = false}) async {
     try {
       final picker = ImagePicker();
       final pickedImage = await picker.pickImage(source: ImageSource.gallery);
-      idImage!.value = await YanciImagePicker.compressImage(File(pickedImage!.path));
-      isIdImageSelected.value = true;
+      if (isIdImageBack) {
+        idImageBack!.value = await YanciImagePicker.compressImage(File(pickedImage!.path));
+      } else {
+        idImage!.value = await YanciImagePicker.compressImage(File(pickedImage!.path));
+        isIdImageSelected.value = true;
+      }
+
       Get.back();
     } catch (e) {
       debugPrint(e.toString());
@@ -528,6 +533,15 @@ class KycController extends GetxController {
     try {
       final XFile image = await controller.takePicture();
       selfieWithId!.value = image;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+  void captureSelfieGallery() async {
+    try {
+      final picker = ImagePicker();
+      final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+      selfieWithId!.value = pickedImage;
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -663,25 +677,40 @@ class KycController extends GetxController {
       final pathFile = idImage!.value!.path;
       final extension = path.extension(idImage!.value!.path.toString()).replaceAll(".", "");
 
+      final pathFileBack = idImageBack!.value!.path;
+      final extensionBack = path.extension(idImageBack!.value!.path.toString()).replaceAll(".", "");
+
       final proofPicFile = selfieWithId!.value!.path;
       final extensionPic = path.extension(selfieWithId!.value!.path.toString()).replaceAll(".", "");
 
       final response = await APIManager.addUpdateProof(body: {
         'proofPic': await MultipartFile.fromFile(pathFile, filename: 'proofPic', contentType: MediaType('image', extension)),
+        "proofPicBack"  : await MultipartFile.fromFile(pathFileBack, filename: 'proofPicBack', contentType: MediaType('image', extensionBack)),
         'proofWithId': await MultipartFile.fromFile(proofPicFile, filename: 'proofWithId', contentType: MediaType('image', extensionPic)),
-        'cardNumber': ghanaCardNumberController.text,
+
+      });
+/* 'cardNumber': ghanaCardNumberController.text,
         'issueDate': cardStartDate.value.toString(),
         'expiryDate': cardExpiryDate.value.toString(),
-        'placeOfIssue': placeOfIssueController.text
-      });
-
+        'placeOfIssue': placeOfIssueController.text*/
       if (response.data['status'] ?? false) {
         index++;
       } else {
         showMySnackbar(msg: response.data['message'], title: StringConstants.error);
       }
     } catch (e) {
-      debugPrint(e.toString());
+      try {
+        if (DioExceptions.fromDioError(e as DioException).message != null && DioExceptions.fromDioError(e as DioException).message.isNotEmpty) {
+          String message = DioExceptions.fromDioError(e).message;
+          List<String> lines = message.split('\n');
+          String title = lines[0];
+          List<String> bulletPoints = lines.sublist(1);
+          String middleText = bulletPoints.map((point) => "• $point").join("\n");
+          Get.defaultDialog(title: title, middleText: middleText);
+        }
+      } catch (e) {
+        debugPrint(e.toString());
+      }
     }
   }
 

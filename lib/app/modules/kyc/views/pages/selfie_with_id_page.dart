@@ -149,7 +149,7 @@ class _SelfieWithIdPageState extends State<SelfieWithIdPage> {
                     60.kheightBox,
                     CustomImageCaptureWidget(
                       onTapCamera: () => kycController.captureSelfieImage(cameraController),
-                      onTapGallery: () {},
+                      onTapGallery: () =>kycController.captureSelfieGallery(),
                       onTapFiles: () {},
                     ),
                   ],

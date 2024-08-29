@@ -83,7 +83,9 @@ class PersonalInfoPage extends StatelessWidget {
             title: StRichText(text: StringConstants.firstName, color: context.redColor),
             hint: StringConstants.firstName,
             textInputType: TextInputType.name,
-            inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]'))],
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]')),
+            ],
             validator: (value) => !isCommonText(value) ? StringConstants.invalidFirstName : null,
             controller: kycController.firstNameController,
           ),
@@ -92,7 +94,9 @@ class PersonalInfoPage extends StatelessWidget {
             title: StRichText(text: StringConstants.lastName, color: context.redColor),
             hint: StringConstants.lastName,
             textInputType: TextInputType.name,
-            inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]'))],
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]')),
+            ],
             validator: (value) => !isCommonText(value) ? StringConstants.invalidLastName : null,
             controller: kycController.lastNameController,
           ),

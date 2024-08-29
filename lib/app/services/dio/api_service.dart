@@ -8,6 +8,7 @@ class APIManager {
   static Future<Response> register() async => await DioClient(Dio(), showSnakbar: true, isOverlayLoader: true).post(Endpoints.register);
 
   static Future<Response> login() async => await DioClient(Dio(), showSnakbar: true, isOverlayLoader: true).post(Endpoints.login);
+
   static Future<Response> sendOtp() async => await DioClient(Dio(), showSnakbar: true, isOverlayLoader: true).post(Endpoints.sendOtp);
 
   ///PATCH API
@@ -39,6 +40,9 @@ class APIManager {
       await DioClient(Dio(), showSnakbar: true, isOverlayLoader: true).patch(Endpoints.addUpdateSignature, data: FormData.fromMap(body));
 
   ///GET API
+  static Future<Response> user() async => await DioClient(Dio(), showSnakbar: true, isOverlayLoader: false).get(Endpoints.users);
+
+  static Future<Response> getQuery() async => await DioClient(Dio(), showSnakbar: true, isOverlayLoader: false).get(Endpoints.getQuery);
 
   static Future<Response> generateKycPdf() async => await DioClient(Dio(), showSnakbar: true, isOverlayLoader: false).get(Endpoints.generateKycPdf);
 

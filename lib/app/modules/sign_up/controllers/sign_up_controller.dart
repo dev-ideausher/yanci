@@ -23,13 +23,7 @@ class SignUpController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    timer = Timer.periodic(const Duration(seconds: 3), (_) async {
-      try {
-        return await checkEmailVerified();
-      } catch (e) {
-        debugPrint(e.toString());
-      }
-    });
+
   }
 
   String? passwordValidater(String value) {
@@ -49,6 +43,7 @@ class SignUpController extends GetxController {
       return;
     } else {
       auth.createEmailPass(email: emailController.text, pass: passwordController.text);
+      checkTime();
     }
   }
 
@@ -81,5 +76,15 @@ class SignUpController extends GetxController {
 
       auth.handleGetContact();
     }
+  }
+
+  void checkTime() {
+    timer = Timer.periodic(const Duration(seconds: 3), (_) async {
+      try {
+        return await checkEmailVerified();
+      } catch (e) {
+        debugPrint(e.toString());
+      }
+    });
   }
 }

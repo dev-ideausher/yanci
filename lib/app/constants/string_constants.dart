@@ -202,6 +202,8 @@ class StringConstants {
   static const idSuccesfullyCaptured = 'Great Shot! Your ID photo is successfully captured. Please proceed to continue.';
   static const openCameraTakePhoto = 'Open camera & take photo';
   static const selectFile = 'Select File';
+  static const front = 'Front';
+  static const back = 'Back';
   static const change = 'Change';
   static const saveAndContinue = 'Save And Continue';
   static const verified = "Verified!";

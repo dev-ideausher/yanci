@@ -13,7 +13,7 @@ class KycView extends GetView<KycController> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvoked: (pop) {
+      onPopInvokedWithResult: (result,pop) {
         if (controller.index.value > 0) {
           if (controller.index.value == 1) {
             if (controller.isIdImageSelected.value) {
@@ -21,7 +21,7 @@ class KycView extends GetView<KycController> {
             } else {
               controller.index.value--;
             }
-          } else {
+          }  else {
             controller.index.value--;
           }
         }
@@ -46,7 +46,7 @@ class KycView extends GetView<KycController> {
                     } else {
                       controller.index.value--;
                     }
-                  } else {
+                  }else {
                     controller.index.value--;
                   }
                 }

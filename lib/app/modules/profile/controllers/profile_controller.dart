@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:yanci/app/constants/string_constants.dart';
+import 'package:yanci/app/data/models/user_info_model.dart';
 import 'package:yanci/app/modules/home/controllers/home_controller.dart';
 import 'package:yanci/app/modules/profile/views/screens/edit_profile.dart';
 import 'package:yanci/app/routes/app_pages.dart';
 import 'package:yanci/app/services/auth.dart';
 import 'package:yanci/app/services/dialog_helper.dart';
+import 'package:yanci/app/services/dio/api_service.dart';
 
 import '../../orders/controllers/orders_controller.dart';
 
@@ -60,6 +62,12 @@ class ProfileController extends GetxController {
   TextEditingController queryController = TextEditingController();
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  @override
+  void onInit() {
+    super.onInit();
+    getUserInfo();
+  }
 
   String? passwordValidater(String value) {
     if (value.isEmpty) {
@@ -143,5 +151,31 @@ class ProfileController extends GetxController {
   logout() {
     Auth().logOutUser();
     Get.offAllNamed(Routes.LOGIN);
+  }
+
+  Future<void> getUserInfo() async {
+    try {
+      final response = await APIManager.user();
+      final UserInfoModel userInfoModel = UserInfoModel.fromJson(response.data);
+      saveData(userInfoModel.data);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  void saveData(UserInfoModelData? data) {
+    if (data != null) {
+      firstNameController.text = data.firstName ?? "";
+      lastNameController.text = data.lastName ?? "";
+      // placeOfBirthController.text = data.placeOfBirth ?? "";
+      // phoneNumberController.text = data.phoneNumber ?? "";
+      countryController.text = data.originCountry ?? "";
+      //  stateController.text = data.state ?? "";
+      //  cityController.text = data.city ?? "";
+      //  gpsController.text = data.gps ?? "";
+      selectedGender = data.gender ?? "";
+      selectedMaritalStatus = data.maritalStatus ?? "";
+      selectedNationality = data.residentialStatus ?? "";
+    }
   }
 }

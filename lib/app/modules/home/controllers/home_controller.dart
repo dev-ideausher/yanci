@@ -54,4 +54,5 @@ class HomeController extends GetxController {
     index.value = i;
   }
 
+
 }
