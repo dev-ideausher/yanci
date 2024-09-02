@@ -437,6 +437,7 @@ class KycController extends GetxController {
   // beneficiary
   final beneficiaryNameController = TextEditingController();
   final beneficiaryPhoneNumberController = TextEditingController();
+  final RxString initialSelectionCountryCode = "+233".obs;
   final beneficiaryCountryController = TextEditingController();
   final beneficiaryStateController = TextEditingController();
   final beneficiaryCityController = TextEditingController();
@@ -631,6 +632,7 @@ class KycController extends GetxController {
             "maritalStatus": selectedMaritalStatus,
             "originCountry": selectedCountry,
             "dob": dateOfBirth.value.toString(),
+            "countryCode":initialSelectionCountryCode.value,
             "phone": phoneNumberController.text
           });
           if (response.data['status'] ?? false) {
@@ -794,6 +796,7 @@ class KycController extends GetxController {
       final response = await APIManager.addUpdateBeneficiaryInformation(body: {
         "fullName": beneficiaryNameController.text,
         "relationship": selectedRelation,
+        "countryCode":initialSelectionCountryCode.value,
         "phone": beneficiaryPhoneNumberController.text,
         "country": beneficiaryCountryController.text,
         "state": beneficiaryStateController.text,

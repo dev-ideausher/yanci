@@ -54,9 +54,10 @@ class BeneficiaryPage extends StatelessWidget {
           20.kheightBox,
           StTextField(
             prefixIcon: CountryCodePicker(
-              initialSelection: 'GH',
+              initialSelection:kycController.initialSelectionCountryCode.value,
               hideMainText: false,
               flagWidth: 24.kw,
+              onChanged: (kCode) => kycController.initialSelectionCountryCode.value = kCode.toString(),
               textStyle: TextStyleUtil.kText16_5(
                 fontWeight: FontWeight.w400,
                 color: context.disabledColor,

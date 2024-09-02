@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:yanci/app/constants/string_constants.dart';
 import 'package:yanci/app/data/models/user_info_model.dart';
 import 'package:yanci/app/modules/home/controllers/home_controller.dart';
-import 'package:yanci/app/modules/profile/views/screens/edit_profile.dart';
 import 'package:yanci/app/routes/app_pages.dart';
 import 'package:yanci/app/services/auth.dart';
 import 'package:yanci/app/services/dialog_helper.dart';
@@ -14,37 +13,14 @@ import '../../../services/snackbar.dart';
 import '../../orders/controllers/orders_controller.dart';
 
 class ProfileController extends GetxController {
-  List<String> genders = [
-    StringConstants.male,
-    StringConstants.female,
-    StringConstants.preferNotToSay,
-  ];
-  String selectedGender = StringConstants.male;
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController newPasswordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
 
-  List<String> maritalStatus = [
-    StringConstants.single,
-    StringConstants.married,
-    StringConstants.preferNotToSay,
-  ];
-  String selectedMaritalStatus = StringConstants.single;
+  TextEditingController queryController = TextEditingController();
 
-  List<String> nationality = [
-    StringConstants.residentGhanaian,
-    StringConstants.residentForeigner,
-    StringConstants.nonResidentGhanaian,
-    StringConstants.nonResidentForeigner,
-  ];
-  String selectedNationality = StringConstants.residentGhanaian;
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  final firstNameController = TextEditingController();
-  final lastNameController = TextEditingController();
-  final placeOfBirthController = TextEditingController();
-  final phoneNumberController = TextEditingController();
-  final countryController = TextEditingController();
-  final stateController = TextEditingController();
-  final cityController = TextEditingController();
-  final streetController = TextEditingController();
-  final gpsController = TextEditingController();
 
   RxBool generalNotificationValue = true.obs;
   RxBool marketNotificationValue = true.obs;
@@ -54,42 +30,10 @@ class ProfileController extends GetxController {
   RxInt selectedEdIndex = 0.obs;
   RxString selectedContact = StringConstants.query.obs;
   RxString selectedTypeOfQuery = StringConstants.general.obs;
-  Rx<DateTime> dateOfBirth = DateTime
-      .now()
-      .obs;
-
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController newPasswordController = TextEditingController();
-  TextEditingController confirmPasswordController = TextEditingController();
-
-  TextEditingController queryController = TextEditingController();
-
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   void onInit() {
     super.onInit();
-    getUserInfo();
-  }
-
-  String? passwordValidater(String value) {
-    if (value.isEmpty) {
-      return "Password required";
-    } else if (value.length < 6) {
-      return "Character must me 6 or more";
-    }
-    return null;
-  }
-
-  String? newPasswordValidater(String value) {
-    if (value.isEmpty) {
-      return "Password required";
-    } else if (value.length < 6) {
-      return "Character must me 6 or more";
-    } else if (newPasswordController.text != confirmPasswordController.text) {
-      return "Passwords don't match";
-    }
-    return null;
   }
 
   void resetPassword() {
@@ -151,57 +95,39 @@ class ProfileController extends GetxController {
     }
   }
 
-  @override
-  void onClose() {
-    passwordController.dispose();
-    newPasswordController.dispose();
-    confirmPasswordController.dispose();
-
-    firstNameController.dispose();
-    lastNameController.dispose();
-    placeOfBirthController.dispose();
-    phoneNumberController.dispose();
-    countryController.dispose();
-    stateController.dispose();
-    cityController.dispose();
-    gpsController.dispose();
-
-    queryController.dispose();
-    super.onClose();
-  }
-
   editProfile() {
-    Get.to(const EditProfile());
+    Get.toNamed(Routes.EDIT_PROFILE);
   }
 
   logout() {
     Auth().logOutUser();
     Get.offAllNamed(Routes.LOGIN);
   }
-
-  Future<void> getUserInfo() async {
-    try {
-      final response = await APIManager.user();
-      final UserInfoModel userInfoModel = UserInfoModel.fromJson(response.data);
-      saveData(userInfoModel.data);
-    } catch (e) {
-      debugPrint(e.toString());
+  String? passwordValidater(String value) {
+    if (value.isEmpty) {
+      return "Password required";
+    } else if (value.length < 6) {
+      return "Character must me 6 or more";
     }
+    return null;
   }
 
-  void saveData(UserInfoModelData? data) {
-    if (data != null) {
-      firstNameController.text = data.firstName ?? "";
-      lastNameController.text = data.lastName ?? "";
-      // placeOfBirthController.text = data.placeOfBirth ?? "";
-      // phoneNumberController.text = data.phoneNumber ?? "";
-      countryController.text = data.originCountry ?? "";
-      //  stateController.text = data.state ?? "";
-      //  cityController.text = data.city ?? "";
-      //  gpsController.text = data.gps ?? "";
-      selectedGender = data.gender ?? "";
-      selectedMaritalStatus = data.maritalStatus ?? "";
-      selectedNationality = data.residentialStatus ?? "";
+  String? newPasswordValidater(String value) {
+    if (value.isEmpty) {
+      return "Password required";
+    } else if (value.length < 6) {
+      return "Character must me 6 or more";
+    } else if (newPasswordController.text != confirmPasswordController.text) {
+      return "Passwords don't match";
     }
+    return null;
+  }  @override
+  void onClose() {
+    passwordController.dispose();
+    newPasswordController.dispose();
+    confirmPasswordController.dispose();
+
+    queryController.dispose();
+    super.onClose();
   }
 }

@@ -4,6 +4,8 @@ import '../modules/add_money/bindings/add_money_binding.dart';
 import '../modules/add_money/views/add_money_view.dart';
 import '../modules/buy/bindings/buy_binding.dart';
 import '../modules/buy/views/buy_view.dart';
+import '../modules/edit_profile/bindings/edit_profile_binding.dart';
+import '../modules/edit_profile/views/edit_profile_view.dart';
 import '../modules/explore/bindings/explore_binding.dart';
 import '../modules/explore/views/explore_view.dart';
 import '../modules/faq/bindings/faq_binding.dart';
@@ -158,6 +160,11 @@ class AppPages {
       name: _Paths.FAQ,
       page: () => const FaqView(),
       binding: FaqBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_PROFILE,
+      page: () => const EditProfileView(),
+      binding: EditProfileBinding(),
     ),
   ];
 }
