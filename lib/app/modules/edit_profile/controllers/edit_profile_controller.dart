@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
+import 'package:open_file/open_file.dart';
 
 import '../../../constants/string_constants.dart';
 import '../../../data/models/user_info_model.dart';
 import '../../../services/dio/api_service.dart';
+import '../../../services/download_manager.dart';
 import '../../../services/snackbar.dart';
 
 class EditProfileController extends GetxController {
@@ -43,14 +46,38 @@ class EditProfileController extends GetxController {
   final gpsController = TextEditingController();
 
   Rx<DateTime> dateOfBirth = DateTime.now().obs;
+  FlutterLocalNotificationsPlugin? flutterLocalNotificationsPlugin;
+  DownloadManager? downloadManager;
 
+  String cdrFileUrl="";
   @override
   Future<void> onInit() async {
     super.onInit();
     await getUserInfo();
     isLoading.value = false;
-  }
 
+    var initializationSettingsAndroid = AndroidInitializationSettings('@mipmap/ic_launcher');
+    var initializationSettingsDarwin = DarwinInitializationSettings();
+    var initializationSettings = InitializationSettings(
+      android: initializationSettingsAndroid,
+      iOS: initializationSettingsDarwin,
+    );
+
+    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+    flutterLocalNotificationsPlugin!.initialize(
+      initializationSettings,
+      onDidReceiveNotificationResponse: onDidReceiveNotificationResponse,
+    );
+
+    downloadManager = DownloadManager(flutterLocalNotificationsPlugin!);
+  }
+  // Callback for when a notification is tapped
+  void onDidReceiveNotificationResponse(NotificationResponse notificationResponse) {
+    final String filePath = notificationResponse.payload!;
+    if (filePath != null && filePath.isNotEmpty) {
+      OpenFile.open(filePath);
+    }
+  }
   Future<void> getUserInfo() async {
     try {
       final response = await APIManager.user();
@@ -75,6 +102,7 @@ class EditProfileController extends GetxController {
       stateController.text = data.address?.state ?? "";
       cityController.text = data.address?.city ?? "";
       gpsController.text = "${data.address?.latitude ?? ""},${data.address?.longitude ?? ""}";
+      cdrFileUrl=data.user?.cdsForm?.url??"";
     }
   }
 
@@ -128,5 +156,9 @@ class EditProfileController extends GetxController {
     } catch (e) {
       debugPrint(e.toString());
     }
+  }
+
+  downloadKycForm () {
+    downloadManager?.downloadFile(cdrFileUrl, 'kyc_form.pdf');
   }
 }

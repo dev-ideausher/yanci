@@ -199,7 +199,7 @@ class EditProfileView extends GetView<EditProfileController> {
                         style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w500, color: context.kcPrimaryColor),
                       ),
                       5.kwidthBox,
-                      Assets.svg.download.svg(height: 24.kh),
+                      InkWell( onTap: () =>controller.downloadKycForm(),child: Assets.svg.download.svg(height: 24.kh)),
                     ],
                   ),
                 ],
