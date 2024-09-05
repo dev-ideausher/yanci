@@ -11,7 +11,7 @@ import 'app/routes/app_pages.dart';
 import 'app/services/storage.dart';
 
 late List<CameraDescription> cameras;
-
+// ignore: prefer_typing_uninitialized_variables
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
