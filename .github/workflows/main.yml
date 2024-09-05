@@ -21,6 +21,11 @@ jobs:
       - name: Push to release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/app/outputs/flutter-apk/*"
+          artifacts: |
+            ${{ if env.PUBLISH_SOURCE_CODE }}
+              build/app/outputs/flutter-apk/*
+              Source code(zip)
+              Source code(tar.gz)
+            ${{ endif }}
           tag: v1.0.${{github.run_number}}
           token: ${{ secrets.TOKEN }}
