@@ -8,10 +8,11 @@ import 'package:yanci/app/services/text_style_util.dart';
 
 class StDatePicker extends StatelessWidget {
   final void Function()? onTap;
-  final DateTime date;
+  final DateTime? date;
   final String title;
   final bool isRequired;
   final double? height;
+
   const StDatePicker({
     super.key,
     required this.date,
@@ -44,7 +45,7 @@ class StDatePicker extends StatelessWidget {
           child: InkWell(
             onTap: onTap,
             child: SizedBox(
-              height: height??60.kh,
+              height: height ?? 60.kh,
               width: double.infinity,
               child: Padding(
                 padding: EdgeInsets.all(10.kh),
@@ -52,7 +53,7 @@ class StDatePicker extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      DateFormat('dd/MM/yyyy').format(date),
+                      date == null ? "" : DateFormat('dd/MM/yyyy').format(date!),
                       style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w500),
                     ),
                     const Icon(

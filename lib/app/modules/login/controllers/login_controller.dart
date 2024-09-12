@@ -14,6 +14,7 @@ class LoginController extends GetxController {
 
   RxBool isLoding = false.obs;
 
+
   var auth=Auth();
 
   String? passwordValidater(String value) {
@@ -26,11 +27,13 @@ class LoginController extends GetxController {
   }
 
   // Login functions
-  void checkLogin() {
+  Future<void> checkLogin() async {
     if (!formkey.currentState!.validate()) {
       return;
     } else {
-      Auth().loginEmailPass(email: emailController.text, pass: passwordController.text);
+      isLoding.value = true;
+     await Auth().loginEmailPass(email: emailController.text, pass: passwordController.text);
+      isLoding.value = false;
     }
   }
 

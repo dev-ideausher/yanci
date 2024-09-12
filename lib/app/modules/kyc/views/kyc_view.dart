@@ -11,6 +11,7 @@ class KycView extends GetView<KycController> {
 
   @override
   Widget build(BuildContext context) {
+;
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (result,pop) {

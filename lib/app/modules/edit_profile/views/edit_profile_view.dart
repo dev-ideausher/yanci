@@ -22,7 +22,7 @@ class EditProfileView extends GetView<EditProfileController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [IconButton(onPressed: () => controller.updateProfile(), icon: Icon(Icons.save))],
+       // actions: [IconButton(onPressed: () => controller.updateProfile(), icon: Icon(Icons.save))],
       ),
       body: Obx(
           ()=>controller.isLoading.value? const Center(child: CircularProgressIndicator()): SingleChildScrollView(

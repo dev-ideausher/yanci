@@ -100,6 +100,7 @@ class EditProfileController extends GetxController {
       selectedMaritalStatus = data.user?.maritalStatus ?? "";
       selectedNationality = data.user?.residentialStatus ?? "";
       stateController.text = data.address?.state ?? "";
+      dateOfBirth.value = DateTime.parse(data.user?.dob ?? "");
       cityController.text = data.address?.city ?? "";
       gpsController.text = "${data.address?.latitude ?? ""},${data.address?.longitude ?? ""}";
       cdrFileUrl=data.user?.cdsForm?.url??"";

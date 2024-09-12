@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:yanci/app/components/custom_required_rich_text.dart';
 import 'package:yanci/app/components/custom_textfield.dart';
@@ -41,15 +42,19 @@ class BankDetailsPage extends StatelessWidget {
             controller: kycController.accountNumberController,
             isObscure: true,
             obscuringCharacter: "•",
-            validator: (value) => !isCommonText(value) ? StringConstants.invalidAccountNumber: null,
+            validator: (value) => !isCommonText(value) ? StringConstants.invalidAccountNumber : null,
             textInputType: TextInputType.number,
           ),
           20.kheightBox,
           StTextField(
             title: StRichText(text: StringConstants.nameAsPerAcc, color: context.redColor),
             hint: StringConstants.nameAsPerAcc,
+            textInputType: TextInputType.name,
             controller: kycController.nameAsPerAccController,
-            validator: (value) => !isCommonText(value) ? StringConstants.invalidFirstName: null,
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]')),
+            ],
+            validator: (value) => !isCommonText(value) ? StringConstants.invalidFirstName : null,
           ),
           20.kheightBox,
           StTextField(
@@ -58,7 +63,7 @@ class BankDetailsPage extends StatelessWidget {
             controller: kycController.swiftCodeController,
             isObscure: true,
             obscuringCharacter: "•",
-            validator: (value) => !isCommonText(value) ? StringConstants.invalidSwiftCode: null,
+            validator: (value) => !isCommonText(value) ? StringConstants.invalidSwiftCode : null,
             textInputType: TextInputType.number,
           ),
           20.kheightBox,
@@ -66,7 +71,14 @@ class BankDetailsPage extends StatelessWidget {
             title: StRichText(text: StringConstants.branchName, color: context.redColor),
             hint: StringConstants.branchName,
             controller: kycController.branchNameController,
-            validator: (value) => !isCommonText(value) ? StringConstants.invalidBranchName: null,
+            validator: (value) => !isCommonText(value) ? StringConstants.invalidBranchName : null,
+          ),
+          20.kheightBox,
+          StTextField(
+            title: StRichText(text: StringConstants.bankName, color: context.redColor),
+            hint: StringConstants.bankName,
+            controller: kycController.bankNameController,
+            validator: (value) => !isCommonText(value) ? StringConstants.invalidBankName : null,
           ),
           20.kheightBox,
           StTextField(
@@ -74,7 +86,7 @@ class BankDetailsPage extends StatelessWidget {
             hint: StringConstants.routingNumber,
             controller: kycController.routingNumberController,
             isObscure: true,
-            validator: (value) => !isCommonText(value) ? StringConstants.invalidRoutingNumber: null,
+            validator: (value) => !isCommonText(value) ? StringConstants.invalidRoutingNumber : null,
             obscuringCharacter: "•",
             textInputType: TextInputType.number,
           ),

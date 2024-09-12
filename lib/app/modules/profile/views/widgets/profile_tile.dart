@@ -26,7 +26,7 @@ class ProfileTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Your Name",
+             "${Get.find<GetStorageService>().firstName} ${Get.find<GetStorageService>().lastName}",
               style: TextStyleUtil.kText16_5(fontWeight: FontWeight.w600),
             ),
             Text(

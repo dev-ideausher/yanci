@@ -110,8 +110,11 @@ class PersonalInfoPage extends StatelessWidget {
           20.kheightBox,
           Obx(
             () => StDatePicker(
-              date: kycController.dateOfBirth.value,
-              onTap: () async => kycController.dateOfBirth.value = await pickDate18(kycController.dateOfBirth.value) ?? kycController.dateOfBirth.value,
+              date: kycController.isDobSelected.value ? kycController.dateOfBirth.value : null,
+              onTap: () async {
+                kycController.dateOfBirth.value = await pickDate18(kycController.dateOfBirth.value) ?? kycController.dateOfBirth.value;
+                kycController.isDobSelected.value = true;
+              },
               title: StringConstants.dateOfBirth,
             ),
           ),

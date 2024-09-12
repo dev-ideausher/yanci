@@ -64,10 +64,10 @@ class ExploreController extends GetxController with GetSingleTickerProviderState
   @override
   void onReady() {
     super.onReady();
-//    if (!GetStorageService().isFirstTime) {
+   if (!GetStorageService().isFirstTime) {
     DialogHelper.showTutorial();
     GetStorageService().isFirstTime = true;
-    //  }
+      }
   }
 
   @override

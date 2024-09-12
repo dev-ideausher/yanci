@@ -34,6 +34,19 @@ class GetStorageService extends GetxService {
 
   set dob(String val) => _runData.write('dob', encryptAESCryptoJS(val));
 
+
+
+  String get firstName => decryptAESCryptoJS(_runData.read('firstName')??"") ?? '';
+
+  set firstName(String val) => _runData.write('firstName', encryptAESCryptoJS(val));
+
+
+  String get lastName => decryptAESCryptoJS(_runData.read('lastName')??"") ?? '';
+
+  set lastName(String val) => _runData.write('lastName', encryptAESCryptoJS(val));
+
+
+
   String get firebaseUid => decryptAESCryptoJS(_runData.read('firebaseUid')) ?? '';
 
   set firebaseUid(String val) => _runData.write('firebaseUid', encryptAESCryptoJS(val));

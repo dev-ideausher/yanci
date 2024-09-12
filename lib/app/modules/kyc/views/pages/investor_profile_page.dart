@@ -55,6 +55,14 @@ class InvestorProfilePage extends StatelessWidget {
             onSelected: (String val) => kycController.selectedOccupation = val,
           ),
           20.kheightBox,
+          StTextField(
+            title: StRichText(text: StringConstants.officeAddress, color: context.redColor,text2: "",),
+            hint: StringConstants.officeAddress,
+
+            controller: kycController.officeAddressController,
+           // validator: (value) => !isCommonText(value) ? StringConstants.invalidEmployerName : null,
+          ),
+          20.kheightBox,
           StDropDown(
             value: kycController.selectedIncome,
             title: StRichText(text: StringConstants.selectMonthlyIncome, color: context.redColor),

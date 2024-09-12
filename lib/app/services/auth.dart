@@ -19,47 +19,73 @@ class Auth extends GetxService {
   var phoneUpdate = "";
 
   Future<UserCredential?> signInWithYahoo() async {
-    // Create a YahooAuthProvider
     final yahooProvider = YahooAuthProvider();
-
     try {
-      // Sign in using Firebase
       final userCredential = await FirebaseAuth.instance.signInWithProvider(yahooProvider);
-
       if (userCredential.user != null) {
         handleGetContact();
+      } else {
+        showMySnackbar(msg: "Something went wrong");
       }
     } catch (error) {
-      // Handle errors
-      print(error);
+      showMySnackbar(msg: error.toString());
       return null;
     }
     return null;
   }
 
   google() async {
-    //TODO: do the required setup mentioned in https://pub.dev/packages/google_sign_in
     await auth.signInWithGoogle().then((value) async {
-      await handleGetContact();
+      if (value.user == null) {
+        showMySnackbar(msg: value.errorMessage ?? "Something went wrong");
+      } else {
+        await handleGetContact();
+      }
     });
   }
 
   apple() async {
     //TODO: do the required setup mentioned in https://pub.dev/packages/sign_in_with_apple
-    final result = await auth
+    await auth
         .signInWithApple(
             //TODO: add your own handler id from firebase console
             appleRedirectUri: 'https://stacked-firebase-auth-test.firebaseapp.com/__/auth/handler',
             appleClientId: '')
         .then((value) async {
-      await handleGetContact();
+      if (value.user == null) {
+        showMySnackbar(msg: value.errorMessage ?? "Something went wrong");
+      } else {
+        await handleGetContact();
+      }
     });
-    print('Apple : ${await result.user?.getIdToken()}');
   }
 
   loginEmailPass({required String email, required String pass}) async {
     await auth.loginWithEmail(email: email, password: pass).then((value) async {
-      await handleGetContact();
+      try {
+        if (value.hasError) {
+          if (value.errorMessage == "The supplied auth credential is malformed or has expired.") {
+
+              createEmailPass(email: email, pass: pass);
+
+          } else {
+            showMySnackbar(msg: value.errorMessage ?? "Something went wrong");
+          }
+        } else {
+          if (value.user!.emailVerified) {
+            // User is verified, proceed with getting contacts
+            handleGetContact();
+          } else {
+            // User created but email not verified
+            showMySnackbar(title: "Email verify", msg: "Please verify your email and continue");
+            await value.user!.sendEmailVerification();
+          }
+        }
+      } on FirebaseAuthException catch (e) {
+        showMySnackbar(title: e.code.toLowerCase(), msg: getErrorMessageFromFirebaseException(e));
+      } on Exception {
+        showMySnackbar(msg: 'We could not log into your account at this time. Please try again.');
+      }
     });
   }
 
@@ -80,7 +106,7 @@ class Auth extends GetxService {
 
   Future<void> handleGetContact() async {
     final mytoken = await _firebaseAuth.currentUser?.getIdToken(true);
-    Get.find<GetStorageService>().encjwToken = mytoken??"";
+    Get.find<GetStorageService>().encjwToken = mytoken ?? "";
     final currentUser = _firebaseAuth.currentUser!;
     // {"name": currentUser.displayName ?? "", "email": currentUser.email ?? "", "phone": currentUser.phoneNumber ?? ""
     try {
@@ -133,7 +159,9 @@ class Auth extends GetxService {
     Get.find<GetStorageService>().id = data?.Id ?? "";
     Get.find<GetStorageService>().email = data?.email ?? "";
     Get.find<GetStorageService>().dob = data?.dob ?? "";
-    Get.find<GetStorageService>().profilePic = data?.profilePic ?? "";
+    Get.find<GetStorageService>().firstName = data?.firstName ?? "";
+    Get.find<GetStorageService>().lastName = data?.lastName ?? "";
+    Get.find<GetStorageService>().profilePic = data?.passportPic?.url ?? "";
     Get.find<GetStorageService>().firebaseUid = data?.firebaseUid ?? '';
     Get.find<GetStorageService>().firebaseSignInProvider = data?.firebaseSignInProvider ?? "";
     Get.find<GetStorageService>().nationality = data?.nationality ?? "";

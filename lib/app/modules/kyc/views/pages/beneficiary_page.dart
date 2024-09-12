@@ -21,7 +21,9 @@ class BeneficiaryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final kycController = Get.find<KycController>();
+
     return Form(
       key: _formKey,
       child: Column(

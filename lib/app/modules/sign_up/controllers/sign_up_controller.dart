@@ -23,7 +23,6 @@ class SignUpController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-
   }
 
   String? passwordValidater(String value) {
@@ -38,11 +37,11 @@ class SignUpController extends GetxController {
   }
 
   // Login functions
-  void checkLogin() {
+  Future<void> checkLogin() async {
     if (!formkey.currentState!.validate()) {
       return;
     } else {
-      auth.createEmailPass(email: emailController.text, pass: passwordController.text);
+      await auth.createEmailPass(email: emailController.text, pass: passwordController.text);
       checkTime();
     }
   }
@@ -81,7 +80,9 @@ class SignUpController extends GetxController {
   void checkTime() {
     timer = Timer.periodic(const Duration(seconds: 3), (_) async {
       try {
-        return await checkEmailVerified();
+        if (isEmailVerified.value == false) {
+          return await checkEmailVerified();
+        }
       } catch (e) {
         debugPrint(e.toString());
       }

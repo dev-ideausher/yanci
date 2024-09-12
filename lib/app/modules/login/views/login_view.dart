@@ -28,7 +28,7 @@ class LoginView extends GetView<LoginController> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 92),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 20.kheightBox,
                 Center(child: Assets.images.yanciLogo.image(height: 50.kh, width: 58.kw)),
@@ -81,10 +81,18 @@ class LoginView extends GetView<LoginController> {
                   ],
                 ),
                 20.kheightBox,
-                CustomButton(
-                  title: StringConstants.logIn,
-                  onTap: () => controller.checkLogin(),
-                  borderRadius: 50,
+                Obx(
+                  () => (controller.isLoding.value)
+                      ? Center(
+                        child: CircularProgressIndicator(
+                            color: context.kcPrimaryColor,
+                          ),
+                      )
+                      : CustomButton(
+                          title: StringConstants.logIn,
+                          onTap: () => controller.checkLogin(),
+                          borderRadius: 50,
+                        ),
                 ),
                 20.kheightBox,
                 Row(

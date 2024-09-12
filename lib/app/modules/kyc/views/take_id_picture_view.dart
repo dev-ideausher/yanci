@@ -109,8 +109,8 @@ class _TakeIdPictureViewState extends State<TakeIdPictureView> {
             60.kheightBox,
             CustomImageCaptureWidget(
               onTapCamera: () => controller.captureIdImage(cameraController),
-              onTapGallery: () {},
-              onTapFiles: () {},
+              onTapGallery: ()=> controller.chooseFile(isIdImageBack: true),
+              onTapFiles:  ()=> controller.chooseFile(isIdImageBack: true),
             ),
           ],
         ),

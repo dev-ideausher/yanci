@@ -55,7 +55,7 @@ class KycController extends GetxController {
   ];
   String selectedMaritalStatus = StringConstants.single;
 
-  String selectedNationality = StringConstants.nationalities.first;
+  String selectedNationality = "";
 
   RxList<String> residentialStatuss = [
     StringConstants.selectResidentialStatuss,
@@ -371,7 +371,7 @@ class KycController extends GetxController {
     StringConstants.grandson,
     StringConstants.granddaughter
   ];
-  String selectedRelation = StringConstants.wife;
+  String selectedRelation = "";
 
   final SignatureController signatureController = SignatureController(
     penStrokeWidth: 5,
@@ -390,6 +390,7 @@ class KycController extends GetxController {
   Rxn<XFile>? selfieWithId = Rxn<XFile>();
 
   Rx<DateTime> dateOfBirth = DateTime(DateTime.now().year - 18, DateTime.now().month, DateTime.now().day).obs;
+  final RxBool isDobSelected = false.obs;
 
   //pin
   final TextEditingController pinController = TextEditingController();
@@ -428,6 +429,7 @@ class KycController extends GetxController {
 
   // investor profile
   final employerNameController = TextEditingController();
+  final officeAddressController = TextEditingController();
 
   // investment profile
   final initialInvestmentAmountController = TextEditingController();
@@ -449,6 +451,7 @@ class KycController extends GetxController {
   final accountNumberController = TextEditingController();
   final swiftCodeController = TextEditingController();
   final branchNameController = TextEditingController();
+  final bankNameController = TextEditingController();
   final routingNumberController = TextEditingController();
 
   //CDR Url
@@ -538,6 +541,7 @@ class KycController extends GetxController {
       debugPrint(e.toString());
     }
   }
+
   void captureSelfieGallery() async {
     try {
       final picker = ImagePicker();
@@ -615,6 +619,13 @@ class KycController extends GetxController {
 
   Future<void> addUserAndAddress() async {
     try {
+      if (isDobSelected.value == false) {
+        showMySnackbar(msg: StringConstants.selectDateOfBirth);
+        return;
+      }
+      if (selectedNationality.isEmpty) {
+        showMySnackbar(msg: StringConstants.selectNationality);
+      }
       if (selectedResidentialStatus.value == StringConstants.selectResidentialStatuss) {
         showMySnackbar(msg: StringConstants.selectResidentialStatuss);
       } else {
@@ -632,7 +643,7 @@ class KycController extends GetxController {
             "maritalStatus": selectedMaritalStatus,
             "originCountry": selectedCountry,
             "dob": dateOfBirth.value.toString(),
-            "countryCode":initialSelectionCountryCode.value,
+            "countryCode": initialSelectionCountryCode.value,
             "phone": phoneNumberController.text
           });
           if (response.data['status'] ?? false) {
@@ -687,9 +698,8 @@ class KycController extends GetxController {
 
       final response = await APIManager.addUpdateProof(body: {
         'proofPic': await MultipartFile.fromFile(pathFile, filename: 'proofPic', contentType: MediaType('image', extension)),
-        "proofPicBack"  : await MultipartFile.fromFile(pathFileBack, filename: 'proofPicBack', contentType: MediaType('image', extensionBack)),
+        "proofPicBack": await MultipartFile.fromFile(pathFileBack, filename: 'proofPicBack', contentType: MediaType('image', extensionBack)),
         'proofWithId': await MultipartFile.fromFile(proofPicFile, filename: 'proofWithId', contentType: MediaType('image', extensionPic)),
-
       });
 /* 'cardNumber': ghanaCardNumberController.text,
         'issueDate': cardStartDate.value.toString(),
@@ -725,6 +735,7 @@ class KycController extends GetxController {
         "swiftCode": swiftCodeController.text,
         "branchName": branchNameController.text,
         "routingNumber": routingNumberController.text,
+        "bankName": bankNameController.text
       });
       if (response.data['status'] ?? false) {
         if (index.value < pages.length - 1) {
@@ -745,6 +756,7 @@ class KycController extends GetxController {
         "occupation": selectedOccupation,
         "monthlyIncome": selectedIncome,
         "employer": employerNameController.text,
+        "officeAddress": officeAddressController.text,
         "businessNature": selectedNature,
         "ghanaSecurity": selectedSecurity.toLowerCase(),
         "informationSource": selectedHearYanci
@@ -790,13 +802,17 @@ class KycController extends GetxController {
 
   Future<void> addBeneficiaryInformation() async {
     try {
+      if(selectedRelation.isEmpty){
+        showMySnackbar(msg: StringConstants.selectRelation);
+        return;
+      }
       final latLong = beneficiaryGpsController.text.split(',').map((s) => s.trim()).toList();
       final lat = latLong.first;
       final long = latLong.last;
       final response = await APIManager.addUpdateBeneficiaryInformation(body: {
         "fullName": beneficiaryNameController.text,
         "relationship": selectedRelation,
-        "countryCode":initialSelectionCountryCode.value,
+        "countryCode": initialSelectionCountryCode.value,
         "phone": beneficiaryPhoneNumberController.text,
         "country": beneficiaryCountryController.text,
         "state": beneficiaryStateController.text,

@@ -642,4 +642,16 @@ class StringConstants {
 
   static var search  = 'Search...';
 
+  static var selectDateOfBirth  = 'Select date of birth';
+
+  static var selectNationality  = 'Select nationality';
+
+  static var selectRelation = 'Select relation';
+
+  static var bankName = 'Bank name';
+
+  static var invalidBankName= 'Invalid bank name';
+
+  static var officeAddress  ="Office address";
+
 }
