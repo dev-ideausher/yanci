@@ -3,7 +3,7 @@ class Endpoints {
 
   // base url
  // static const String baseUrl = "https://yanci-backend.vercel.app/v1/";
-  static const String baseUrl = "http://3.139.241.224:8000/v1/";
+  static const String baseUrl = "https://api.investwithyanci.com/v1/";
   static const String users = "users";
   static const String addUpdateAddress = "users/addUpdateAddress";
   static const String addUpdateProof = "users/addUpdateProof";

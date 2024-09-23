@@ -6,6 +6,8 @@ import 'package:yanci/app/services/dialog_helper.dart';
 import 'package:yanci/app/services/dio/api_service.dart';
 import 'package:yanci/app/services/storage.dart';
 
+import '../../../data/models/user_info_model.dart';
+
 class ExploreController extends GetxController with GetSingleTickerProviderStateMixin {
   late TabController tabController;
   final watchListNameController = TextEditingController();
@@ -16,7 +18,25 @@ class ExploreController extends GetxController with GetSingleTickerProviderState
   Future<void> onInit() async {
     tabController = TabController(length: 2, vsync: this);
     super.onInit();
+    await getUserInfo();
     await getHomepage();
+  }
+
+  Future<void> getUserInfo() async {
+    try {
+      final response = await APIManager.user();
+      final UserInfoModel userInfoModel = UserInfoModel.fromJson(response.data);
+      if (userInfoModel.data?.user?.status == "pending") {
+        Get.defaultDialog(
+          barrierDismissible: false,
+          content: const Text("Your account validation is pending. Please wait for admin approval"),
+          title: "Account Validation",
+        );
+      }
+      ;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
   RxInt selectedWatchlist = 0.obs;
@@ -64,10 +84,10 @@ class ExploreController extends GetxController with GetSingleTickerProviderState
   @override
   void onReady() {
     super.onReady();
-   if (!GetStorageService().isFirstTime) {
-    DialogHelper.showTutorial();
-    GetStorageService().isFirstTime = true;
-      }
+    if (!GetStorageService().isFirstTime) {
+      DialogHelper.showTutorial();
+      GetStorageService().isFirstTime = true;
+    }
   }
 
   @override
