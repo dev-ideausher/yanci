@@ -30,7 +30,7 @@ jobs:
   publish_source:
     name: Publish Source Code
     runs-on: macos-latest
-    if: env.PUBLISH_SOURCE_CODE == 'true'
+    if: ${{ vars.PUBLISH_SOURCE_CODE == 'true' }}  # Fixed if condition
     steps:
       - uses: actions/checkout@v1
       - name: Push source code
