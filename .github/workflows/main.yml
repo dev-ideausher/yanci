@@ -22,10 +22,22 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: |
-            ${{ if env.PUBLISH_SOURCE_CODE }}
-              build/app/outputs/flutter-apk/*
-              Source code(zip)
-              Source code(tar.gz)
-            ${{ endif }}
+            build/app/outputs/flutter-apk/*
+          tag: v1.0.${{github.run_number}}
+          token: ${{ secrets.TOKEN }}
+
+  # Conditional job to upload source code only if PUBLISH_SOURCE_CODE is true
+  publish_source:
+    name: Publish Source Code
+    runs-on: macos-latest
+    if: env.PUBLISH_SOURCE_CODE == 'true'
+    steps:
+      - uses: actions/checkout@v1
+      - name: Push source code
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: |
+            Source code(zip)
+            Source code(tar.gz)
           tag: v1.0.${{github.run_number}}
           token: ${{ secrets.TOKEN }}
