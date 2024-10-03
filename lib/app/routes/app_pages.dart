@@ -10,6 +10,8 @@ import '../modules/explore/bindings/explore_binding.dart';
 import '../modules/explore/views/explore_view.dart';
 import '../modules/faq/bindings/faq_binding.dart';
 import '../modules/faq/views/faq_view.dart';
+import '../modules/forgot_password/bindings/forgot_password_binding.dart';
+import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/kyc/bindings/kyc_binding.dart';
@@ -165,6 +167,11 @@ class AppPages {
       name: _Paths.EDIT_PROFILE,
       page: () => const EditProfileView(),
       binding: EditProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.FORGOT_PASSWORD,
+      page: () => const ForgotPasswordView(),
+      binding: ForgotPasswordBinding(),
     ),
   ];
 }

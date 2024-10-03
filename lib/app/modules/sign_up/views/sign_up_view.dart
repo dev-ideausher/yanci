@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -127,7 +129,9 @@ class SignUpView extends GetView<SignUpController> {
                   children: [
                     SignInProviderButton(onTap: () => controller.googleLogin(), img: Assets.svg.googleLogo.svg(height: 50.kh, width: 50.kw)),
                     10.kwidthBox,
-                    SignInProviderButton(onTap: () => controller.appleLogin(), img: Assets.svg.appleLogo.svg(height: 50.kh, width: 50.kw)),
+                    Visibility(
+                        visible: Platform.isIOS,
+                        child: SignInProviderButton(onTap: () => controller.appleLogin(), img: Assets.svg.appleLogo.svg(height: 50.kh, width: 50.kw))),
                     10.kwidthBox,
                     SignInProviderButton(onTap: () => controller.yahooLogin(), img: Assets.svg.yahooLogo.svg(height: 50.kh, width: 50.kw)),
                   ],

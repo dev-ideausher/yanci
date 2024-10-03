@@ -452,6 +452,8 @@ class KycController extends GetxController {
   final swiftCodeController = TextEditingController();
   final branchNameController = TextEditingController();
   final bankNameController = TextEditingController();
+  final accountTypeCon = TextEditingController();
+  final accountBankCode = TextEditingController();
   final routingNumberController = TextEditingController();
 
   //CDR Url
@@ -610,6 +612,8 @@ class KycController extends GetxController {
     swiftCodeController.dispose();
     branchNameController.dispose();
     routingNumberController.dispose();
+    accountTypeCon.dispose();
+    accountBankCode.dispose();
 
     initialInvestmentAmountController.dispose();
     topupController.dispose();
@@ -730,12 +734,14 @@ class KycController extends GetxController {
     try {
       // need to confirm :   "bankName":"ICICI Bank",
       final response = await APIManager.addUpdateBankDetails(body: {
-        "accountNumber": accountNumberController.text,
-        "accountName": nameAsPerAccController.text,
-        "swiftCode": swiftCodeController.text,
-        "branchName": branchNameController.text,
-        "routingNumber": routingNumberController.text,
-        "bankName": bankNameController.text
+        "accountNumber": accountNumberController.text.trim(),
+        "accountName": nameAsPerAccController.text.trim(),
+        "swiftCode": swiftCodeController.text.trim(),
+        "branchName": branchNameController.text.trim(),
+        "routingNumber": routingNumberController.text.trim(),
+        "bankName": bankNameController.text.trim(),
+        "accountType": accountTypeCon.text.trim(),
+        "bankCode": accountBankCode.text.trim()
       });
       if (response.data['status'] ?? false) {
         if (index.value < pages.length - 1) {
@@ -802,7 +808,7 @@ class KycController extends GetxController {
 
   Future<void> addBeneficiaryInformation() async {
     try {
-      if(selectedRelation.isEmpty){
+      if (selectedRelation.isEmpty) {
         showMySnackbar(msg: StringConstants.selectRelation);
         return;
       }

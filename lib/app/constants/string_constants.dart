@@ -512,7 +512,7 @@ class StringConstants {
 
   static var validPhone = 'Please enter a valid phone number';
 
-  static var ghanaCardNumber =  "Number";
+  static var ghanaCardNumber = "Number";
 
   static var invalidGhanaCardNumber = 'Please enter a valid Ghana Card Number';
 
@@ -572,86 +572,215 @@ class StringConstants {
 
   static var self = "Self";
 
-  static var novice ="Novice";
+  static var novice = "Novice";
 
-  static var intermediate ="Intermediate";
+  static var intermediate = "Intermediate";
 
-  static var expert ="Expert";
+  static var expert = "Expert";
 
-  static var interest ="Interest";
+  static var interest = "Interest";
 
-  static var otherSources ="Other sources";
+  static var otherSources = "Other sources";
 
-  static var uncle  ="Uncle";
+  static var uncle = "Uncle";
 
-  static var aunt ="Aunt";
+  static var aunt = "Aunt";
 
-  static var grandfather  ="Grandfather";
+  static var grandfather = "Grandfather";
 
-  static var grandmother  ="Grandmother";
+  static var grandmother = "Grandmother";
 
-  static var sonInLaw ="Son in law";
+  static var sonInLaw = "Son in law";
 
-  static var daughterInLaw  ="Daughter in law";
+  static var daughterInLaw = "Daughter in law";
 
-  static var grandson ="Grandson";
+  static var grandson = "Grandson";
 
-  static var granddaughter  ="Granddaughter";
-  static String selectResidentialStatuss="Select Residential Status";
+  static var granddaughter = "Granddaughter";
+  static String selectResidentialStatuss = "Select Residential Status";
 
   static const List<String> nationalities = [
-    'Afghan', 'Albanian', 'Algerian', 'American', 'Andorran', 'Angolan', 'Antiguan',
-    'Argentine', 'Armenian', 'Australian', 'Austrian', 'Azerbaijani', 'Bahamian',
-    'Bahraini', 'Bangladeshi', 'Barbadian', 'Belarusian', 'Belgian', 'Belizean',
-    'Beninese', 'Bhutanese', 'Bolivian', 'Bosnian', 'Botswanan', 'Brazilian',
-    'British', 'Bruneian', 'Bulgarian', 'Burkinabe', 'Burmese', 'Burundian',
-    'Cabo Verdean', 'Cambodian', 'Cameroonian', 'Canadian', 'Central African',
-    'Chadian', 'Chilean', 'Chinese', 'Colombian', 'Comoran', 'Congolese (Congo-Brazzaville)',
-    'Congolese (Congo-Kinshasa)', 'Costa Rican', 'Croatian', 'Cuban', 'Cypriot', 'Czech',
-    'Danish', 'Djiboutian', 'Dominican (Dominica)', 'Dominican (Dominican Republic)', 'Dutch',
-    'East Timorese', 'Ecuadorian', 'Egyptian', 'Emirati', 'Equatorial Guinean', 'Eritrean',
-    'Estonian', 'Ethiopian', 'Fijian', 'Finnish', 'French', 'Gabonese', 'Gambian', 'Georgian',
-    'German', 'Ghanaian', 'Greek', 'Grenadian', 'Guatemalan', 'Guinean', 'Bissau-Guinean',
-    'Guyanese', 'Haitian', 'Honduran', 'Hungarian', 'Icelandic', 'Indian', 'Indonesian',
-    'Iranian', 'Iraqi', 'Irish', 'Israeli', 'Italian', 'Ivorian', 'Jamaican', 'Japanese',
-    'Jordanian', 'Kazakh', 'Kenyan', 'Kiribati', 'Korean (North)', 'Korean (South)', 'Kosovar',
-    'Kuwaiti', 'Kyrgyz', 'Laotian', 'Latvian', 'Lebanese', 'Lesotho', 'Liberian', 'Libyan',
-    'Liechtenstein', 'Lithuanian', 'Luxembourgish', 'Malawian', 'Malaysian', 'Maldivian',
-    'Malian', 'Maltese', 'Marshallese', 'Mauritanian', 'Mauritian', 'Mexican', 'Micronesian',
-    'Moldovan', 'Monacan', 'Mongolian', 'Montenegrin', 'Moroccan', 'Mozambican', 'Namibian',
-    'Nauruan', 'Nepalese', 'New Zealander', 'Nicaraguan', 'Nigerien', 'Nigerian', 'Norwegian',
-    'Omani', 'Pakistani', 'Palauan', 'Palestinian', 'Panamanian', 'Papua New Guinean'
+    'Afghan',
+    'Albanian',
+    'Algerian',
+    'American',
+    'Andorran',
+    'Angolan',
+    'Antiguan',
+    'Argentine',
+    'Armenian',
+    'Australian',
+    'Austrian',
+    'Azerbaijani',
+    'Bahamian',
+    'Bahraini',
+    'Bangladeshi',
+    'Barbadian',
+    'Belarusian',
+    'Belgian',
+    'Belizean',
+    'Beninese',
+    'Bhutanese',
+    'Bolivian',
+    'Bosnian',
+    'Botswanan',
+    'Brazilian',
+    'British',
+    'Bruneian',
+    'Bulgarian',
+    'Burkinabe',
+    'Burmese',
+    'Burundian',
+    'Cabo Verdean',
+    'Cambodian',
+    'Cameroonian',
+    'Canadian',
+    'Central African',
+    'Chadian',
+    'Chilean',
+    'Chinese',
+    'Colombian',
+    'Comoran',
+    'Congolese (Congo-Brazzaville)',
+    'Congolese (Congo-Kinshasa)',
+    'Costa Rican',
+    'Croatian',
+    'Cuban',
+    'Cypriot',
+    'Czech',
+    'Danish',
+    'Djiboutian',
+    'Dominican (Dominica)',
+    'Dominican (Dominican Republic)',
+    'Dutch',
+    'East Timorese',
+    'Ecuadorian',
+    'Egyptian',
+    'Emirati',
+    'Equatorial Guinean',
+    'Eritrean',
+    'Estonian',
+    'Ethiopian',
+    'Fijian',
+    'Finnish',
+    'French',
+    'Gabonese',
+    'Gambian',
+    'Georgian',
+    'German',
+    'Ghanaian',
+    'Greek',
+    'Grenadian',
+    'Guatemalan',
+    'Guinean',
+    'Bissau-Guinean',
+    'Guyanese',
+    'Haitian',
+    'Honduran',
+    'Hungarian',
+    'Icelandic',
+    'Indian',
+    'Indonesian',
+    'Iranian',
+    'Iraqi',
+    'Irish',
+    'Israeli',
+    'Italian',
+    'Ivorian',
+    'Jamaican',
+    'Japanese',
+    'Jordanian',
+    'Kazakh',
+    'Kenyan',
+    'Kiribati',
+    'Korean (North)',
+    'Korean (South)',
+    'Kosovar',
+    'Kuwaiti',
+    'Kyrgyz',
+    'Laotian',
+    'Latvian',
+    'Lebanese',
+    'Lesotho',
+    'Liberian',
+    'Libyan',
+    'Liechtenstein',
+    'Lithuanian',
+    'Luxembourgish',
+    'Malawian',
+    'Malaysian',
+    'Maldivian',
+    'Malian',
+    'Maltese',
+    'Marshallese',
+    'Mauritanian',
+    'Mauritian',
+    'Mexican',
+    'Micronesian',
+    'Moldovan',
+    'Monacan',
+    'Mongolian',
+    'Montenegrin',
+    'Moroccan',
+    'Mozambican',
+    'Namibian',
+    'Nauruan',
+    'Nepalese',
+    'New Zealander',
+    'Nicaraguan',
+    'Nigerien',
+    'Nigerian',
+    'Norwegian',
+    'Omani',
+    'Pakistani',
+    'Palauan',
+    'Palestinian',
+    'Panamanian',
+    'Papua New Guinean'
   ];
 
-  static String pinCannotBeEmpty= "Pin cannot be empty";
-  static String pinMustBeExactly5Digits= "Pin must be exactly 5 digits";
-  static String pinMustContainOnlyDigits= "Pin must contain only digits";
-  static String otp= "OTP";
-  static String verifyContactNumber= "Verify contact number";
-  static String pleaseEnterOtp= "Please, Enter the OTP that has been send to this phone number as a SMS";
-  static String enterOtp="Enter OTP";
-  static String didntReceiveOtp= "Didn't receive OTP?";
+  static String pinCannotBeEmpty = "Pin cannot be empty";
+  static String pinMustBeExactly5Digits = "Pin must be exactly 5 digits";
+  static String pinMustContainOnlyDigits = "Pin must contain only digits";
+  static String otp = "OTP";
+  static String verifyContactNumber = "Verify contact number";
+  static String pleaseEnterOtp = "Please, Enter the OTP that has been send to this phone number as a SMS";
+  static String enterOtp = "Enter OTP";
+  static String didntReceiveOtp = "Didn't receive OTP?";
 
-  static String proceedToTermsOfUse= "Proceed to Terms of Use";
+  static String proceedToTermsOfUse = "Proceed to Terms of Use";
 
-  static String ghc= "GHC";
+  static String ghc = "GHC";
 
-  static var selectOne  = "Select one";
+  static var selectOne = "Select one";
 
-  static var resendOTP  = "Resend OTP";
+  static var resendOTP = "Resend OTP";
 
-  static var search  = 'Search...';
+  static var search = 'Search...';
 
-  static var selectDateOfBirth  = 'Select date of birth';
+  static var selectDateOfBirth = 'Select date of birth';
 
-  static var selectNationality  = 'Select nationality';
+  static var selectNationality = 'Select nationality';
 
   static var selectRelation = 'Select relation';
 
   static var bankName = 'Bank name';
 
-  static var invalidBankName= 'Invalid bank name';
+  static var invalidBankName = 'Invalid bank name';
 
-  static var officeAddress  ="Office address";
+  static var officeAddress = "Office address";
 
+  static var accountType = 'Account type';
+
+  static var invalidAccountType = 'Invalid account type';
+
+  static var bankCode = 'Bank code';
+
+  static var invalidBankCode = 'Invalid bank code';
+  static String accountValidationPending = "Your account validation is pending. Please wait for admin approval";
+  static String accountValidation = "Account Validation";
+
+  static String userIsBlockedPleaseContactAdmin = "User is blocked. Please contact admin";
+
+  static String forgotPasswordTitle= "Enter your email address and we will send you a link to reset your password.";
 }

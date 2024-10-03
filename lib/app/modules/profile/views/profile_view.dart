@@ -33,7 +33,8 @@ class ProfileView extends GetView<ProfileController> {
 
             // Profile section
             InkWell(
-              onTap: () => controller.editProfile(),
+              onTap: () => controller.payStack(context),
+              //onTap: () => controller.editProfile(),
               child: Padding(
                 padding: EdgeInsets.all(20.kh),
                 child: const ProfileTile(),

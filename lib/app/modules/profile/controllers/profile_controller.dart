@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_paystack_max/flutter_paystack_max.dart';
 import 'package:get/get.dart';
 import 'package:yanci/app/constants/string_constants.dart';
 import 'package:yanci/app/data/models/user_info_model.dart';
@@ -10,6 +11,7 @@ import 'package:yanci/app/services/dialog_helper.dart';
 import 'package:yanci/app/services/dio/api_service.dart';
 
 import '../../../services/snackbar.dart';
+import '../../../services/storage.dart';
 import '../../orders/controllers/orders_controller.dart';
 
 class ProfileController extends GetxController {
@@ -21,7 +23,6 @@ class ProfileController extends GetxController {
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-
   RxBool generalNotificationValue = true.obs;
   RxBool marketNotificationValue = true.obs;
   RxBool isPassVisible = false.obs;
@@ -30,10 +31,15 @@ class ProfileController extends GetxController {
   RxInt selectedEdIndex = 0.obs;
   RxString selectedContact = StringConstants.query.obs;
   RxString selectedTypeOfQuery = StringConstants.general.obs;
+  bool initializingPayment = false;
+
+  final RxString name = "".obs;
+  final RxString profilePic = "".obs;
 
   @override
   void onInit() {
     super.onInit();
+    updateUserDetails();
   }
 
   void resetPassword() {
@@ -96,13 +102,56 @@ class ProfileController extends GetxController {
   }
 
   editProfile() {
-    Get.toNamed(Routes.EDIT_PROFILE);
+    Get.toNamed(Routes.EDIT_PROFILE)?.then((value) => updateUserDetails());
+  }
+
+  payStack(BuildContext context) async {
+    final request = PaystackTransactionRequest(
+      reference: 'ps_${DateTime.now().microsecondsSinceEpoch}',
+      secretKey: 'sk_test_2ffeaee945eb5a9408a2f99ee86cb49fd62a704a',
+      email: 'amar@ideausher.com',
+      amount: 15 * 100,
+      currency: PaystackCurrency.ghs,
+      channel: [PaystackPaymentChannel.mobileMoney],
+    );
+    final initializedTransaction = await PaymentService.initializeTransaction(request);
+
+    initializingPayment = false;
+
+    if (!initializedTransaction.status) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        backgroundColor: Colors.red,
+        content: Text(initializedTransaction.message),
+      ));
+      final response = await PaymentService.verifyTransaction(
+        paystackSecretKey: 'sk_test_2ffeaee945eb5a9408a2f99ee86cb49fd62a704a',
+        initializedTransaction.data?.reference ?? request.reference,
+      );
+      print(response.toMap());
+/*    final uniqueTransRef = PayWithPayStack().generateUuidV4();
+
+    PayWithPayStack().now(
+        context: context,
+        secretKey:"sk_test_2ffeaee945eb5a9408a2f99ee86cb49fd62a704a",
+        customerEmail: "popekabu@gmail.com",
+        reference: uniqueTransRef,
+        currency: "GHS",
+        amount: 1000.0,
+        transactionCompleted: () {
+          print("Transaction Successful");
+        },
+        transactionNotCompleted: () {
+          print("Transaction Not Successful!");
+        },
+        callbackUrl: '');*/
+    }
   }
 
   logout() {
     Auth().logOutUser();
     Get.offAllNamed(Routes.LOGIN);
   }
+
   String? passwordValidater(String value) {
     if (value.isEmpty) {
       return "Password required";
@@ -121,7 +170,9 @@ class ProfileController extends GetxController {
       return "Passwords don't match";
     }
     return null;
-  }  @override
+  }
+
+  @override
   void onClose() {
     passwordController.dispose();
     newPasswordController.dispose();
@@ -129,5 +180,10 @@ class ProfileController extends GetxController {
 
     queryController.dispose();
     super.onClose();
+  }
+
+  void updateUserDetails() {
+    name.value = "${Get.find<GetStorageService>().firstName} ${Get.find<GetStorageService>().lastName}";
+    profilePic.value = Get.find<GetStorageService>().profilePic;
   }
 }

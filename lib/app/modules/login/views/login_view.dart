@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -71,10 +73,10 @@ class LoginView extends GetView<LoginController> {
                   children: [
                     const Spacer(),
                     InkWell(
-                      // onTap: () => Get.toNamed(Routes.FORGOT_PASSWORD),
+                      onTap: () => Get.toNamed(Routes.FORGOT_PASSWORD),
                       child: Text(
                         textAlign: TextAlign.center,
-                        'Forgot Password ?',
+                        StringConstants.forgotPassword,
                         style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w500, color: Get.context!.blackColor),
                       ),
                     ),
@@ -84,10 +86,10 @@ class LoginView extends GetView<LoginController> {
                 Obx(
                   () => (controller.isLoding.value)
                       ? Center(
-                        child: CircularProgressIndicator(
+                          child: CircularProgressIndicator(
                             color: context.kcPrimaryColor,
                           ),
-                      )
+                        )
                       : CustomButton(
                           title: StringConstants.logIn,
                           onTap: () => controller.checkLogin(),
@@ -132,7 +134,9 @@ class LoginView extends GetView<LoginController> {
                   children: [
                     SignInProviderButton(onTap: () => controller.googleLogin(), img: Assets.svg.googleLogo.svg(height: 50.kh, width: 50.kw)),
                     10.kwidthBox,
-                    SignInProviderButton(onTap: () => controller.appleLogin(), img: Assets.svg.appleLogo.svg(height: 50.kh, width: 50.kw)),
+                    Visibility(
+                        visible: Platform.isIOS,
+                        child: SignInProviderButton(onTap: () => controller.appleLogin(), img: Assets.svg.appleLogo.svg(height: 50.kh, width: 50.kw))),
                     10.kwidthBox,
                     SignInProviderButton(onTap: () => controller.yahooLogin, img: Assets.svg.yahooLogo.svg(height: 50.kh, width: 50.kw)),
                   ],

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -15,6 +17,7 @@ import '../controllers/on_board_controller.dart';
 
 class OnBoardView extends GetView<OnBoardController> {
   const OnBoardView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -117,11 +120,13 @@ class OnBoardView extends GetView<OnBoardController> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SignInProviderButton(onTap: () =>controller.googleLogin(), img: Assets.svg.googleLogo.svg(height: 50.kh, width: 50.kw)),
+              SignInProviderButton(onTap: () => controller.googleLogin(), img: Assets.svg.googleLogo.svg(height: 50.kh, width: 50.kw)),
               10.kwidthBox,
-              SignInProviderButton(onTap: () =>controller.appleLogin(), img: Assets.svg.appleLogo.svg(height: 50.kh, width: 50.kw)),
+              Visibility(
+                  visible: Platform.isIOS,
+                  child: SignInProviderButton(onTap: () => controller.appleLogin(), img: Assets.svg.appleLogo.svg(height: 50.kh, width: 50.kw))),
               10.kwidthBox,
-              SignInProviderButton(onTap: () =>controller.yahooLogin(), img: Assets.svg.yahooLogo.svg(height: 50.kh, width: 50.kw)),
+              SignInProviderButton(onTap: () => controller.yahooLogin(), img: Assets.svg.yahooLogo.svg(height: 50.kh, width: 50.kw)),
             ],
           ),
         ],
@@ -147,10 +152,7 @@ class OnBoardView extends GetView<OnBoardController> {
             DecoratedBox(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [
-                    Colors.white.withOpacity(0.0),
-                    Colors.white
-                  ],
+                  colors: [Colors.white.withOpacity(0.0), Colors.white],
                   stops: const [
                     0,
                     0.4,

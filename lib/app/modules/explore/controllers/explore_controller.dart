@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yanci/app/data/models/stocks_model.dart';
@@ -6,7 +7,9 @@ import 'package:yanci/app/services/dialog_helper.dart';
 import 'package:yanci/app/services/dio/api_service.dart';
 import 'package:yanci/app/services/storage.dart';
 
+import '../../../constants/string_constants.dart';
 import '../../../data/models/user_info_model.dart';
+import '../../../services/dio/exceptions.dart';
 
 class ExploreController extends GetxController with GetSingleTickerProviderStateMixin {
   late TabController tabController;
@@ -27,13 +30,38 @@ class ExploreController extends GetxController with GetSingleTickerProviderState
       final response = await APIManager.user();
       final UserInfoModel userInfoModel = UserInfoModel.fromJson(response.data);
       if (userInfoModel.data?.user?.status == "pending") {
-        Get.defaultDialog(
+        showDialog(
+          context: Get.context!,
           barrierDismissible: false,
-          content: const Text("Your account validation is pending. Please wait for admin approval"),
-          title: "Account Validation",
+          builder: (BuildContext context) {
+            return PopScope(
+              onPopInvokedWithResult: (bool didPop, Object? result) async {},
+              child: AlertDialog(
+                title: Text(StringConstants.accountValidation),
+                content: Text(StringConstants.accountValidationPending),
+              ),
+            );
+          },
+        );
+        // Get.defaultDialog(barrierDismissible: false, content: Text(StringConstants.accountValidationPending), title: StringConstants.accountValidation);
+      }
+    } on DioException catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      if (errorMessage == "User is blocked") {
+        showDialog(
+          context: Get.context!,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return PopScope(
+              onPopInvokedWithResult: (bool didPop, Object? result) async {},
+              child: AlertDialog(
+                title: Text(errorMessage),
+                content: Text(StringConstants.userIsBlockedPleaseContactAdmin),
+              ),
+            );
+          },
         );
       }
-      ;
     } catch (e) {
       debugPrint(e.toString());
     }
