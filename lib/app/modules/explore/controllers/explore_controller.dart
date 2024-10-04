@@ -1,15 +1,19 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yanci/app/components/common_image_view.dart';
 import 'package:yanci/app/data/models/stocks_model.dart';
 import 'package:yanci/app/routes/app_pages.dart';
+import 'package:yanci/app/services/colors.dart';
 import 'package:yanci/app/services/dialog_helper.dart';
 import 'package:yanci/app/services/dio/api_service.dart';
 import 'package:yanci/app/services/storage.dart';
+import 'package:yanci/generated/assets.dart';
 
 import '../../../constants/string_constants.dart';
 import '../../../data/models/user_info_model.dart';
 import '../../../services/dio/exceptions.dart';
+import '../../../services/text_style_util.dart';
 
 class ExploreController extends GetxController with GetSingleTickerProviderStateMixin {
   late TabController tabController;
@@ -37,8 +41,28 @@ class ExploreController extends GetxController with GetSingleTickerProviderState
             return PopScope(
               onPopInvokedWithResult: (bool didPop, Object? result) async {},
               child: AlertDialog(
-                title: Text(StringConstants.accountValidation),
-                content: Text(StringConstants.accountValidationPending),
+                backgroundColor: Colors.white,
+                title: Column(
+                  children: [
+                    CommonImageView(imagePath: Assets.imagesSuccessful),
+                    Text(
+                      StringConstants.kycPending,
+                      textAlign: TextAlign.center,
+                      style: TextStyleUtil.kText20_6(
+                        fontWeight: FontWeight.w700,
+                        color: Get.context!.kcPrimaryColor,
+                      ),
+                    ),
+                  ],
+                ),
+                content: Text(
+                  StringConstants.kycMessage,
+                  textAlign: TextAlign.center,
+                  style: TextStyleUtil.kText16_5(
+                    fontWeight: FontWeight.w400,
+                    color: Get.context!.blackColor,
+                  ),
+                ),
               ),
             );
           },

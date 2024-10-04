@@ -58,6 +58,7 @@ class StringConstants {
   static const goodTillDateGTDText =
       "If you place a limit order with a GTD attribute, then this remains, valid till defined number of days (calendar days) from the day on which it was input. The order will automatically cancel by the system on the expiry date.";
   static const buyingPower = "Buying Power:";
+  static const buyingPower1 = "Buying Power";
   static const atMarket = "At Market";
   static const proceedToBuy = "Proceed to buy ?";
   static const proceedToBuyText = "Are you ready to make a purchase ?";
@@ -336,7 +337,6 @@ class StringConstants {
 
   // Add Money screen
   static const String addMoney = 'Add Money';
-  static const String balanceAvailable = 'Balance Available';
   static const String choosePaymentMethods = 'Choose Payment Methods';
   static const String bankTransfer = 'Bank Transfer';
   static const String otherOptions = 'Other Options';
@@ -421,7 +421,7 @@ class StringConstants {
   static const String contatcUs = 'Contact Us';
   static const String questionsOrFeedback = 'Questions Or Feedback?';
   static const String termsOfUse = 'Terms Of Use';
-  static const String privacyPolicy = 'Privacy & Policy';
+  static const String privacyPolicy = 'Privacy Policy';
 
   // Notifications Settings
   static const String notificationSettings = 'Notifications Settings';
@@ -782,5 +782,31 @@ class StringConstants {
 
   static String userIsBlockedPleaseContactAdmin = "User is blocked. Please contact admin";
 
-  static String forgotPasswordTitle= "Enter your email address and we will send you a link to reset your password.";
+  static String forgotPasswordTitle = "Enter your email address and we will send you a link to reset your password.";
+
+  static String kycPending = "KYC Pending";
+
+  static String kycMessage = "Your submission is received. It might take 2 to 3 business days to verify.";
+
+  static var addMoneyAndCashout = "Add money and cash out";
+
+  static String cashOut = "Cash out";
+
+  static String moneyAddedSuccessfully = "Money Added Successfully";
+
+  static String transactionId = "Transaction Id";
+
+  static String transactionDetails = "Transaction Details";
+
+  static String debitedFrom = "Debited from";
+
+  static String amount = "Amount";
+
+  static var plsEnterAmount = "Please enter amount";
+
+  static var minimumAmount = "Minimum amount should be 100";
+
+  static var transactionNotCompleted="Transaction not completed";
+
+  static var cashoutSuccessful  = "Cash out Successful";
 }

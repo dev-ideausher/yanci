@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/add_cashout_successfully/bindings/add_cashout_successfully_binding.dart';
+import '../modules/add_cashout_successfully/views/add_cashout_successfully_view.dart';
 import '../modules/add_money/bindings/add_money_binding.dart';
 import '../modules/add_money/views/add_money_view.dart';
 import '../modules/buy/bindings/buy_binding.dart';
@@ -172,6 +174,11 @@ class AppPages {
       name: _Paths.FORGOT_PASSWORD,
       page: () => const ForgotPasswordView(),
       binding: ForgotPasswordBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_CASHOUT_SUCCESSFULLY,
+      page: () => const AddCashoutSuccessfullyView(),
+      binding: AddCashoutSuccessfullyBinding(),
     ),
   ];
 }

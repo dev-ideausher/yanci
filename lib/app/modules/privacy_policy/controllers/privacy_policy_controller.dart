@@ -13,8 +13,8 @@ class PrivacyPolicyController extends GetxController {
     super.onInit();
     if (Get.arguments != null) {
       privacyPolicyText.value = Get.arguments;
-    }/* else {
-      privacyPolicy();
+    } /*else {
+      privacyPolicyText.value = Get.arguments;
     }*/
   }
 

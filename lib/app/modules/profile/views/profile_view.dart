@@ -33,8 +33,8 @@ class ProfileView extends GetView<ProfileController> {
 
             // Profile section
             InkWell(
-              onTap: () => controller.payStack(context),
-              //onTap: () => controller.editProfile(),
+
+              onTap: () => controller.editProfile(),
               child: Padding(
                 padding: EdgeInsets.all(20.kh),
                 child: const ProfileTile(),
@@ -52,8 +52,15 @@ class ProfileView extends GetView<ProfileController> {
             SettingsTile(
               title: StringConstants.bankDetails,
               subtitle: StringConstants.bankAndAutoPay,
-              leading: Assets.svg.dollar.svg(),
+              leading: Assets.svg.bank.svg(),
               onTap: () => Get.to(() => const BankDetails()),
+            ),
+            SettingsTile(
+              title: StringConstants.buyingPower1,
+              subtitle: StringConstants.addMoneyAndCashout,
+              leading: Assets.svg.dollar.svg(),
+              onTap: () => Get.toNamed(Routes.ADD_MONEY),
+
             ),
             SettingsTile(
                 title: StringConstants.allOrders,

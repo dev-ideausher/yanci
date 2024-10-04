@@ -164,6 +164,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/dollar.svg
   SvgGenImage get dollar => const SvgGenImage('assets/svg/dollar.svg');
 
+  /// File path: assets/svg/dollar.svg
+  SvgGenImage get bank => const SvgGenImage('assets/svg/bank.svg');
+
   /// File path: assets/svg/done_green.svg
   SvgGenImage get doneGreen => const SvgGenImage('assets/svg/done_green.svg');
 

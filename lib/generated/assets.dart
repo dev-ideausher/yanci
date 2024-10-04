@@ -23,6 +23,7 @@ class Assets {
   static const String lottiefilesSuccessful = 'assets/lottiefiles/successful.json';
   static const String svgAllOrder = 'assets/svg/all_order.svg';
   static const String svgAppleLogo = 'assets/svg/appleLogo.svg';
+  static const String svgBank = 'assets/svg/bank.svg';
   static const String svgBookmark = 'assets/svg/bookmark.svg';
   static const String svgCalendar = 'assets/svg/calendar.svg';
   static const String svgCamera = 'assets/svg/camera.svg';

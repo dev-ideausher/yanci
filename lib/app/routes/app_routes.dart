@@ -29,6 +29,7 @@ abstract class Routes {
   static const FAQ = _Paths.FAQ;
   static const EDIT_PROFILE = _Paths.EDIT_PROFILE;
   static const FORGOT_PASSWORD = _Paths.FORGOT_PASSWORD;
+  static const ADD_CASHOUT_SUCCESSFULLY = _Paths.ADD_CASHOUT_SUCCESSFULLY;
 }
 
 abstract class _Paths {
@@ -57,4 +58,5 @@ abstract class _Paths {
   static const FAQ = '/faq';
   static const EDIT_PROFILE = '/edit-profile';
   static const FORGOT_PASSWORD = '/forgot-password';
+  static const ADD_CASHOUT_SUCCESSFULLY = '/add-cashout-successfully';
 }

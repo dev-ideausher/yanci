@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_paystack_max/flutter_paystack_max.dart';
+
 import 'package:get/get.dart';
+import 'package:pay_with_paystack/pay_with_paystack.dart';
 import 'package:yanci/app/constants/string_constants.dart';
 import 'package:yanci/app/data/models/user_info_model.dart';
 import 'package:yanci/app/modules/home/controllers/home_controller.dart';
@@ -105,47 +106,7 @@ class ProfileController extends GetxController {
     Get.toNamed(Routes.EDIT_PROFILE)?.then((value) => updateUserDetails());
   }
 
-  payStack(BuildContext context) async {
-    final request = PaystackTransactionRequest(
-      reference: 'ps_${DateTime.now().microsecondsSinceEpoch}',
-      secretKey: 'sk_test_2ffeaee945eb5a9408a2f99ee86cb49fd62a704a',
-      email: 'amar@ideausher.com',
-      amount: 15 * 100,
-      currency: PaystackCurrency.ghs,
-      channel: [PaystackPaymentChannel.mobileMoney],
-    );
-    final initializedTransaction = await PaymentService.initializeTransaction(request);
 
-    initializingPayment = false;
-
-    if (!initializedTransaction.status) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        backgroundColor: Colors.red,
-        content: Text(initializedTransaction.message),
-      ));
-      final response = await PaymentService.verifyTransaction(
-        paystackSecretKey: 'sk_test_2ffeaee945eb5a9408a2f99ee86cb49fd62a704a',
-        initializedTransaction.data?.reference ?? request.reference,
-      );
-      print(response.toMap());
-/*    final uniqueTransRef = PayWithPayStack().generateUuidV4();
-
-    PayWithPayStack().now(
-        context: context,
-        secretKey:"sk_test_2ffeaee945eb5a9408a2f99ee86cb49fd62a704a",
-        customerEmail: "popekabu@gmail.com",
-        reference: uniqueTransRef,
-        currency: "GHS",
-        amount: 1000.0,
-        transactionCompleted: () {
-          print("Transaction Successful");
-        },
-        transactionNotCompleted: () {
-          print("Transaction Not Successful!");
-        },
-        callbackUrl: '');*/
-    }
-  }
 
   logout() {
     Auth().logOutUser();

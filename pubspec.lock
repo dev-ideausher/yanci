@@ -651,14 +651,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.2.0"
-  flutter_paystack_max:
-    dependency: "direct main"
-    description:
-      name: flutter_paystack_max
-      sha256: "993eafe50167ece2ced1b3da527b8bd7dc8155a969e6b5d9b1d57e1110bb8213"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.4"
   flutter_pdfview:
     dependency: transitive
     description:
@@ -1261,6 +1253,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.0"
+  pay_with_paystack:
+    dependency: "direct main"
+    description:
+      name: pay_with_paystack
+      sha256: e7675d01e7a49e6cfe615a65b26616e313d1325ea793842e048fd14b9f8976ab
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.10"
   permission_handler:
     dependency: "direct main"
     description:

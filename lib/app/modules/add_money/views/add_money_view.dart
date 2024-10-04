@@ -14,6 +14,7 @@ import '../controllers/add_money_controller.dart';
 
 class AddMoneyView extends GetView<AddMoneyController> {
   const AddMoneyView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +23,7 @@ class AddMoneyView extends GetView<AddMoneyController> {
         shadowColor: context.kWhitelight,
         surfaceTintColor: context.whiteColor,
         title: Text(
-          StringConstants.addMoney,
+          StringConstants.buyingPower1,
           style: TextStyleUtil.kText16_5(fontWeight: FontWeight.w600),
         ),
         centerTitle: false,
@@ -31,24 +32,23 @@ class AddMoneyView extends GetView<AddMoneyController> {
         padding: EdgeInsets.all(16.kh),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      StringConstants.balanceAvailable,
-                      style: TextStyleUtil.kText14_4(),
-                    ),
-                    Text(
-                      "${StringConstants.ghanaCurrency} ${controller.balance.value}",
-                      style: TextStyleUtil.kText20_6(fontWeight: FontWeight.w700),
-                    ),
-                  ],
-                ),
-                Assets.svg.wallet.svg(),
-              ],
+            ListTile(
+                title: Text(StringConstants.buyingPower, style: TextStyleUtil.kText14_4()),
+                subtitle: Text("${StringConstants.ghanaCurrency} ${controller.balance.value}", style: TextStyleUtil.kText20_6(fontWeight: FontWeight.w700))),
+            DefaultTabController(
+              length: 2,
+              child: TabBar(
+                  onTap: (value) => controller.tabIndex.value = value,
+                  dividerColor: Colors.transparent,
+                  labelStyle: TextStyleUtil.kText14_4(color: context.kcPrimaryColor, fontWeight: FontWeight.w600),
+                  labelColor: context.kcPrimaryColor,
+                  indicatorColor: context.kcPrimaryColor,
+                  isScrollable: false,
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  tabs: [
+                    const Tab(child: Text(StringConstants.addMoney)),
+                    Tab(child: Text(StringConstants.cashOut)),
+                  ]),
             ),
             40.kheightBox,
             DecoratedBox(
@@ -89,7 +89,7 @@ class AddMoneyView extends GetView<AddMoneyController> {
                 ),
               ),
             ),
-            40.kheightBox,
+            /* 40.kheightBox,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -97,7 +97,7 @@ class AddMoneyView extends GetView<AddMoneyController> {
                 1000,
                 2000
               ].map((e) => moneyChips(amount: e, onTap: () => controller.addMoney(e))).toList(),
-            ),
+            ),*/
           ],
         ),
       ),
@@ -148,12 +148,14 @@ class AddMoneyView extends GetView<AddMoneyController> {
               Divider(color: context.greyColor, height: 1),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 10.kh, horizontal: 16.kw),
-                child: CustomButton(
-                  onTap: () => controller.addMoneyFromController(),
-                  title: StringConstants.addMoney,
-                  style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w600, color: context.whiteColor),
-                  height: 48.kh,
-                  borderRadius: 50,
+                child: Obx(
+                  () => CustomButton(
+                    onTap: () => controller.addMoneyFromController(context),
+                    title: controller.tabIndex.value == 0 ? StringConstants.addMoney : StringConstants.cashOut,
+                    style: TextStyleUtil.kText14_4(fontWeight: FontWeight.w600, color: context.whiteColor),
+                    height: 48.kh,
+                    borderRadius: 50,
+                  ),
                 ),
               ),
             ],
